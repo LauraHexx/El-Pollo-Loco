@@ -3,6 +3,7 @@ class World {
   ctx;
   character = new Character();
   enemies = [new Chicken(), new Chicken(), new Chicken()];
+  clouds = [new Cloud()];
 
   constructor(canvas) {
     this.canvas = canvas;
@@ -12,8 +13,8 @@ class World {
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // canvas muss immer wieder gelöscht werden
+    //drawImage ist Funktion von vordefinierte Funktion von JavaScript
     this.ctx.drawImage(
-      //drawImage ist Funktion von vordefinierte Funktion von JavaScript
       this.character.img,
       this.character.x,
       this.character.y,
@@ -28,6 +29,16 @@ class World {
         enemy.y,
         enemy.width,
         enemy.height
+      );
+    });
+
+    this.clouds.forEach((cloud) => {
+      this.ctx.drawImage(
+        cloud.img,
+        cloud.x,
+        cloud.y,
+        cloud.width,
+        cloud.height
       );
     });
 
