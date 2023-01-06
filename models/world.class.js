@@ -17,19 +17,13 @@ class World {
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // canvas muss immer wieder gelöscht werden - vordefinierte Funktion von JavaScript
 
-    this.addToMap(this.character);
+    this.oneObjectToMap(this.character);
 
-    this.enemies.forEach((enemy) => {
-      this.addToMap(enemy);
-    });
+    this.arrayToMap(this.enemies);
 
-    this.clouds.forEach((cloud) => {
-      this.addToMap(cloud);
-    });
+    this.arrayToMap(this.clouds);
 
-    this.backgroundObjects.forEach((backgroundObject) => {
-      this.addToMap(backgroundObject);
-    });
+    this.arrayToMap(this.backgroundObjects);
 
     let self = this;
 
@@ -39,14 +33,20 @@ class World {
     });
   }
 
-  addToMap(moveableObject) {
+  oneObjectToMap(object) {
     //vordefinierte Funktion von JavaScript
     this.ctx.drawImage(
-      moveableObject.img,
-      moveableObject.x,
-      moveableObject.y,
-      moveableObject.width,
-      moveableObject.height
+      object.img,
+      object.x,
+      object.y,
+      object.width,
+      object.height
     );
+  }
+
+  arrayToMap(array) {
+    array.forEach((elementOfArray) => {
+      this.oneObjectToMap(elementOfArray);
+    });
   }
 }
