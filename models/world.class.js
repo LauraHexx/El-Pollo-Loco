@@ -23,11 +23,11 @@ class World {
 
     this.enemies.forEach((enemy) => {
       this.ctx.drawImage(
-        this.enemy.img,
-        this.enemy.x,
-        this.enemy.y,
-        this.enemy.width,
-        this.enemy.height
+        enemy.img,
+        enemy.x,
+        enemy.y,
+        enemy.width,
+        enemy.height
       );
     });
 
