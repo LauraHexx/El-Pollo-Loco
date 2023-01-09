@@ -7,6 +7,7 @@ class MoveableObject {
   imageCache = {};
   curentImage = 0;
   speed = 0.25;
+  movingLeft = false;
 
   constructor() {}
 

@@ -24,10 +24,12 @@ class Character extends MoveableObject {
       //walk right
       if (this.world.keyboard.right) {
         this.x += this.speed;
+        this.movingLeft = false;
       }
       //walk left
       if (this.world.keyboard.left) {
         this.x -= this.speed;
+        this.movingLeft = true;
       }
     }, 1000 / 60);
 

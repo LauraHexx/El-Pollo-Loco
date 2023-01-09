@@ -38,20 +38,32 @@ class World {
     });
   }
 
-  oneObjectToMap(object) {
+  oneObjectToMap(obj) {
     //vordefinierte Funktion von JavaScript
-    this.ctx.drawImage(
-      object.img,
-      object.x,
-      object.y,
-      object.width,
-      object.height
-    );
+    if (obj.movingLeft) {
+      this.flipImage(obj);
+    }
+    this.ctx.drawImage(obj.img, obj.x, obj.y, obj.width, obj.height);
+    if (obj.movingLeft) {
+      this.flipImageBack(obj);
+    }
   }
 
   arrayToMap(array) {
     array.forEach((elementOfArray) => {
       this.oneObjectToMap(elementOfArray);
     });
+  }
+
+  flipImage(obj) {
+    this.ctx.save(); //aktuellen Stand speichern
+    this.ctx.translate(obj.width / 2, 0); // Spiegeln
+    this.ctx.scale(-1, 1); //Beim Drehen der Laufrichtung muss Breite Character abgezogen werden
+    obj.x = obj.x * -1; //x Koordinate wird durch spiegeln gedreht - anpassen
+  }
+
+  flipImageBack(obj) {
+    obj.x = obj.x * -1; //x Koordinate auf Standard zurücksetzten
+    this.ctx.restore(); // reseten zu "save()"
   }
 }
