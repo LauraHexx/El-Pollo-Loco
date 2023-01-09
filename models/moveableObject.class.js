@@ -5,6 +5,7 @@ class MoveableObject {
   width = 130;
   height = 170;
   imageCache = {};
+  curentImage = 0;
 
   constructor() {}
 
