@@ -2,6 +2,8 @@ class World {
   canvas;
   keyboard;
   ctx;
+  cameraX = 0;
+  cameraY = 0;
   character = new Character();
   enemies = [new Chicken(), new Chicken(), new Chicken()];
   clouds = [new Cloud()];
@@ -26,10 +28,12 @@ class World {
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // canvas muss immer wieder gelöscht werden - vordefinierte Funktion von JavaScript
+    this.ctx.translate(this.cameraX, 0);
     this.arrayToMap(this.backgroundObjects);
     this.arrayToMap(this.clouds);
     this.oneObjectToMap(this.character);
     this.arrayToMap(this.enemies);
+    this.ctx.translate(-this.cameraX, 0);
 
     //draw wird immer wieder aufgerufen
     let self = this;
