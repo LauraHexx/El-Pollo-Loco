@@ -1,5 +1,6 @@
 class World {
   canvas;
+  keyboard;
   ctx;
   character = new Character();
   enemies = [new Chicken(), new Chicken(), new Chicken()];
@@ -11,10 +12,16 @@ class World {
     new BackgroundObject("img/5_background/layers/1_first_layer/1.png", 0),
   ];
 
-  constructor(canvas) {
+  constructor(canvas, keyboard) {
     this.canvas = canvas;
+    this.keyboard = keyboard;
     this.ctx = canvas.getContext("2d"); //so kann man auf das Canvas malen - bestimmte Funktionen damit aufrufen - ctx: Context (Standard)
     this.draw();
+    this.setWorld();
+  }
+
+  setWorld() {
+    this.character.world = this; // world übergeben, damit Zugriff auf Keyboard - ist in Java Script nicht schön gelöst
   }
 
   draw() {
