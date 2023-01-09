@@ -6,6 +6,7 @@ class MoveableObject {
   height = 170;
   imageCache = {};
   curentImage = 0;
+  speed = 0.25;
 
   constructor() {}
 
@@ -23,7 +24,11 @@ class MoveableObject {
     });
   }
 
-  moveRight() {}
+  moveLeft() {
+    setInterval(() => {
+      this.x -= this.speed;
+    }, 1000 / 60);
+  }
 
-  moveLeft() {}
+  moveRight() {}
 }
