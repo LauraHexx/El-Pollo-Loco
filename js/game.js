@@ -11,6 +11,7 @@ function init() {
   canvas = getId("canvas");
   world = new World(canvas, keyboard);
   console.log("Das ist meine Welt", world);
+  console.log("Das ist meine erstes LEvel", level1);
 }
 
 window.addEventListener("keydown", (event) => {
