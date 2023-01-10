@@ -25,11 +25,16 @@ class MoveableObject {
     });
   }
 
+  playAnimation(images) {
+    let i = this.curentImage % images.length;
+    let path = images[i];
+    this.img = this.imageCache[path];
+    this.curentImage++;
+  }
+
   moveLeft() {
     setInterval(() => {
       this.x -= this.speed;
     }, 1000 / 60);
   }
-
-  moveRight() {}
 }
