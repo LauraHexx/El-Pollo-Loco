@@ -14,7 +14,7 @@ class Character extends MoveableObject {
   world;
 
   constructor() {
-    super().loadImage("img/2_character_pepe/1_idle/idle/I-1.png");
+    super().loadImage("img/2_character_pepe/1_idle/idle/I-1.png"); //Todo - brauch ich nicht mehr
     this.loadImages(this.imagesWalking);
     this.animate();
   }
@@ -22,7 +22,7 @@ class Character extends MoveableObject {
   animate() {
     setInterval(() => {
       //walk right
-      if (this.world.keyboard.right && this.x < this.level.levelEndX) {
+      if (this.world.keyboard.right && this.x < world.currentLevel.levelEndX) {
         this.x += this.speed;
         this.movingLeft = false;
       }

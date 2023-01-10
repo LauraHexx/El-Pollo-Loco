@@ -1,5 +1,4 @@
 let canvas;
-let ctx;
 let world;
 let keyboard = new Keyboard();
 
@@ -31,6 +30,7 @@ window.addEventListener("keydown", (event) => {
     //down
     keyboard.down = true;
   }
+
   if (event.keyCode == 32) {
     //space
     keyboard.space = true;

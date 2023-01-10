@@ -2,14 +2,10 @@ class World {
   canvas;
   keyboard;
   ctx;
-  currentLevel = -
-  ;
+  currentLevel = level1;
   cameraX = 0;
   cameraY = 0;
   character = new Character();
-  enemies = this.currentLevel.enemies;
-  clouds = this.currentLevel.clouds;
-  backgroundObjects = level1.backgroundObjects;
 
   constructor(canvas, keyboard) {
     this.canvas = canvas;
@@ -26,10 +22,10 @@ class World {
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // canvas muss immer wieder gelöscht werden - vordefinierte Funktion von JavaScript
     this.ctx.translate(this.cameraX, 0);
-    this.arrayToMap(this.backgroundObjects);
-    this.arrayToMap(this.clouds);
+    this.arrayToMap(this.currentLevel.backgroundObjects);
+    this.arrayToMap(this.currentLevel.clouds);
     this.oneObjectToMap(this.character);
-    this.arrayToMap(this.enemies);
+    this.arrayToMap(this.currentLevel.enemies);
     this.ctx.translate(-this.cameraX, 0);
 
     //draw wird immer wieder aufgerufen
