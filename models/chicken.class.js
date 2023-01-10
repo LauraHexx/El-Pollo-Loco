@@ -29,6 +29,6 @@ class Chicken extends MoveableObject {
   }
 
   playSound() {
-    this.walkingSound.play();
+    //this.walkingSound.play(); // todo - bricht ab nach einmal spielen
   }
 }
