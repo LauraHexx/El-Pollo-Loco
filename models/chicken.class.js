@@ -7,6 +7,7 @@ class Chicken extends MoveableObject {
     "img/3_enemies_chicken/chicken_normal/1_walk/2_w.png",
     "img/3_enemies_chicken/chicken_normal/1_walk/3_w.png",
   ];
+  walkingSound = new Audio("audio/chicken.mp3");
 
   constructor() {
     super().loadImage("img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
@@ -14,6 +15,7 @@ class Chicken extends MoveableObject {
     this.speed = 0.15 + Math.random() * 0.35; // Zahl zwischen 200 und 500
     this.loadImages(this.imagesWalking);
     this.animate();
+    this.playSound();
   }
 
   animate() {
@@ -24,5 +26,9 @@ class Chicken extends MoveableObject {
       this.img = this.imageCache[path];
       this.curentImage++;
     }, 100);
+  }
+
+  playSound() {
+    this.walkingSound.play();
   }
 }

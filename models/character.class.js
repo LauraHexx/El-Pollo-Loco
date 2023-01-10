@@ -12,6 +12,7 @@ class Character extends MoveableObject {
   ];
   speed = 7;
   world;
+  walkingSound = new Audio("audio/walking.mp3");
 
   constructor() {
     super().loadImage("img/2_character_pepe/1_idle/idle/I-1.png"); //Todo - brauch ich nicht mehr
@@ -22,14 +23,17 @@ class Character extends MoveableObject {
   animate() {
     setInterval(() => {
       //walk right
+      this.walkingSound.pause();
       if (this.world.keyboard.right && this.x < world.currentLevel.levelEndX) {
         this.x += this.speed;
         this.movingLeft = false;
+        this.walkingSound.play();
       }
       //walk left
       if (this.world.keyboard.left && this.x > 0) {
         this.x -= this.speed;
         this.movingLeft = true;
+        this.walkingSound.play();
       }
       this.world.cameraX = -this.x + 80;
     }, 1000 / 60);
