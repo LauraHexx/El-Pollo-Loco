@@ -8,6 +8,8 @@ class MoveableObject {
   curentImage = 0;
   speed = 0.25;
   movingLeft = false;
+  speedY = 0;
+  acceleration = 2.5;
 
   constructor() {}
 
@@ -36,5 +38,18 @@ class MoveableObject {
     setInterval(() => {
       this.x -= this.speed;
     }, 1000 / 60);
+  }
+
+  applyGravity() {
+    setInterval(() => {
+      if (this.isAboveGround()) {
+        this.y -= this.speedY;
+        this.speedY -= this.acceleration;
+      }
+    }, 1000 / 25);
+  }
+
+  isAboveGround() {
+    return this.y < 150;
   }
 }
