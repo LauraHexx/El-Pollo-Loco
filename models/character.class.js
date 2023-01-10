@@ -10,7 +10,7 @@ class Character extends MoveableObject {
     "img/2_character_pepe/2_walk/W-25.png",
     "img/2_character_pepe/2_walk/W-26.png",
   ];
-  speed = 7;
+  speed = 10;
   world;
   walkingSound = new Audio("audio/walking.mp3");
 
