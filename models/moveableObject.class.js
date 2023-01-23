@@ -34,7 +34,19 @@ class MoveableObject {
     this.curentImage++;
   }
 
-  draw(obj) {}
+  drawImages(ctx) {
+    // wird von world übergeben
+    ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+  }
+
+  drawFrames(ctx) {
+    // wird von world übergeben
+    ctx.beginPath();
+    ctx.lineWidth = "3";
+    ctx.strokeStyle = "blue";
+    ctx.rect(this.x, this.y, this.width, this.height);
+    ctx.stroke();
+  }
 
   moveLeft() {
     this.x -= this.speed;

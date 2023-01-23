@@ -41,13 +41,8 @@ class World {
       this.flipImage(obj);
     }
 
-    this.ctx.drawImage(obj.img, obj.x, obj.y, obj.width, obj.height);
-
-    this.ctx.beginPath();
-    this.ctx.lineWidth = "3";
-    this.ctx.strokeStyle = "blue";
-    this.ctx.rect(obj.x, obj.y, obj.width, obj.height);
-    this.ctx.stroke();
+    obj.drawImages(this.ctx); //zum Auslagern der DrawImage Funktion in Moveable Object
+    obj.drawFrames(this.ctx);
 
     if (obj.movingLeft) {
       this.flipImageBack(obj);
