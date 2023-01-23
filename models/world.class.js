@@ -13,10 +13,21 @@ class World {
     this.ctx = canvas.getContext("2d"); //so kann man auf das Canvas malen - bestimmte Funktionen damit aufrufen - ctx: Context (Standard)
     this.setWorld();
     this.draw();
+    this.checkCollisions();
   }
 
   setWorld() {
     this.character.world = this; // world übergeben, damit Zugriff auf Keyboard - ist in Java Script nicht schön gelöst
+  }
+
+  checkCollisions() {
+    setInterval(() => {
+      this.currentLevel.enemies.forEach((enemy) => {
+        if (this.character.isColliding(enemy)) {
+          console.log("Character is colliding", enemy);
+        }
+      });
+    }, 200);
   }
 
   draw() {
@@ -36,7 +47,6 @@ class World {
   }
 
   oneObjectToMap(obj) {
-    //vordefinierte Funktion von JavaScript
     if (obj.movingLeft) {
       this.flipImage(obj);
     }
