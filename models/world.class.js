@@ -11,8 +11,8 @@ class World {
     this.canvas = canvas;
     this.keyboard = keyboard;
     this.ctx = canvas.getContext("2d"); //so kann man auf das Canvas malen - bestimmte Funktionen damit aufrufen - ctx: Context (Standard)
-    this.draw();
     this.setWorld();
+    this.draw();
   }
 
   setWorld() {
@@ -40,7 +40,15 @@ class World {
     if (obj.movingLeft) {
       this.flipImage(obj);
     }
+
     this.ctx.drawImage(obj.img, obj.x, obj.y, obj.width, obj.height);
+
+    this.ctx.beginPath();
+    this.ctx.lineWidth = "3";
+    this.ctx.strokeStyle = "blue";
+    this.ctx.rect(obj.x, obj.y, obj.width, obj.height);
+    this.ctx.stroke();
+
     if (obj.movingLeft) {
       this.flipImageBack(obj);
     }
