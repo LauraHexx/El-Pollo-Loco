@@ -11,6 +11,7 @@ class MoveableObject {
   speedY = 0;
   acceleration = 2.5;
   energy = 100;
+  lastHit = 0;
 
   constructor() {}
 
@@ -61,6 +62,28 @@ class MoveableObject {
       this.y < obj.y
     );
   }
+
+  hit() {
+    this.energy -= 5;
+    if (this.energy <= 0) {
+      this.energy = 0;
+      this.isDead();
+    } else {
+      this.lastHit = new Date().getTime(); //speichern des Zeitpunktes, wann Character verletzt wurde
+    }
+  }
+
+  isDead() {
+    return this.energy == 0;
+  }
+
+  isHurting() {
+    let timePassed = new Date().getTime() - this.lastHit; // Differenz aktuelle Zeit und letzter Zeitpunkt hit
+    timePassed = timePassed / 1000;
+    console.log(timePassed);
+    return timePassed < 1; //gibt true zurück
+  }
+
   moveLeft() {
     this.x -= this.speed;
   }

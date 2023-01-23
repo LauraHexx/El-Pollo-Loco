@@ -21,6 +21,20 @@ class Character extends MoveableObject {
     "img/2_character_pepe/3_jump/J-38.png",
     "img/2_character_pepe/3_jump/J-39.png",
   ];
+  imagesHurting = [
+    "img/2_character_pepe/4_hurt/H-41.png",
+    "img/2_character_pepe/4_hurt/H-42.png",
+    "img/2_character_pepe/4_hurt/H-43.png",
+  ];
+  imagesDead = [
+    "img/2_character_pepe/5_dead/D-51.png",
+    "img/2_character_pepe/5_dead/D-52.png",
+    "img/2_character_pepe/5_dead/D-53.png",
+    "img/2_character_pepe/5_dead/D-54.png",
+    "img/2_character_pepe/5_dead/D-55.png",
+    "img/2_character_pepe/5_dead/D-56.png",
+    "img/2_character_pepe/5_dead/D-57.png",
+  ];
   speed = 10;
   world;
   walkingSound = new Audio("audio/walking.mp3");
@@ -29,6 +43,8 @@ class Character extends MoveableObject {
     super().loadImage("img/2_character_pepe/1_idle/idle/I-1.png"); //Todo - brauch ich nicht mehr
     this.loadImages(this.imagesWalking);
     this.loadImages(this.imagesJumping);
+    this.loadImages(this.imagesHurting);
+    this.loadImages(this.imagesDead);
     this.animate();
     this.applyGravity();
   }
@@ -48,7 +64,6 @@ class Character extends MoveableObject {
         this.moveLeft();
         this.walkingSound.play();
       }
-
       //jump
       if (this.world.keyboard.space && !this.isAboveGround()) {
         this.jump();
@@ -58,11 +73,14 @@ class Character extends MoveableObject {
     }, 1000 / 60);
 
     setInterval(() => {
-      if (this.isAboveGround()) {
+      if (this.isHurting()) {
+        this.playAnimation(this.imagesHurting);
+      } else if (this.isDead()) {
+        this.playAnimation(this.imagesDead);
+      } else if (this.isAboveGround()) {
         this.playAnimation(this.imagesJumping);
       } else {
         if (this.world.keyboard.right || this.world.keyboard.left) {
-          //walk animation
           this.playAnimation(this.imagesWalking);
         }
       }
