@@ -1,4 +1,5 @@
 class StatusBar extends DrawableObject {
+  //todo - other status bars
   x = 40;
   y = 00;
   width = 200;

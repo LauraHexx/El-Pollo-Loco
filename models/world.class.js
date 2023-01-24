@@ -46,6 +46,7 @@ class World {
     this.oneObjectToMap(this.character);
     this.arrayToMap(this.currentLevel.clouds);
     this.arrayToMap(this.currentLevel.enemies);
+    this.arrayToMap(this.currentLevel.bottles);
 
     this.ctx.translate(-this.cameraX, 0);
 

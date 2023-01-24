@@ -38,6 +38,10 @@ window.addEventListener("keydown", (event) => {
     //enter
     keyboard.enter = true;
   }
+  if (event.keyCode == 68) {
+    //enter
+    keyboard.d = true;
+  }
 });
 
 window.addEventListener("keyup", (event) => {
@@ -64,5 +68,9 @@ window.addEventListener("keyup", (event) => {
   if (event.keyCode == 13) {
     //enter
     keyboard.enter = false;
+  }
+  if (event.keyCode == 68) {
+    //enter
+    keyboard.d = false;
   }
 });
