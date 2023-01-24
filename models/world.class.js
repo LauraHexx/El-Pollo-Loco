@@ -26,6 +26,7 @@ class World {
       this.currentLevel.enemies.forEach((enemy) => {
         if (this.character.isColliding(enemy)) {
           this.character.hit();
+          this.statusBar.setPercentage(this.character.energy);
           console.log("Character is colliding enemy", this.character.energy);
         }
       });
@@ -36,10 +37,16 @@ class World {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // canvas muss immer wieder gelöscht werden - vordefinierte Funktion von JavaScript
     this.ctx.translate(this.cameraX, 0);
     this.arrayToMap(this.currentLevel.backgroundObjects);
-    this.arrayToMap(this.currentLevel.clouds);
+
+    this.ctx.translate(-this.cameraX, 0);
+    //Space for fixed Objects
     this.oneObjectToMap(this.statusBar);
+    this.ctx.translate(this.cameraX, 0);
+
     this.oneObjectToMap(this.character);
+    this.arrayToMap(this.currentLevel.clouds);
     this.arrayToMap(this.currentLevel.enemies);
+
     this.ctx.translate(-this.cameraX, 0);
 
     //draw wird immer wieder aufgerufen
