@@ -13,18 +13,6 @@ class MoveableObject extends DrawableObject {
     this.curentImage++;
   }
 
-  drawFrames(ctx) {
-    // wird von world übergeben
-    if (this instanceof Character || this instanceof Chicken) {
-      // wird nur ausgeführt wenn Character oder Chicken
-      ctx.beginPath();
-      ctx.lineWidth = "3";
-      ctx.strokeStyle = "blue";
-      ctx.rect(this.x, this.y, this.width, this.height);
-      ctx.stroke();
-    }
-  }
-
   isColliding(obj) {
     return (
       this.x + this.width >= obj.x &&

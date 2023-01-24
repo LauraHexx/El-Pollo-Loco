@@ -6,6 +6,7 @@ class World {
   cameraX = 0;
   cameraY = 0;
   character = new Character();
+  statusBar = new StatusBar();
 
   constructor(canvas, keyboard) {
     this.canvas = canvas;
@@ -36,6 +37,7 @@ class World {
     this.ctx.translate(this.cameraX, 0);
     this.arrayToMap(this.currentLevel.backgroundObjects);
     this.arrayToMap(this.currentLevel.clouds);
+    this.oneObjectToMap(this.statusBar);
     this.oneObjectToMap(this.character);
     this.arrayToMap(this.currentLevel.enemies);
     this.ctx.translate(-this.cameraX, 0);
@@ -52,7 +54,7 @@ class World {
       this.flipImage(obj);
     }
 
-    obj.drawImages(this.ctx); //zum Auslagern der DrawImage Funktion in Moveable Object
+    obj.drawImages(this.ctx); //zum Auslagern der DrawImage Funktion in Drawable Object
     obj.drawFrames(this.ctx);
 
     if (obj.movingLeft) {
