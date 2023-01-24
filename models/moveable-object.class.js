@@ -1,11 +1,4 @@
-class MoveableObject {
-  img;
-  x = 120;
-  y = 250;
-  width = 130;
-  height = 170;
-  imageCache = {};
-  curentImage = 0;
+class MoveableObject extends DrawableObject {
   speed = 0.25;
   movingLeft = false;
   speedY = 0;
@@ -13,33 +6,11 @@ class MoveableObject {
   energy = 100;
   lastHit = 0;
 
-  constructor() {}
-
-  loadImage(path) {
-    //erstellt ein img html tag
-    this.img = new Image();
-    this.img.src = path;
-  }
-
-  loadImages(array) {
-    array.forEach((path) => {
-      let img = new Image();
-      img.src = path;
-      this.imageCache[path] = img;
-    });
-  }
-
   playAnimation(images) {
     let i = this.curentImage % images.length;
     let path = images[i];
     this.img = this.imageCache[path];
     this.curentImage++;
-  }
-
-  drawImages(ctx) {
-    // wird von world übergeben
-    //von JS vordefinierte Funktion
-    ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
   }
 
   drawFrames(ctx) {
@@ -80,7 +51,6 @@ class MoveableObject {
   isHurting() {
     let timePassed = new Date().getTime() - this.lastHit; // Differenz aktuelle Zeit und letzter Zeitpunkt hit
     timePassed = timePassed / 1000;
-    console.log(timePassed);
     return timePassed < 1; //gibt true zurück
   }
 
