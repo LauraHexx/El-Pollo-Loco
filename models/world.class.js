@@ -7,6 +7,7 @@ class World {
   cameraY = 0;
   character = new Character();
   statusBar = new StatusBar();
+  throwableObjects = [];
 
   constructor(canvas, keyboard) {
     this.canvas = canvas;
@@ -14,23 +15,38 @@ class World {
     this.ctx = canvas.getContext("2d"); //so kann man auf das Canvas malen - bestimmte Funktionen damit aufrufen - ctx: Context (Standard)
     this.setWorld();
     this.draw();
-    this.checkCollisions();
+    this.alwaysChecking(); // Intervalle, die ständig geprüft werden
   }
 
   setWorld() {
     this.character.world = this; // world übergeben, damit Zugriff auf Keyboard - ist in Java Script nicht schön gelöst
   }
 
-  checkCollisions() {
+  alwaysChecking() {
     setInterval(() => {
-      this.currentLevel.enemies.forEach((enemy) => {
-        if (this.character.isColliding(enemy)) {
-          this.character.hit();
-          this.statusBar.setPercentage(this.character.energy);
-          console.log("Character is colliding enemy", this.character.energy);
-        }
-      });
+      this.checkCollisions();
+      this.checkThrowObjects();
     }, 200);
+  }
+
+  checkCollisions() {
+    this.currentLevel.enemies.forEach((enemy) => {
+      if (this.character.isColliding(enemy)) {
+        this.character.hit();
+        this.statusBar.setPercentage(this.character.energy);
+        console.log("Character is colliding enemy", this.character.energy);
+      }
+    });
+  }
+
+  checkThrowObjects() {
+    if (this.keyboard.d) {
+      let bottle = new ThrowableObject(
+        this.character.x + this.character.width,
+        this.character.y + 50
+      );
+      this.throwableObjects.push(bottle);
+    }
   }
 
   draw() {
@@ -46,7 +62,7 @@ class World {
     this.oneObjectToMap(this.character);
     this.arrayToMap(this.currentLevel.clouds);
     this.arrayToMap(this.currentLevel.enemies);
-    this.arrayToMap(this.currentLevel.bottles);
+    this.arrayToMap(this.throwableObjects);
 
     this.ctx.translate(-this.cameraX, 0);
 

@@ -39,7 +39,7 @@ window.addEventListener("keydown", (event) => {
     keyboard.enter = true;
   }
   if (event.keyCode == 68) {
-    //enter
+    //d
     keyboard.d = true;
   }
 });
@@ -70,7 +70,7 @@ window.addEventListener("keyup", (event) => {
     keyboard.enter = false;
   }
   if (event.keyCode == 68) {
-    //enter
+    //d
     keyboard.d = false;
   }
 });
