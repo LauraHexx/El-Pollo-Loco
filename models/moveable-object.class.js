@@ -1,5 +1,5 @@
 class MoveableObject extends DrawableObject {
-  speed = 0.25;
+  speedX = 0.25;
   movingLeft = false;
   speedY = 0;
   acceleration = 2.5;
@@ -43,11 +43,11 @@ class MoveableObject extends DrawableObject {
   }
 
   moveLeft() {
-    this.x -= this.speed;
+    this.x -= this.speedX;
   }
 
   moveRight() {
-    this.x += this.speed;
+    this.x += this.speedX;
   }
 
   jump() {
