@@ -6,7 +6,9 @@ class World {
   cameraX = 0;
   cameraY = 0;
   character = new Character();
-  statusBar = new StatusBar();
+  statusBarHealth = new StatusBarHealth();
+  statusBarCoin = new StatusBarCoin();
+  statusBarBottle = new StatusBarBottle();
   throwableObjects = [];
 
   constructor(canvas, keyboard) {
@@ -33,7 +35,7 @@ class World {
     this.currentLevel.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy)) {
         this.character.hit();
-        this.statusBar.setPercentage(this.character.energy);
+        this.statusBarHealth.setPercentage(this.character.energy);
         console.log("Character is colliding enemy", this.character.energy);
       }
     });
@@ -42,7 +44,7 @@ class World {
   checkThrowObjects() {
     if (this.keyboard.d) {
       let bottle = new ThrowableObject(
-        this.character.x + this.character.width + 20,
+        this.character.x + this.character.width + 10,
         this.character.y + 50
       );
       this.throwableObjects.push(bottle);
@@ -56,7 +58,9 @@ class World {
 
     this.ctx.translate(-this.cameraX, 0);
     //Space for fixed Objects
-    this.oneObjectToMap(this.statusBar);
+    this.oneObjectToMap(this.statusBarHealth);
+    this.oneObjectToMap(this.statusBarCoin);
+    this.oneObjectToMap(this.statusBarBottle);
     this.ctx.translate(this.cameraX, 0);
 
     this.oneObjectToMap(this.character);
@@ -73,6 +77,12 @@ class World {
     });
   }
 
+  arrayToMap(array) {
+    array.forEach((elementOfArray) => {
+      this.oneObjectToMap(elementOfArray);
+    });
+  }
+
   oneObjectToMap(obj) {
     if (obj.movingLeft) {
       this.flipImage(obj);
@@ -84,12 +94,6 @@ class World {
     if (obj.movingLeft) {
       this.flipImageBack(obj);
     }
-  }
-
-  arrayToMap(array) {
-    array.forEach((elementOfArray) => {
-      this.oneObjectToMap(elementOfArray);
-    });
   }
 
   flipImage(obj) {
