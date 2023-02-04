@@ -39,6 +39,7 @@ class Character extends MoveableObject {
   speed = 8;
   world;
   walkingSound = new Audio("audio/walking.mp3");
+  collectedBottles = 0;
 
   constructor() {
     super().loadImage("img/2_character_pepe/1_idle/idle/I-1.png"); //Todo - brauch ich nicht mehr

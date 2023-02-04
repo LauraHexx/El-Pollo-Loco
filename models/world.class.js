@@ -45,9 +45,9 @@ class World {
   checkCollisionsBottles() {
     this.currentLevel.bottles.forEach((bottle) => {
       if (this.character.isColliding(bottle)) {
-        this.statusBarBottle.percentage++;
-        console.log(this.statusBarBottle.percentage);
-        this.statusBarBottle.setPercentage(this.statusBarBottle.percentage);
+        this.character.collectedBottles++;
+        console.log(this.character.collectedBottles);
+        this.statusBarBottle.setPercentage(this.character.collectedBottles);
         this.currentLevel.bottles.splice(
           this.currentLevel.bottles.indexOf(bottle),
           1
@@ -57,7 +57,13 @@ class World {
   }
 
   checkThrowObjects() {
-    if (this.keyboard.d && !this.character.movingLeft) {
+    if (
+      this.keyboard.d &&
+      !this.character.movingLeft &&
+      this.character.collectedBottles > 0
+    ) {
+      this.character.collectedBottles--;
+      this.statusBarBottle.setPercentage(this.character.collectedBottles);
       let bottle = new ThrowableObject(
         this.character.x + this.character.width + 10,
         this.character.y + 50
