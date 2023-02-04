@@ -51,7 +51,7 @@ class MoveableObject extends DrawableObject {
   }
 
   jump() {
-    this.speedY = 35;
+    this.speedY = 25;
   }
 
   applyGravity() {

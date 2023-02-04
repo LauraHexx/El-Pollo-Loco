@@ -27,6 +27,22 @@ const level1 = new Level(
     new BackgroundObject("img/5_background/layers/3_third_layer/2.png", 2157),
     new BackgroundObject("img/5_background/layers/2_second_layer/2.png", 2157),
     new BackgroundObject("img/5_background/layers/1_first_layer/2.png", 2157),
+
+    new BackgroundObject("img/5_background/layers/air.png", 2876),
+    new BackgroundObject("img/5_background/layers/3_third_layer/1.png", 2876),
+    new BackgroundObject("img/5_background/layers/2_second_layer/1.png", 2876),
+    new BackgroundObject("img/5_background/layers/1_first_layer/1.png", 2876),
+
+    new BackgroundObject("img/5_background/layers/air.png", 3595),
+    new BackgroundObject("img/5_background/layers/3_third_layer/2.png", 3595),
+    new BackgroundObject("img/5_background/layers/2_second_layer/2.png", 3595),
+    new BackgroundObject("img/5_background/layers/1_first_layer/2.png", 3595),
   ],
-  [new CollectableObject(100, 100)]
+  [
+    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 700, 130),
+    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 780, 130),
+    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 1600, 130),
+    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 1680, 130),
+    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 2600, 300),
+  ]
 );

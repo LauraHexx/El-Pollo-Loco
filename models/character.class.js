@@ -1,7 +1,7 @@
 class Character extends MoveableObject {
-  y = 150;
-  width = 130;
-  height = 280;
+  y = 190;
+  width = 120;
+  height = 260;
   speedX = 10;
   imagesWalking = [
     "img/2_character_pepe/2_walk/W-21.png",
@@ -36,7 +36,7 @@ class Character extends MoveableObject {
     "img/2_character_pepe/5_dead/D-56.png",
     "img/2_character_pepe/5_dead/D-57.png",
   ];
-  speed = 10;
+  speed = 8;
   world;
   walkingSound = new Audio("audio/walking.mp3");
 

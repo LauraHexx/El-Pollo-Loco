@@ -26,12 +26,13 @@ class World {
 
   alwaysChecking() {
     setInterval(() => {
-      this.checkCollisions();
+      this.checkCollisionsEnemies();
+      this.checkCollisionsBottles();
       this.checkThrowObjects();
     }, 200);
   }
 
-  checkCollisions() {
+  checkCollisionsEnemies() {
     this.currentLevel.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy)) {
         this.character.hit();
@@ -41,8 +42,22 @@ class World {
     });
   }
 
+  checkCollisionsBottles() {
+    this.currentLevel.bottles.forEach((bottle) => {
+      if (this.character.isColliding(bottle)) {
+        this.statusBarBottle.percentage++;
+        console.log(this.statusBarBottle.percentage);
+        this.statusBarBottle.setPercentage(this.statusBarBottle.percentage);
+        this.currentLevel.bottles.splice(
+          this.currentLevel.bottles.indexOf(bottle),
+          1
+        );
+      }
+    });
+  }
+
   checkThrowObjects() {
-    if (this.keyboard.d) {
+    if (this.keyboard.d && !this.character.movingLeft) {
       let bottle = new ThrowableObject(
         this.character.x + this.character.width + 10,
         this.character.y + 50
@@ -67,6 +82,7 @@ class World {
     this.arrayToMap(this.currentLevel.clouds);
     this.arrayToMap(this.currentLevel.enemies);
     this.arrayToMap(this.throwableObjects);
+    this.arrayToMap(this.currentLevel.bottles);
 
     this.ctx.translate(-this.cameraX, 0);
 
