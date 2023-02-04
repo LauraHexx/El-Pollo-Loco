@@ -40,6 +40,7 @@ class Character extends MoveableObject {
   world;
   walkingSound = new Audio("audio/walking.mp3");
   collectedBottles = 0;
+  collectedCoins = 0;
 
   constructor() {
     super().loadImage("img/2_character_pepe/1_idle/idle/I-1.png"); //Todo - brauch ich nicht mehr
@@ -70,6 +71,16 @@ class Character extends MoveableObject {
       if (this.world.keyboard.space && !this.isAboveGround()) {
         this.jump();
       }
+
+      if (this.collectedCoins == 5) {
+        this.speedX = 15;
+        this.collectedCoins = 0;
+        setTimeout(() => {
+          this.speedX = 10;
+        }, 3000);
+      }
+
+      //speed for collected bottles
 
       this.world.cameraX = -this.x + 80;
     }, 1000 / 60);

@@ -28,6 +28,7 @@ class World {
     setInterval(() => {
       this.checkCollisionsEnemies();
       this.checkCollisionsBottles();
+      this.checkCollisionsCoins();
       this.checkThrowObjects();
     }, 200);
   }
@@ -46,10 +47,22 @@ class World {
     this.currentLevel.bottles.forEach((bottle) => {
       if (this.character.isColliding(bottle)) {
         this.character.collectedBottles++;
-        console.log(this.character.collectedBottles);
         this.statusBarBottle.setPercentage(this.character.collectedBottles);
         this.currentLevel.bottles.splice(
           this.currentLevel.bottles.indexOf(bottle),
+          1
+        );
+      }
+    });
+  }
+
+  checkCollisionsCoins() {
+    this.currentLevel.coins.forEach((coin) => {
+      if (this.character.isColliding(coin)) {
+        this.character.collectedCoins++;
+        this.statusBarCoin.setPercentage(this.character.collectedCoins);
+        this.currentLevel.coins.splice(
+          this.currentLevel.coins.indexOf(coin),
           1
         );
       }
@@ -89,6 +102,7 @@ class World {
     this.arrayToMap(this.currentLevel.enemies);
     this.arrayToMap(this.throwableObjects);
     this.arrayToMap(this.currentLevel.bottles);
+    this.arrayToMap(this.currentLevel.coins);
 
     this.ctx.translate(-this.cameraX, 0);
 
