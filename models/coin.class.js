@@ -1,4 +1,4 @@
-class Coin extends DrawableObject {
+class Coin extends MoveableObject {
   x = 100;
   y = 100;
   width = 80;
@@ -8,7 +8,14 @@ class Coin extends DrawableObject {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    super.loadImage("img/8_coin/coin_1.png");
-    loadImages();
+    super().loadImage("img/8_coin/coin_1.png");
+    this.loadImages(this.imagesCoin);
+    this.animate();
+  }
+
+  animate() {
+    setInterval(() => {
+      this.playAnimation(this.imagesCoin);
+    }, 100);
   }
 }
