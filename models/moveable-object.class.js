@@ -6,7 +6,7 @@ class MoveableObject extends DrawableObject {
     bottom: 0,
   };
   speedX = 0.25;
-  objvingLeft = false;
+  movingLeft = false;
   speedY = 0;
   acceleration = 2.5;
   energy = 100;
@@ -73,6 +73,10 @@ class MoveableObject extends DrawableObject {
     }
   }
 
+  wasHit() {
+    return this.energy < 100;
+  }
+
   isDead() {
     return this.energy == 0;
   }
@@ -111,5 +115,17 @@ class MoveableObject extends DrawableObject {
     } else {
       return this.y < 150;
     }
+  }
+
+  changeDirectionToRight() {
+    setTimeout(() => {
+      this.movingLeft = true;
+    }, 3000);
+  }
+
+  changeDirectionToLeft() {
+    setTimeout(() => {
+      this.movingLeft = false;
+    }, 3000);
   }
 }

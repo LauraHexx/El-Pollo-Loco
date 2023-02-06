@@ -6,9 +6,11 @@ class Endboss extends MoveableObject {
     right: 30,
   };
   x = 3500;
-  y = 165;
-  width = 200;
-  height = 280;
+  y = 90;
+  speedX = 7;
+  width = 270;
+  height = 360;
+  isAlarmed = false;
   imagesWalking = [
     "img/4_enemie_boss_chicken/2_alert/G5.png",
     "img/4_enemie_boss_chicken/2_alert/G6.png",
@@ -19,16 +21,68 @@ class Endboss extends MoveableObject {
     "img/4_enemie_boss_chicken/2_alert/G11.png",
     "img/4_enemie_boss_chicken/2_alert/G12.png",
   ];
+
+  imagesAlert = [
+    "img/4_enemie_boss_chicken/2_alert/G5.png",
+    "img/4_enemie_boss_chicken/2_alert/G6.png",
+    "img/4_enemie_boss_chicken/2_alert/G7.png",
+    "img/4_enemie_boss_chicken/2_alert/G8.png",
+    "img/4_enemie_boss_chicken/2_alert/G9.png",
+    "img/4_enemie_boss_chicken/2_alert/G10.png",
+    "img/4_enemie_boss_chicken/2_alert/G11.png",
+    "img/4_enemie_boss_chicken/2_alert/G12.png",
+  ];
+  imagesHurting = [
+    "img/4_enemie_boss_chicken/4_hurt/G21.png",
+    "img/4_enemie_boss_chicken/4_hurt/G22.png",
+    "img/4_enemie_boss_chicken/4_hurt/G23.png",
+  ];
+  imagesDead = [
+    "img/4_enemie_boss_chicken/5_dead/G24.png",
+    "img/4_enemie_boss_chicken/5_dead/G25.png",
+    "img/4_enemie_boss_chicken/5_dead/G26.png",
+  ];
+  imagesAttack = [
+    "img/4_enemie_boss_chicken/3_attack/G13.png",
+    "img/4_enemie_boss_chicken/3_attack/G14.png",
+    "img/4_enemie_boss_chicken/3_attack/G15.png",
+    "img/4_enemie_boss_chicken/3_attack/G16.png",
+    "img/4_enemie_boss_chicken/3_attack/G17.png",
+    "img/4_enemie_boss_chicken/3_attack/G18.png",
+    "img/4_enemie_boss_chicken/3_attack/G19.png",
+    "img/4_enemie_boss_chicken/3_attack/G20.png",
+  ];
+
   constructor() {
     super().loadImage("img/4_enemie_boss_chicken/2_alert/G5.png"); //Todo - brauch ich nicht mehr
     this.loadImages(this.imagesWalking);
+    this.loadImages(this.imagesAlert);
+    this.loadImages(this.imagesHurting);
+    this.loadImages(this.imagesDead);
+    this.loadImages(this.imagesAttack);
     this.animate();
   }
 
   animate() {
     setInterval(() => {
-      //walk animation
-      this.playAnimation(this.imagesWalking);
+      if (this.isDead()) {
+        this.playAnimation(this.imagesDead);
+      } else if (this.isHurting()) {
+        this.playAnimation(this.imagesHurting);
+      } else if (this.wasHit()) {
+        this.playAnimation(this.imagesAttack);
+        if (!this.movingLeft) {
+          this.moveLeft();
+          this.changeDirectionToRight();
+          console.log(this.movingLeft);
+        } else {
+          this.moveRight();
+          this.changeDirectionToLeft();
+          console.log(this.movingLeft);
+        }
+      } else if (this.isAlarmed) {
+        this.playAnimation(this.imagesAlert);
+      }
     }, 100);
   }
 }

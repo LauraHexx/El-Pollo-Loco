@@ -33,7 +33,8 @@ class World {
       this.checkCollisionsBottles();
       this.checkCollisionsCoins();
       this.checkThrowObjects();
-      this.checkIfEndboss();
+      this.checkAppearanceEndboss();
+      this.checkHitEndboss();
     }, 200);
   }
 
@@ -99,13 +100,25 @@ class World {
     }
   }
 
-  checkIfEndboss() {
+  checkAppearanceEndboss() {
     // soll nur einmal ausgeführt werden
     if (this.statusBarEndboss.length === 0)
       if (this.endboss.x - this.character.x < 450) {
         let statusBar = new StatusBarEndboss(3500, 50);
         this.statusBarEndboss.push(statusBar);
+        this.endboss.isAlarmed = true;
       }
+  }
+
+  checkHitEndboss() {
+    this.throwableObjects.forEach((bottle) => {
+      if (this.endboss.isColliding(bottle) && !this.endboss.isHurting()) {
+        this.endboss.isAlarmed = false;
+        this.endboss.hit();
+        console.log(this.endboss.energy);
+        this.statusBarEndboss[0].setPercentage(this.endboss.energy);
+      }
+    });
   }
 
   draw() {
