@@ -1,6 +1,12 @@
 class MoveableObject extends DrawableObject {
+  offset = {
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  };
   speedX = 0.25;
-  movingLeft = false;
+  objvingLeft = false;
   speedY = 0;
   acceleration = 2.5;
   energy = 100;
@@ -13,6 +19,8 @@ class MoveableObject extends DrawableObject {
     this.curentImage++;
   }
 
+  /*
+
   isColliding(obj) {
     return (
       this.x + this.width >= obj.x &&
@@ -21,6 +29,39 @@ class MoveableObject extends DrawableObject {
       this.y < obj.y
     );
   }
+
+  */
+
+  /*
+
+  isOnTop(obj) {
+    return (
+      this.y + this.height &&
+      this.x + this.width >= obj.y + obj.height &&
+      obj.x + obj.width
+    );
+  }
+
+  */
+
+  isColliding(obj) {
+    return (
+      this.x + this.width - this.offset.right > obj.x + obj.offset.left &&
+      this.y + this.height - this.offset.bottom > obj.y + obj.offset.top &&
+      this.x + this.offset.left < obj.x + obj.width - obj.offset.right &&
+      this.y + this.offset.top < obj.y + obj.height - obj.offset.bottom
+    );
+  }
+  /*
+  isCollidingChicken(obj) {
+    return (
+      this.x + this.width - this.offset.left > obj.x &&
+      this.y + this.height > obj.y &&
+      this.x < obj.x - this.offset.left + obj.width &&
+      this.y < obj.y + obj.height
+    );
+  }
+  */
 
   hit() {
     this.energy -= 5;

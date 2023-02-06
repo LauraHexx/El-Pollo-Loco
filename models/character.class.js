@@ -1,5 +1,11 @@
 class Character extends MoveableObject {
-  y = 160;
+  offset = {
+    top: 120,
+    left: 20,
+    right: 20,
+    bottom: 30,
+  };
+  y = 190;
   width = 120;
   height = 260;
   speedX = 10;
@@ -73,14 +79,13 @@ class Character extends MoveableObject {
       }
 
       if (this.collectedCoins == 5) {
+        //speed for collected bottles
         this.speedX = 15;
         this.collectedCoins = 0;
         setTimeout(() => {
           this.speedX = 10;
         }, 3000);
       }
-
-      //speed for collected bottles
 
       this.world.cameraX = -this.x + 80;
     }, 1000 / 60);
