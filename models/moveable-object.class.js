@@ -6,7 +6,7 @@ class MoveableObject extends DrawableObject {
     bottom: 0,
   };
   speedX = 0.25;
-  movingLeft = false;
+  lookToLeft = false;
   speedY = 0;
   acceleration = 2.5;
   energy = 100;
@@ -119,13 +119,13 @@ class MoveableObject extends DrawableObject {
 
   changeDirectionToRight() {
     setTimeout(() => {
-      this.movingLeft = true;
+      this.lookToLeft = true;
     }, 3000);
   }
 
   changeDirectionToLeft() {
     setTimeout(() => {
-      this.movingLeft = false;
+      this.lookToLeft = false;
     }, 3000);
   }
 }

@@ -87,7 +87,7 @@ class World {
   checkThrowObjects() {
     if (
       this.keyboard.d &&
-      !this.character.movingLeft &&
+      !this.character.lookToLeft &&
       this.character.collectedBottles > 0
     ) {
       this.character.collectedBottles--;
@@ -159,14 +159,14 @@ class World {
   }
 
   oneObjectToMap(obj) {
-    if (obj.movingLeft) {
+    if (obj.lookToLeft) {
       this.flipImage(obj);
     }
 
     obj.drawImages(this.ctx); //zum Auslagern der DrawImage Funktion in Drawable Object
     obj.drawFrames(this.ctx);
 
-    if (obj.movingLeft) {
+    if (obj.lookToLeft) {
       this.flipImageBack(obj);
     }
   }

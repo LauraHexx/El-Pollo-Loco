@@ -71,14 +71,14 @@ class Endboss extends MoveableObject {
         this.playAnimation(this.imagesHurting);
       } else if (this.wasHit()) {
         this.playAnimation(this.imagesAttack);
-        if (!this.movingLeft) {
+        if (!this.lookToLeft) {
           this.moveLeft();
           this.changeDirectionToRight();
-          console.log(this.movingLeft);
+          console.log(this.lookToLeft);
         } else {
           this.moveRight();
           this.changeDirectionToLeft();
-          console.log(this.movingLeft);
+          console.log(this.lookToLeft);
         }
       } else if (this.isAlarmed) {
         this.playAnimation(this.imagesAlert);
