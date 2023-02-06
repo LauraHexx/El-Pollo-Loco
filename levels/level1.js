@@ -39,17 +39,17 @@ const level1 = new Level(
     new BackgroundObject("img/5_background/layers/1_first_layer/2.png", 3595),
   ],
   [
-    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 700, 130),
-    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 780, 130),
-    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 1600, 130),
-    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 1680, 130),
+    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 700, 140),
+    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 800, 140),
+    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 1600, 140),
+    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 1700, 140),
     new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 2600, 300),
   ],
   [
-    new CollectableCoin(720, 130),
-    new CollectableCoin(790, 130),
-    new CollectableCoin(1620, 130),
-    new CollectableCoin(1690, 130),
+    new CollectableCoin(720, 140),
+    new CollectableCoin(800, 140),
+    new CollectableCoin(1620, 140),
+    new CollectableCoin(1720, 140),
     new CollectableCoin(2660, 300),
   ]
 );

@@ -1,12 +1,13 @@
 class CollectableCoin extends MoveableObject {
   offset = {
-    top: 100,
-    left: 10,
-    right: 10,
-    bottom: 10,
+    top: 25,
+    bottom: 25,
+    left: 25,
+    right: 25,
   };
+
   x = 100;
-  y = 100;
+  y = 105;
   width = 120;
   height = 120;
   imagesCoin = ["img/8_coin/coin_1.png", "img/8_coin/coin_2.png"];

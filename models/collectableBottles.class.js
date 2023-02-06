@@ -1,9 +1,9 @@
 class CollectableBottle extends DrawableObject {
   offset = {
-    top: 25,
-    left: 45,
-    right: 45,
-    bottom: 25,
+    top: 10,
+    bottom: 10,
+    left: 30,
+    right: 30,
   };
   width = 90;
   height = 90;
