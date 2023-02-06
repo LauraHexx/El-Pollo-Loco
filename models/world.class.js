@@ -29,6 +29,7 @@ class World {
   alwaysChecking() {
     setInterval(() => {
       this.checkCollisionsEnemies();
+      this.checkCollisionsEndboss();
       this.checkCollisionsBottles();
       this.checkCollisionsCoins();
       this.checkThrowObjects();
@@ -36,13 +37,26 @@ class World {
     }, 200);
   }
 
-  checkCollisionsEnemies() {
-    this.currentLevel.enemies.forEach((enemy) => {
-      if (this.character.isColliding(enemy)) {
+  checkCollisionsEndboss() {
+    if (!this.character.isHurting()) {
+      if (this.character.isColliding(this.endboss)) {
         this.character.hit();
         this.statusBarHealth.setPercentage(this.character.energy);
+        console.log(this.character.energy);
       }
-    });
+    }
+  }
+
+  checkCollisionsEnemies() {
+    if (!this.character.isHurting()) {
+      this.currentLevel.enemies.forEach((enemy) => {
+        if (this.character.isColliding(enemy)) {
+          this.character.hit();
+          this.statusBarHealth.setPercentage(this.character.energy);
+          console.log(this.character.energy);
+        }
+      });
+    }
   }
 
   checkCollisionsBottles() {

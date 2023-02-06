@@ -64,7 +64,7 @@ class MoveableObject extends DrawableObject {
   */
 
   hit() {
-    this.energy -= 5;
+    this.energy -= 20;
     if (this.energy <= 0) {
       this.energy = 0;
       this.isDead();
@@ -80,7 +80,7 @@ class MoveableObject extends DrawableObject {
   isHurting() {
     let timePassed = new Date().getTime() - this.lastHit; // Differenz aktuelle Zeit und letzter Zeitpunkt hit
     timePassed = timePassed / 1000;
-    return timePassed < 1; //gibt true zurück
+    return timePassed < 3; //gibt true zurück
   }
 
   moveLeft() {
