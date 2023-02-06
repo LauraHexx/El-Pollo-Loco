@@ -48,20 +48,18 @@ class World {
   }
 
   checkCollisionsEnemies() {
-    if (!this.character.isHurting()) {
-      this.currentLevel.enemies.forEach((enemy) => {
-        if (this.character.isColliding(enemy)) {
-          this.character.hit();
-          this.statusBarHealth.setPercentage(this.character.energy);
-          console.log(this.character.energy);
-        }
-      });
-    }
+    this.currentLevel.enemies.forEach((enemy) => {
+      if (this.character.isColliding(enemy) && !this.character.isHurting()) {
+        this.character.hit();
+        this.statusBarHealth.setPercentage(this.character.energy);
+        console.log(this.character.energy);
+      }
+    });
   }
 
   checkCollisionsBottles() {
     this.currentLevel.bottles.forEach((bottle) => {
-      if (this.character.isColliding(bottle)) {
+      if (this.character.isColliding(bottle) && !this.character.isHurting()) {
         this.character.collectedBottles++;
         this.statusBarBottle.setPercentage(this.character.collectedBottles);
         this.currentLevel.bottles.splice(
