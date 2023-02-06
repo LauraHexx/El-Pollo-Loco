@@ -6,9 +6,11 @@ class World {
   cameraX = 0;
   cameraY = 0;
   character = new Character();
+  endboss = new Endboss();
   statusBarHealth = new StatusBarHealth();
   statusBarCoin = new StatusBarCoin();
   statusBarBottle = new StatusBarBottle();
+  statusBarEndboss = [];
   throwableObjects = [];
 
   constructor(canvas, keyboard) {
@@ -30,6 +32,7 @@ class World {
       this.checkCollisionsBottles();
       this.checkCollisionsCoins();
       this.checkThrowObjects();
+      this.checkIfEndboss();
     }, 200);
   }
 
@@ -38,7 +41,6 @@ class World {
       if (this.character.isColliding(enemy)) {
         this.character.hit();
         this.statusBarHealth.setPercentage(this.character.energy);
-        console.log("Character is colliding enemy", this.character.energy);
       }
     });
   }
@@ -85,6 +87,15 @@ class World {
     }
   }
 
+  checkIfEndboss() {
+    // soll nur einmal ausgeführt werden
+    if (this.statusBarEndboss.length === 0)
+      if (this.endboss.x - this.character.x < 450) {
+        let statusBar = new StatusBarEndboss(3500, 50);
+        this.statusBarEndboss.push(statusBar);
+      }
+  }
+
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // canvas muss immer wieder gelöscht werden - vordefinierte Funktion von JavaScript
     this.ctx.translate(this.cameraX, 0);
@@ -92,17 +103,20 @@ class World {
 
     this.ctx.translate(-this.cameraX, 0);
     //Space for fixed Objects
+
     this.oneObjectToMap(this.statusBarHealth);
     this.oneObjectToMap(this.statusBarCoin);
     this.oneObjectToMap(this.statusBarBottle);
     this.ctx.translate(this.cameraX, 0);
 
     this.oneObjectToMap(this.character);
+    this.oneObjectToMap(this.endboss);
     this.arrayToMap(this.currentLevel.clouds);
     this.arrayToMap(this.currentLevel.enemies);
     this.arrayToMap(this.throwableObjects);
     this.arrayToMap(this.currentLevel.bottles);
     this.arrayToMap(this.currentLevel.coins);
+    this.arrayToMap(this.statusBarEndboss);
 
     this.ctx.translate(-this.cameraX, 0);
 
