@@ -69,7 +69,7 @@ class MoveableObject extends DrawableObject {
   }
 
   jump() {
-    this.speedY = 25;
+    this.speedY = 23;
   }
 
   applyGravity() {
@@ -86,7 +86,7 @@ class MoveableObject extends DrawableObject {
       //throwable objects sollten immer fallen
       return true;
     } else {
-      return this.y < 150;
+      return this.y < 190;
     }
   }
 

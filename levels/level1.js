@@ -44,6 +44,11 @@ const level1 = new Level(
     new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 1100, 140),
     new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 1300, 140),
     new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 1500, 300),
+    new CollectableBottle(
+      "img/6_salsa_bottle/2_salsa_bottle_on_ground.png",
+      200,
+      350
+    ),
   ],
   [
     new CollectableCoin(50, 140),

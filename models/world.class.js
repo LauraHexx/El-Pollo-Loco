@@ -29,7 +29,7 @@ class World {
 
   alwaysChecking() {
     setInterval(() => {
-      this.checkHurtingEnemies();
+      // this.checkHurtingEnemies();
       this.checkCollisionsEnemies();
       this.checkCollisionsEndboss();
       this.checkCollisionsBottles();
@@ -53,10 +53,19 @@ class World {
 
   checkCollisionsEnemies() {
     this.currentLevel.enemies.forEach((enemy) => {
-      if (this.character.isColliding(enemy) && !this.character.isHurting()) {
-        this.character.hit();
-        this.statusBarHealth.setPercentage(this.character.energy);
-        console.log(this.character.energy);
+      if (
+        this.character.isColliding(enemy) &&
+        !this.character.isHurting() &&
+        this.character.isAboveGround()
+      ) {
+        let indexEnemy = this.currentLevel.enemies.indexOf(enemy);
+        let hittedChicken = (this.currentLevel.enemies[indexEnemy].energy = 0);
+        this.character.jump();
+      } else {
+        if (this.character.isColliding(enemy) && !this.character.isHurting()) {
+          this.character.hit();
+          this.statusBarHealth.setPercentage(this.character.energy);
+        }
       }
     });
   }
@@ -87,18 +96,7 @@ class World {
     });
   }
 
-  checkHurtingEnemies() {
-    this.currentLevel.enemies.forEach((enemy) => {
-      if (
-        this.character.isColliding(enemy) &&
-        this.character.isAboveGround() &&
-        !this.character.isHurting()
-      ) {
-        let hittedChicken = this.currentLevel.enemies.indexOf(enemy);
-        hittedChicken.energy = 0;
-      }
-    });
-  }
+  checkHurtingEnemies() {}
 
   checkThrowObjects() {
     if (
@@ -187,7 +185,7 @@ class World {
     }
 
     obj.drawImages(this.ctx); //zum Auslagern der DrawImage Funktion in Drawable Object
-    obj.drawFrames(this.ctx);
+    //obj.drawFrames(this.ctx);
 
     if (obj.lookToLeft) {
       this.flipImageBack(obj);
