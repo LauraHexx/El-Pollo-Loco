@@ -11,6 +11,7 @@ class World {
   statusBarCoin = new StatusBarCoin();
   statusBarBottle = new StatusBarBottle();
   statusBarEndboss = new StatusBarEndboss();
+  statusBarEndbossHeart = new StatusBarEndbossHeart();
   throwableObjects = [];
 
   constructor(canvas, keyboard) {
@@ -28,10 +29,12 @@ class World {
 
   alwaysChecking() {
     setInterval(() => {
+      this.checkHurtingEnemies();
       this.checkCollisionsEnemies();
       this.checkCollisionsEndboss();
       this.checkCollisionsBottles();
       this.checkCollisionsCoins();
+
       this.checkThrowObjects();
       this.checkAppearanceEndboss();
       this.checkHitEndboss();
@@ -84,6 +87,19 @@ class World {
     });
   }
 
+  checkHurtingEnemies() {
+    this.currentLevel.enemies.forEach((enemy) => {
+      if (
+        this.character.isColliding(enemy) &&
+        this.character.isAboveGround() &&
+        !this.character.isHurting()
+      ) {
+        let hittedChicken = this.currentLevel.enemies.indexOf(enemy);
+        hittedChicken.energy = 0;
+      }
+    });
+  }
+
   checkThrowObjects() {
     if (
       this.keyboard.d &&
@@ -105,10 +121,14 @@ class World {
     if (this.endboss.x - this.character.x < 450) {
       this.statusBarEndboss.width = 200;
       this.statusBarEndboss.height = 60;
+      this.statusBarEndbossHeart.width = 70;
+      this.statusBarEndbossHeart.height = 75;
       this.endboss.isAlarmed = true;
     } else {
       this.statusBarEndboss.width = 0;
       this.statusBarEndboss.height = 0;
+      this.statusBarEndbossHeart.width = 0;
+      this.statusBarEndbossHeart.height = 0;
     }
   }
 
@@ -131,6 +151,7 @@ class World {
     this.ctx.translate(-this.cameraX, 0);
     //Space for fixed Objects
     this.oneObjectToMap(this.statusBarEndboss);
+    this.oneObjectToMap(this.statusBarEndbossHeart);
     this.oneObjectToMap(this.statusBarHealth);
     this.oneObjectToMap(this.statusBarCoin);
     this.oneObjectToMap(this.statusBarBottle);

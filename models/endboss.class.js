@@ -1,8 +1,8 @@
 class Endboss extends MoveableObject {
   offset = {
-    top: 130,
+    top: 70,
     bottom: 10,
-    left: 30,
+    left: 60,
     right: 30,
   };
   x = 3500;

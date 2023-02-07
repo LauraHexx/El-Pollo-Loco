@@ -19,21 +19,6 @@ class MoveableObject extends DrawableObject {
     this.curentImage++;
   }
 
-  /*
-
-  isColliding(obj) {
-    return (
-      this.x + this.width >= obj.x &&
-      this.y + this.height >= obj.y &&
-      this.x < obj.x &&
-      this.y < obj.y
-    );
-  }
-
-  */
-
-  /*
-
   isOnTop(obj) {
     return (
       this.y + this.height &&
@@ -41,8 +26,6 @@ class MoveableObject extends DrawableObject {
       obj.x + obj.width
     );
   }
-
-  */
 
   isColliding(obj) {
     return (
@@ -52,16 +35,6 @@ class MoveableObject extends DrawableObject {
       this.y + this.offset.top < obj.y + obj.height - obj.offset.bottom
     );
   }
-  /*
-  isCollidingChicken(obj) {
-    return (
-      this.x + this.width - this.offset.left > obj.x &&
-      this.y + this.height > obj.y &&
-      this.x < obj.x - this.offset.left + obj.width &&
-      this.y < obj.y + obj.height
-    );
-  }
-  */
 
   hit() {
     this.energy -= 20;

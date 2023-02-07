@@ -1,9 +1,9 @@
 class CollectableCoin extends MoveableObject {
   offset = {
-    top: 25,
-    bottom: 25,
-    left: 25,
-    right: 25,
+    top: 35,
+    bottom: 35,
+    left: 35,
+    right: 35,
   };
 
   x = 100;

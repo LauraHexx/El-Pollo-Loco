@@ -1,5 +1,5 @@
 const level1 = new Level(
-  [new Chicken(), new Chicken(), new Chicken()],
+  [new Chicken()],
   [new Cloud()],
   [
     //Todo: For - Schleife
@@ -40,16 +40,16 @@ const level1 = new Level(
   ],
   [
     new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 700, 140),
-    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 800, 140),
-    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 1600, 140),
-    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 1700, 140),
-    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 2600, 300),
+    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 900, 140),
+    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 1100, 140),
+    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 1300, 140),
+    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 1500, 300),
   ],
   [
-    new CollectableCoin(720, 140),
-    new CollectableCoin(800, 140),
-    new CollectableCoin(1620, 140),
-    new CollectableCoin(1720, 140),
-    new CollectableCoin(2660, 300),
+    new CollectableCoin(50, 140),
+    new CollectableCoin(200, 140),
+    new CollectableCoin(350, 140),
+    new CollectableCoin(500, 140),
+    new CollectableCoin(650, 300),
   ]
 );
