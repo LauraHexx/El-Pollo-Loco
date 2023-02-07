@@ -33,7 +33,6 @@ class World {
       this.checkCollisionsEndboss();
       this.checkCollisionsBottles();
       this.checkCollisionsCoins();
-
       this.checkThrowObjects();
       this.checkAppearanceEndboss();
       this.checkHitEndboss();
@@ -113,7 +112,6 @@ class World {
   }
 
   checkAppearanceEndboss() {
-    // soll nur einmal ausgeführt werden
     if (this.endboss.x - this.character.x < 450) {
       this.statusBarEndboss.width = 200;
       this.statusBarEndboss.height = 60;
