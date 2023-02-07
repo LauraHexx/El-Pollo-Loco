@@ -1,7 +1,8 @@
 class StatusBarEndboss extends DrawableObject {
-  width = 200;
-  height = 60;
-  speedX = 7;
+  x = 500;
+  y = 50;
+  width = 0;
+  height = 0;
   percentage = 100;
   imagesBarEndboss = [
     "img/7_statusbars/1_statusbar/2_statusbar_health/orange/0.png",
@@ -12,10 +13,8 @@ class StatusBarEndboss extends DrawableObject {
     "img/7_statusbars/1_statusbar/2_statusbar_health/orange/100.png",
   ];
 
-  constructor(x, y) {
+  constructor() {
     super().loadImages(this.imagesBarEndboss);
-    this.x = x;
-    this.y = y;
     this.setPercentage(this.percentage);
   }
 

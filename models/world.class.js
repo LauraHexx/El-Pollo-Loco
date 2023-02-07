@@ -10,7 +10,7 @@ class World {
   statusBarHealth = new StatusBarHealth();
   statusBarCoin = new StatusBarCoin();
   statusBarBottle = new StatusBarBottle();
-  statusBarEndboss = [];
+  statusBarEndboss = new StatusBarEndboss();
   throwableObjects = [];
 
   constructor(canvas, keyboard) {
@@ -102,12 +102,14 @@ class World {
 
   checkAppearanceEndboss() {
     // soll nur einmal ausgeführt werden
-    if (this.statusBarEndboss.length === 0)
-      if (this.endboss.x - this.character.x < 450) {
-        let statusBar = new StatusBarEndboss(3500, 50);
-        this.statusBarEndboss.push(statusBar);
-        this.endboss.isAlarmed = true;
-      }
+    if (this.endboss.x - this.character.x < 450) {
+      this.statusBarEndboss.width = 200;
+      this.statusBarEndboss.height = 60;
+      this.endboss.isAlarmed = true;
+    } else {
+      this.statusBarEndboss.width = 0;
+      this.statusBarEndboss.height = 0;
+    }
   }
 
   checkHitEndboss() {
@@ -116,7 +118,7 @@ class World {
         this.endboss.isAlarmed = false;
         this.endboss.hit();
         console.log(this.endboss.energy);
-        this.statusBarEndboss[0].setPercentage(this.endboss.energy);
+        this.statusBarEndboss.setPercentage(this.endboss.energy);
       }
     });
   }
@@ -128,10 +130,11 @@ class World {
 
     this.ctx.translate(-this.cameraX, 0);
     //Space for fixed Objects
-
+    this.oneObjectToMap(this.statusBarEndboss);
     this.oneObjectToMap(this.statusBarHealth);
     this.oneObjectToMap(this.statusBarCoin);
     this.oneObjectToMap(this.statusBarBottle);
+
     this.ctx.translate(this.cameraX, 0);
 
     this.oneObjectToMap(this.character);
@@ -141,7 +144,6 @@ class World {
     this.arrayToMap(this.throwableObjects);
     this.arrayToMap(this.currentLevel.bottles);
     this.arrayToMap(this.currentLevel.coins);
-    this.arrayToMap(this.statusBarEndboss);
 
     this.ctx.translate(-this.cameraX, 0);
 
