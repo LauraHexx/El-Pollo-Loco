@@ -5,10 +5,11 @@ class MoveableObject extends DrawableObject {
     right: 0,
     bottom: 0,
   };
+  y = 170;
   speedX = 0.25;
   lookToLeft = false;
   speedY = 0;
-  acceleration = 2.5;
+  acceleration = 2;
   energy = 100;
   lastHit = 0;
 
@@ -69,7 +70,11 @@ class MoveableObject extends DrawableObject {
   }
 
   jump() {
-    this.speedY = 23;
+    if (this.isAboveGround()) {
+      this.speedY = 5; //wenn ein Enemy gekilled wurde
+    } else {
+      this.speedY = 25;
+    }
   }
 
   applyGravity() {
@@ -86,7 +91,7 @@ class MoveableObject extends DrawableObject {
       //throwable objects sollten immer fallen
       return true;
     } else {
-      return this.y < 190;
+      return this.y < 170;
     }
   }
 

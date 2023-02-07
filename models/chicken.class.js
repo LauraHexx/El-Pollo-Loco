@@ -1,12 +1,12 @@
 class Chicken extends MoveableObject {
   offset = {
-    top: 10,
-    left: 0,
-    right: 0,
-    bottom: 10,
+    top: 5,
+    bottom: 5,
+    left: 25,
+    right: 25,
   };
-  y = 357;
-  width = 60;
+  y = 345;
+  width = 90;
   height = 80;
 
   imagesWalking = [
@@ -35,6 +35,8 @@ class Chicken extends MoveableObject {
     setInterval(() => {
       if (this.isDead()) {
         this.playAnimation(this.imagesDead);
+        this.x = 0;
+        this.y = 0;
         this.width = 0;
         this.height = 0;
       } else {

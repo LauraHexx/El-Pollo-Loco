@@ -29,7 +29,6 @@ class World {
 
   alwaysChecking() {
     setInterval(() => {
-      // this.checkHurtingEnemies();
       this.checkCollisionsEnemies();
       this.checkCollisionsEndboss();
       this.checkCollisionsBottles();
@@ -60,6 +59,7 @@ class World {
       ) {
         let indexEnemy = this.currentLevel.enemies.indexOf(enemy);
         let hittedChicken = (this.currentLevel.enemies[indexEnemy].energy = 0);
+
         this.character.jump();
       } else {
         if (this.character.isColliding(enemy) && !this.character.isHurting()) {
@@ -95,8 +95,6 @@ class World {
       }
     });
   }
-
-  checkHurtingEnemies() {}
 
   checkThrowObjects() {
     if (

@@ -5,7 +5,7 @@ class Character extends MoveableObject {
     left: 30,
     right: 30,
   };
-  y = 190;
+
   width = 120;
   height = 260;
   speedX = 10;
@@ -84,7 +84,7 @@ class Character extends MoveableObject {
         this.collectedCoins = 0;
         setTimeout(() => {
           this.speedX = 10;
-        }, 3000);
+        }, 2200);
       }
 
       this.world.cameraX = -this.x + 80;
