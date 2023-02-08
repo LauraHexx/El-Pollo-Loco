@@ -41,11 +41,6 @@ function makeFullscreen() {
   canvas.requestFullscreen();
 }
 
-function unstoppable() {
-  let unstoppable = getId("unstoppable");
-  unstoppable.classList.remove("d-none");
-}
-
 window.addEventListener("keydown", (event) => {
   if (event.keyCode == 37) {
     //left

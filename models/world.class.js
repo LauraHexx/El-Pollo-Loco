@@ -40,12 +40,13 @@ class World {
   }
 
   checkCollisionsEndboss() {
-    if (!this.character.isHurting()) {
-      if (this.character.isColliding(this.endboss)) {
-        this.character.hit();
-        this.statusBarHealth.setPercentage(this.character.energy);
-        console.log(this.character.energy);
-      }
+    if (
+      !this.character.isHurting() &&
+      this.character.isColliding(this.endboss)
+    ) {
+      this.character.hit();
+      this.statusBarHealth.setPercentage(this.character.energy);
+      console.log(this.character.energy);
     }
   }
 
