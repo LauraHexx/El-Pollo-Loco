@@ -13,6 +13,7 @@ class World {
   statusBarEndboss = new StatusBarEndboss();
   statusBarEndbossHeart = new StatusBarEndbossHeart();
   throwableObjects = [];
+  gameIsOver = false;
 
   constructor(canvas, keyboard) {
     this.canvas = canvas;
@@ -37,6 +38,7 @@ class World {
       this.checkAppearanceEndboss();
       this.checkHitEndboss();
       this.checkIfWonOrLost();
+      this.checkIfHowToPlayIsOpen();
     }, 200);
   }
 
@@ -146,12 +148,38 @@ class World {
     if (this.character.energy == 0) {
       let lost = getId("lost");
       lost.classList.remove("d-none");
+      this.gameIsOver = true;
     }
     if (this.endboss.energy == 0) {
       let won = getId("won");
       won.classList.remove("d-none");
+      this.gameIsOver = true;
     }
   }
+
+  checkIfHowToPlayIsOpen() {
+    if (howToPlayIsOpen) {
+      this.currentLevel.enemies.forEach((enemy) => {
+        enemy.speedX = 0;
+      });
+      this.currentLevel.clouds.forEach((cloud) => {
+        cloud.speedX = 0;
+      });
+      this.endboss.speedX = 0;
+    } else {
+      this.currentLevel.enemies.forEach((enemy) => {
+        enemy.speedX = 0.25;
+      });
+      this.currentLevel.clouds.forEach((cloud) => {
+        cloud.speedX = 0.25;
+      });
+      this.endboss.speedX = 9;
+    }
+  }
+
+  pauseGame() {}
+
+  continueGame() {}
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // canvas muss immer wieder gelöscht werden - vordefinierte Funktion von JavaScript

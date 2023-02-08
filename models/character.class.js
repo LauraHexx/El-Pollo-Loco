@@ -63,13 +63,17 @@ class Character extends MoveableObject {
     setInterval(() => {
       //walk right
       this.walkingSound.pause();
-      if (this.world.keyboard.right && this.x < this.world.endboss.x) {
+      if (
+        this.world.keyboard.right &&
+        this.x < this.world.endboss.x &&
+        !this.world.gameIsOver
+      ) {
         this.lookToLeft = false;
         this.moveRight();
         this.walkingSound.play();
       }
       //walk left
-      if (this.world.keyboard.left && this.x > 0) {
+      if (this.world.keyboard.left && this.x > 0 && !this.world.gameIsOver) {
         this.lookToLeft = true;
         this.moveLeft();
         this.walkingSound.play();

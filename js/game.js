@@ -1,6 +1,7 @@
 let canvas;
 let ctx;
 let world;
+let howToPlayIsOpen = false;
 let keyboard = new Keyboard();
 
 function getId(id) {
@@ -30,11 +31,13 @@ function startGame() {
 function openHowToPlay() {
   let howtoPlay = getId("howtoPlay");
   howtoPlay.classList.remove("d-none");
+  howToPlayIsOpen = true;
 }
 
 function closeHowToPlay() {
   let howtoPlay = getId("howtoPlay");
   howtoPlay.classList.add("d-none");
+  howToPlayIsOpen = false;
 }
 
 function makeFullscreen() {
