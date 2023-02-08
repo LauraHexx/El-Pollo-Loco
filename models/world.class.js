@@ -47,7 +47,6 @@ class World {
     ) {
       this.character.hit();
       this.statusBarHealth.setPercentage(this.character.energy);
-      console.log(this.character.energy);
     }
   }
 
@@ -138,7 +137,6 @@ class World {
       if (this.endboss.isColliding(bottle) && !this.endboss.isHurting()) {
         this.endboss.isAlarmed = false;
         this.endboss.hit();
-        console.log(this.endboss.energy);
         this.statusBarEndboss.setPercentage(this.endboss.energy);
       }
     });
