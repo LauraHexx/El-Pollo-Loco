@@ -61,7 +61,11 @@ class World {
 
         this.character.jump();
       } else {
-        if (this.character.isColliding(enemy) && !this.character.isHurting()) {
+        if (
+          this.character.isColliding(enemy) &&
+          !this.character.isHurting() &&
+          !this.character.isUnstoppable
+        ) {
           this.character.hit();
           this.statusBarHealth.setPercentage(this.character.energy);
         }

@@ -47,6 +47,7 @@ class Character extends MoveableObject {
   walkingSound = new Audio("audio/walking.mp3");
   collectedBottles = 0;
   collectedCoins = 0;
+  unstoppable = false;
 
   constructor() {
     super().loadImage("img/2_character_pepe/1_idle/idle/I-1.png"); //Todo - brauch ich nicht mehr
@@ -80,11 +81,15 @@ class Character extends MoveableObject {
 
       if (this.collectedCoins == 5) {
         //speed for collected bottles
+        this.isUnstoppable = true;
         this.speedX = 15;
         this.collectedCoins = 0;
+        this.showUnstoppable();
         setTimeout(() => {
           this.speedX = 10;
-        }, 2200);
+          this.isUnstoppable = false;
+          this.hideUnstoppable();
+        }, 3000);
       }
 
       this.world.cameraX = -this.x + 80;
@@ -103,5 +108,15 @@ class Character extends MoveableObject {
         }
       }
     }, 100);
+  }
+
+  showUnstoppable() {
+    let unstoppable = getId("unstoppable");
+    unstoppable.classList.remove("d-none");
+  }
+
+  hideUnstoppable() {
+    let unstoppable = getId("unstoppable");
+    unstoppable.classList.add("d-none");
   }
 }

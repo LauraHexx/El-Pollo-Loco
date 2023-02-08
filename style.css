@@ -207,3 +207,14 @@ canvas {
   text-align: center;
   font-size: 25px;
 }
+
+/*UNSTOPPABLE*----------------------------------------------*/
+
+#unstoppable {
+  position: absolute;
+  top: 105px;
+  left: 405px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #ffc402;
+}
