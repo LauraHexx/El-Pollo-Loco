@@ -41,6 +41,10 @@ function makeFullscreen() {
   canvas.requestFullscreen();
 }
 
+function backToMenu() {
+  location.reload();
+}
+
 window.addEventListener("keydown", (event) => {
   if (event.keyCode == 37) {
     //left

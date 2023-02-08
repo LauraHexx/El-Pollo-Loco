@@ -36,6 +36,7 @@ class World {
       this.checkThrowObjects();
       this.checkAppearanceEndboss();
       this.checkHitEndboss();
+      this.checkIfWonOrLost();
     }, 200);
   }
 
@@ -141,6 +142,17 @@ class World {
         this.statusBarEndboss.setPercentage(this.endboss.energy);
       }
     });
+  }
+
+  checkIfWonOrLost() {
+    if (this.character.energy == 0) {
+      let lost = getId("lost");
+      lost.classList.remove("d-none");
+    }
+    if (this.endboss.energy == 0) {
+      let won = getId("won");
+      won.classList.remove("d-none");
+    }
   }
 
   draw() {
