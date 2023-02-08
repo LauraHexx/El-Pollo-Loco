@@ -104,6 +104,7 @@ class World {
     if (
       this.keyboard.d &&
       !this.character.lookToLeft &&
+      !this.character.isHurting() &&
       this.character.collectedBottles > 0
     ) {
       this.character.collectedBottles--;

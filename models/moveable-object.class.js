@@ -62,7 +62,9 @@ class MoveableObject extends DrawableObject {
   }
 
   moveLeft() {
-    this.x -= this.speedX;
+    if (this.x >= 120) {
+      this.x -= this.speedX;
+    }
   }
 
   moveRight() {
