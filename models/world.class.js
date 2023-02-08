@@ -159,27 +159,31 @@ class World {
 
   checkIfHowToPlayIsOpen() {
     if (howToPlayIsOpen) {
-      this.currentLevel.enemies.forEach((enemy) => {
-        enemy.speedX = 0;
-      });
-      this.currentLevel.clouds.forEach((cloud) => {
-        cloud.speedX = 0;
-      });
-      this.endboss.speedX = 0;
+      this.pauseGame();
     } else {
-      this.currentLevel.enemies.forEach((enemy) => {
-        enemy.speedX = 0.25;
-      });
-      this.currentLevel.clouds.forEach((cloud) => {
-        cloud.speedX = 0.25;
-      });
-      this.endboss.speedX = 9;
+      this.continueGame();
     }
   }
 
-  pauseGame() {}
+  pauseGame() {
+    this.currentLevel.enemies.forEach((enemy) => {
+      enemy.speedX = 0;
+    });
+    this.currentLevel.clouds.forEach((cloud) => {
+      cloud.speedX = 0;
+    });
+    this.endboss.speedX = 0;
+  }
 
-  continueGame() {}
+  continueGame() {
+    this.currentLevel.enemies.forEach((enemy) => {
+      enemy.speedX = 0.25;
+    });
+    this.currentLevel.clouds.forEach((cloud) => {
+      cloud.speedX = 0.25;
+    });
+    this.endboss.speedX = 9;
+  }
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // canvas muss immer wieder gelöscht werden - vordefinierte Funktion von JavaScript

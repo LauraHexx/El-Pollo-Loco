@@ -6,7 +6,7 @@ class MoveableObject extends DrawableObject {
     bottom: 0,
   };
   y = 170;
-  speedX = 0.25;
+  speedX = 0.25; //if you change it you also need to change it in continueGame()
   lookToLeft = false;
   speedY = 0;
   acceleration = 2;
@@ -62,7 +62,12 @@ class MoveableObject extends DrawableObject {
   }
 
   moveLeft() {
-    if (this.x >= 120) {
+    if (
+      this instanceof Character ||
+      (this instanceof Endboss && this.x >= 120)
+    ) {
+      this.x -= this.speedX;
+    } else {
       this.x -= this.speedX;
     }
   }
