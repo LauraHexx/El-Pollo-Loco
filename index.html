@@ -31,9 +31,79 @@
     <script src="js/game.js"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body onload="init()">
-    <div class="content">
-      <canvas id="canvas" width="720" height="480"></canvas>
+  <body>
+    <div class="content borderRadius">
+      <canvas id="canvas" class="borderRadius" width="720" height="480">
+      </canvas>
+      <div id="startscreen" class="borderRadius">
+        <img
+          src="img/9_intro_outro_screens/start/startscreen_2.png"
+          alt="startscreen of the game"
+          class="borderRadius" />
+      </div>
+      <div class="imagesSetting">
+        <img
+          class="sound cursorPointer"
+          src="img/icons/sound.svg"
+          alt="turn sound on" />
+        <img
+          class="mute cursorPointer"
+          src="img/icons/mute.png"
+          alt="turn sound off" />
+        <img
+          onclick="openHowToPlay()"
+          class="explanation cursorPointer"
+          src="img/icons/question-mark.png"
+          alt="how to play" />
+      </div>
+      <div id="divPlayBtn">
+        <button onclick="init()" class="cursorPointer">Play</button>
+      </div>
+      <div id="howtoPlay" class="borderRadius d-none">
+        <div class="close">
+          <img
+            onclick="closeHowToPlay()"
+            class="closeImg cursorPointer"
+            src="img/icons/close.svg"
+            alt="close how to play screen" />
+        </div>
+        <div class="keys">
+          <div class="oneKeyDiscription">
+            <span>Walk Left</span>
+            <img
+              class="walkLeftImg"
+              src="img/icons/arrow-left.svg"
+              alt="
+            left arrow key for walking left" />
+          </div>
+          <div class="oneKeyDiscription">
+            <span>Walk Right</span>
+            <img
+              class="walkRightImg"
+              src="img/icons/arrow-right.svg"
+              alt="
+            right arrow key for walking right" />
+          </div>
+          <div class="oneKeyDiscription">
+            <span>Jump</span>
+            <img
+              class="jumpImg"
+              src="img/icons/space.png"
+              alt="space key for jumping" />
+          </div>
+          <div class="oneKeyDiscription">
+            <span>Throw Bottles</span>
+            <span class="keyDSpan">D</span>
+          </div>
+        </div>
+        <p class="description">
+          Kill the endboss with the bottles. <br />
+          But be careful! Don´t waste the bottles.
+          <br />
+          Collecting all Coins enables unstoppable mode - you get some extra
+          speed.
+        </p>
+      </div>
     </div>
   </body>
 </html>

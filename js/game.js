@@ -8,9 +8,31 @@ function getId(id) {
 }
 
 function init() {
+  changeStlye();
+  startGame();
+}
+
+function changeStlye() {
+  let startscreen = getId("startscreen");
+  startscreen.classList.add("d-none");
+  let divPlayBtn = getId("divPlayBtn");
+  divPlayBtn.classList.add("d-none");
+}
+
+function startGame() {
   canvas = getId("canvas");
   world = new World(canvas, keyboard);
   console.log("Das ist meine Welt", world);
+}
+
+function openHowToPlay() {
+  let howtoPlay = getId("howtoPlay");
+  howtoPlay.classList.remove("d-none");
+}
+
+function closeHowToPlay() {
+  let howtoPlay = getId("howtoPlay");
+  howtoPlay.classList.add("d-none");
 }
 
 window.addEventListener("keydown", (event) => {
