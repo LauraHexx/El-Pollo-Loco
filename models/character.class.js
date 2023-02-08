@@ -89,7 +89,7 @@ class Character extends MoveableObject {
           this.speedX = 10;
           this.isUnstoppable = false;
           this.hideUnstoppable();
-        }, 3000);
+        }, 2500);
       }
 
       this.world.cameraX = -this.x + 80;
