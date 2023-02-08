@@ -17,6 +17,8 @@ function changeStlye() {
   startscreen.classList.add("d-none");
   let divPlayBtn = getId("divPlayBtn");
   divPlayBtn.classList.add("d-none");
+  let fullscreen = getId("fullscreen");
+  fullscreen.classList.remove("d-none");
 }
 
 function startGame() {
@@ -33,6 +35,10 @@ function openHowToPlay() {
 function closeHowToPlay() {
   let howtoPlay = getId("howtoPlay");
   howtoPlay.classList.add("d-none");
+}
+
+function makeFullscreen() {
+  canvas.requestFullscreen();
 }
 
 window.addEventListener("keydown", (event) => {

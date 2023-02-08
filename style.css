@@ -71,7 +71,7 @@ canvas {
 .imagesSetting {
   position: absolute;
   top: 15px;
-  right: 10px;
+  right: 15px;
   display: flex;
   align-items: center;
   gap: 13px;
@@ -91,6 +91,11 @@ canvas {
 }
 
 .mute {
+  width: 30px;
+  height: 30px;
+}
+
+#fullscreen {
   width: 30px;
   height: 30px;
 }
