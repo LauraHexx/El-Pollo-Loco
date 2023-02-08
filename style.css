@@ -1,4 +1,4 @@
-/*generall classes - START*/
+/*GENERAL START ----------------------------------------------*/
 
 .borderRadius {
   border-radius: 15px;
@@ -12,7 +12,7 @@
   display: none !important;
 }
 
-/*generall classes - END*/
+/*GENERAL END----------------------------------------------*/
 
 body {
   display: flex;
@@ -22,7 +22,7 @@ body {
   width: 100vw;
   height: 100vh;
   margin: 0;
-  background-image: url("img/background_out of game/background.jpg");
+  background-image: url("img/background_out of game/backgroundBody.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -50,6 +50,8 @@ body::before {
 canvas {
   box-shadow: 0px 0px 10px 2px rgb(0 0 0 / 80%);
 }
+
+/*STARTSCREEN----------------------------------------------*/
 
 #startscreen {
   position: absolute;
@@ -109,7 +111,7 @@ canvas {
 
 #divPlayBtn button {
   padding: 5px 20px;
-  box-shadow: 0px 0px 3px 3px black;
+  box-shadow: 0px 0px 1px 1px black;
   border-radius: 10px;
   background-color: rgb(255, 196, 2);
   font-size: 20px;
@@ -119,6 +121,8 @@ canvas {
   scale: 1.2;
 }
 
+/*HOW TO PLAY*----------------------------------------------*/
+
 #howtoPlay {
   position: absolute;
   top: 0;
@@ -127,8 +131,25 @@ canvas {
   justify-content: space-between;
   width: 100%;
   height: 100%;
-  background-color: blue;
+  background-image: url("img/background_out of game/backgroundBody.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  font-weight: bold;
   z-index: 3;
+}
+
+#howtoPlay::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
 }
 
 .close {
@@ -137,8 +158,9 @@ canvas {
 }
 
 .closeImg {
-  width: 60px;
-  height: 60px;
+  padding: 15px 15px 0px 0px;
+  width: 30px;
+  height: 30px;
 }
 
 .keys {
@@ -176,6 +198,7 @@ canvas {
 }
 
 .description {
+  padding: 0px 10px 0px 10px;
   text-align: center;
   font-size: 25px;
 }
