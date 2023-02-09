@@ -1,4 +1,4 @@
-class Chicken extends MoveableObject {
+class ChickenSmall extends MoveableObject {
   offset = {
     top: 5,
     bottom: 5,
@@ -10,11 +10,14 @@ class Chicken extends MoveableObject {
   height = 80;
 
   imagesWalking = [
-    "img/3_enemies_chicken/chicken_normal/1_walk/1_w.png",
-    "img/3_enemies_chicken/chicken_normal/1_walk/2_w.png",
-    "img/3_enemies_chicken/chicken_normal/1_walk/3_w.png",
+    "img/3_enemies_chicken/chicken_small/1_walk/1_w.png",
+    "img/3_enemies_chicken/chicken_small/1_walk/2_w.png",
+    "img/3_enemies_chicken/chicken_small/1_walk/3_w.png",
   ];
-  imagesDead = ["img/3_enemies_chicken/chicken_normal/2_dead/dead.png"];
+  imagesDead = [
+    "img/3_enemies_chicken/chicken_small/2_dead/dead.png",
+    "img/3_enemies_chicken/chicken_small/2_dead/dead.png",
+  ];
   walkingSound = new Audio("audio/chicken.mp3"); //todo
 
   constructor() {
