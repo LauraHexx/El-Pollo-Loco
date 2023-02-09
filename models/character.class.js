@@ -9,6 +9,7 @@ class Character extends MoveableObject {
   width = 130;
   height = 260;
   speedX = 10;
+  imageStanding = ["img/2_character_pepe/1_idle/idle/I-1.png"];
   imagesSleeping = [
     "img/2_character_pepe/1_idle/long_idle/I-11.png",
     "img/2_character_pepe/1_idle/long_idle/I-12.png",
@@ -61,9 +62,11 @@ class Character extends MoveableObject {
   collectedCoins = 0;
   timeSinceLastAction = 5;
   isSleeping = true;
+  isStillStanding = false;
 
   constructor() {
     super().loadImage("img/2_character_pepe/1_idle/idle/I-1.png"); //Todo - brauch ich nicht mehr
+    this.loadImages(this.imageStanding);
     this.loadImages(this.imagesSleeping);
     this.loadImages(this.imagesWalking);
     this.loadImages(this.imagesJumping);
@@ -125,6 +128,8 @@ class Character extends MoveableObject {
         this.playAnimation(this.imagesWalking);
       } else if (this.isSleeping) {
         this.playAnimation(this.imagesSleeping);
+      } else {
+        this.playAnimation(this.imageStanding);
       }
     }, 100);
   }
@@ -137,7 +142,7 @@ class Character extends MoveableObject {
         !this.world.keyboard.space &&
         !this.world.keyboard.d
       ) {
-        this.timeSinceLastAction += 1;
+        this.timeSinceLastAction += 0.0166666666666667;
       } else {
         this.timeSinceLastAction = 0;
       }
@@ -149,7 +154,7 @@ class Character extends MoveableObject {
         this.isSleeping = false;
         console.log("awake");
       }
-    }, 1000);
+    }, 1000 / 60);
   }
 
   showUnstoppable() {
