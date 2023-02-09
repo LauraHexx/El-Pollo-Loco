@@ -5,10 +5,22 @@ class Character extends MoveableObject {
     left: 30,
     right: 30,
   };
-  y = 100;
-  width = 120;
+  y = 170;
+  width = 130;
   height = 260;
   speedX = 10;
+  imagesSleeping = [
+    "img/2_character_pepe/1_idle/long_idle/I-11.png",
+    "img/2_character_pepe/1_idle/long_idle/I-12.png",
+    "img/2_character_pepe/1_idle/long_idle/I-13.png",
+    "img/2_character_pepe/1_idle/long_idle/I-14.png",
+    "img/2_character_pepe/1_idle/long_idle/I-15.png",
+    "img/2_character_pepe/1_idle/long_idle/I-16.png",
+    "img/2_character_pepe/1_idle/long_idle/I-17.png",
+    "img/2_character_pepe/1_idle/long_idle/I-18.png",
+    "img/2_character_pepe/1_idle/long_idle/I-19.png",
+    "img/2_character_pepe/1_idle/long_idle/I-20.png",
+  ];
   imagesWalking = [
     "img/2_character_pepe/2_walk/W-21.png",
     "img/2_character_pepe/2_walk/W-22.png",
@@ -47,14 +59,17 @@ class Character extends MoveableObject {
   walkingSound = new Audio("audio/walking.mp3");
   collectedBottles = 0;
   collectedCoins = 0;
-  unstoppable = false;
+  timeSinceLastAction = 5;
+  isSleeping = true;
 
   constructor() {
     super().loadImage("img/2_character_pepe/1_idle/idle/I-1.png"); //Todo - brauch ich nicht mehr
+    this.loadImages(this.imagesSleeping);
     this.loadImages(this.imagesWalking);
     this.loadImages(this.imagesJumping);
     this.loadImages(this.imagesHurting);
     this.loadImages(this.imagesDead);
+    this.checkIfSleeping();
     this.animate();
     this.applyGravity();
   }
@@ -82,7 +97,7 @@ class Character extends MoveableObject {
       if (this.world.keyboard.space && !this.isAboveGround()) {
         this.jump();
       }
-
+      //sleeping
       if (this.collectedCoins == 5) {
         //speed for collected bottles
         this.isUnstoppable = true;
@@ -106,12 +121,35 @@ class Character extends MoveableObject {
         this.playAnimation(this.imagesHurting);
       } else if (this.isAboveGround()) {
         this.playAnimation(this.imagesJumping);
-      } else {
-        if (this.world.keyboard.right || this.world.keyboard.left) {
-          this.playAnimation(this.imagesWalking);
-        }
+      } else if (this.world.keyboard.right || this.world.keyboard.left) {
+        this.playAnimation(this.imagesWalking);
+      } else if (this.isSleeping) {
+        this.playAnimation(this.imagesSleeping);
       }
     }, 100);
+  }
+
+  checkIfSleeping() {
+    setInterval(() => {
+      if (
+        !this.world.keyboard.left &&
+        !this.world.keyboard.right &&
+        !this.world.keyboard.space &&
+        !this.world.keyboard.d
+      ) {
+        this.timeSinceLastAction += 1;
+      } else {
+        this.timeSinceLastAction = 0;
+      }
+
+      if (this.timeSinceLastAction >= 5) {
+        this.isSleeping = true;
+        console.log("sleeping");
+      } else {
+        this.isSleeping = false;
+        console.log("awake");
+      }
+    }, 1000);
   }
 
   showUnstoppable() {

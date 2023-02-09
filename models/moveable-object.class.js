@@ -63,7 +63,7 @@ class MoveableObject extends DrawableObject {
 
   moveLeft() {
     if (
-      this instanceof Character ||
+      (this instanceof Character && this.x >= 120) ||
       (this instanceof Endboss && this.x >= 120)
     ) {
       this.x -= this.speedX;
