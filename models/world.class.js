@@ -114,6 +114,20 @@ class World {
   checkThrowObjects() {
     if (
       this.keyboard.d &&
+      this.character.right &&
+      !this.character.isHurting() &&
+      this.character.collectedBottles > 0
+    ) {
+      console.log("tesrt");
+      this.character.collectedBottles--;
+      this.statusBarBottle.setPercentage(this.character.collectedBottles);
+      let bottle = new ThrowableObject(
+        this.character.x + this.character.width + 800,
+        this.character.y + 50
+      );
+      this.throwableObjects.push(bottle);
+    } else if (
+      this.keyboard.d &&
       !this.character.lookToLeft &&
       !this.character.isHurting() &&
       this.character.collectedBottles > 0

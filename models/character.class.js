@@ -85,6 +85,7 @@ class Character extends MoveableObject {
       if (
         this.world.keyboard.right &&
         this.x <= this.world.endboss.x &&
+        !this.getsPushed &&
         !this.world.gameIsOver
       ) {
         this.lookToLeft = false;
@@ -93,7 +94,12 @@ class Character extends MoveableObject {
         this.walkingSound.play();
       }
       //walk left
-      if (this.world.keyboard.left && this.x > 0 && !this.world.gameIsOver) {
+      if (
+        this.world.keyboard.left &&
+        this.x > 0 &&
+        !this.getsPushed &&
+        !this.world.gameIsOver
+      ) {
         this.lookToLeft = true;
         this.offset.right = 60;
         this.moveLeft();
@@ -117,7 +123,9 @@ class Character extends MoveableObject {
         }, 2500);
       }
 
-      if (this.getsPushed) {
+      if (this.getsPushed && this.x < this.world.endboss.powerOfPushing) {
+        this.x -= this.x;
+      } else if (this.getsPushed) {
         this.x -= this.world.endboss.powerOfPushing;
       }
 

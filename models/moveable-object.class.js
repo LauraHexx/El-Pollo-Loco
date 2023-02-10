@@ -62,14 +62,10 @@ class MoveableObject extends DrawableObject {
   }
 
   moveLeft() {
-    if (
-      (this instanceof Character && this.x >= 120) ||
-      (this instanceof Endboss && this.x >= 120)
-    ) {
-      this.x -= this.speedX;
-    } else {
-      this.x -= this.speedX;
+    if (this instanceof Endboss && this.x <= 0) {
+      this.speedX = 0;
     }
+    this.x -= this.speedX;
   }
 
   moveRight() {
