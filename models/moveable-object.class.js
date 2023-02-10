@@ -12,6 +12,7 @@ class MoveableObject extends DrawableObject {
   acceleration = 2;
   energy = 100;
   lastHit = 0;
+  lastAction = 0;
 
   playAnimation(images) {
     let i = this.curentImage % images.length;
@@ -80,6 +81,12 @@ class MoveableObject extends DrawableObject {
     }
   }
 
+  isAsleep() {
+    let timePassed = new Date().getTime() - this.lastAction;
+    timePassed = timePassed / 1000;
+    return timePassed > 3;
+  }
+
   applyGravity() {
     setInterval(() => {
       if (this.isAboveGround() || this.speedY > 0) {
@@ -96,17 +103,5 @@ class MoveableObject extends DrawableObject {
     } else {
       return this.y < 170;
     }
-  }
-
-  changeDirectionToRight() {
-    setTimeout(() => {
-      this.lookToLeft = true;
-    }, 3000);
-  }
-
-  changeDirectionToLeft() {
-    setTimeout(() => {
-      this.lookToLeft = false;
-    }, 3000);
   }
 }

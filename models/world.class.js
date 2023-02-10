@@ -118,7 +118,7 @@ class World {
       !this.character.isHurting() &&
       this.character.collectedBottles > 0
     ) {
-      console.log("tesrt");
+      this.character.lastAction = new Date().getTime();
       this.character.collectedBottles--;
       this.statusBarBottle.setPercentage(this.character.collectedBottles);
       let bottle = new ThrowableObject(
@@ -132,6 +132,7 @@ class World {
       !this.character.isHurting() &&
       this.character.collectedBottles > 0
     ) {
+      this.character.lastAction = new Date().getTime();
       this.character.collectedBottles--;
       this.statusBarBottle.setPercentage(this.character.collectedBottles);
       let bottle = new ThrowableObject(

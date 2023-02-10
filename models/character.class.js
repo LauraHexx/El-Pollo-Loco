@@ -60,8 +60,6 @@ class Character extends MoveableObject {
   walkingSound = new Audio("audio/walking.mp3");
   collectedBottles = 0;
   collectedCoins = 0;
-  timeSinceLastAction = 5;
-  isSleeping = true;
   isStillStanding = false;
   getsPushed = false;
 
@@ -73,7 +71,6 @@ class Character extends MoveableObject {
     this.loadImages(this.imagesJumping);
     this.loadImages(this.imagesHurting);
     this.loadImages(this.imagesDead);
-    this.checkIfSleeping();
     this.animate();
     this.applyGravity();
   }
@@ -88,6 +85,7 @@ class Character extends MoveableObject {
         !this.getsPushed &&
         !this.world.gameIsOver
       ) {
+        this.lastAction = new Date().getTime();
         this.lookToLeft = false;
         this.offset.right = 20;
         this.moveRight();
@@ -100,6 +98,7 @@ class Character extends MoveableObject {
         !this.getsPushed &&
         !this.world.gameIsOver
       ) {
+        this.lastAction = new Date().getTime();
         this.lookToLeft = true;
         this.offset.right = 60;
         this.moveLeft();
@@ -107,6 +106,7 @@ class Character extends MoveableObject {
       }
       //jump
       if (this.world.keyboard.space && !this.isAboveGround()) {
+        this.lastAction = new Date().getTime();
         this.jump();
       }
       //sleeping
@@ -141,33 +141,12 @@ class Character extends MoveableObject {
         this.playAnimation(this.imagesJumping);
       } else if (this.world.keyboard.right || this.world.keyboard.left) {
         this.playAnimation(this.imagesWalking);
-      } else if (this.isSleeping) {
+      } else if (this.isAsleep()) {
         this.playAnimation(this.imagesSleeping);
       } else {
         this.playAnimation(this.imageStanding);
       }
     }, 100);
-  }
-
-  checkIfSleeping() {
-    setInterval(() => {
-      if (
-        !this.world.keyboard.left &&
-        !this.world.keyboard.right &&
-        !this.world.keyboard.space &&
-        !this.world.keyboard.d
-      ) {
-        this.timeSinceLastAction += 0.0166666666666667;
-      } else {
-        this.timeSinceLastAction = 0;
-      }
-
-      if (this.timeSinceLastAction >= 5) {
-        this.isSleeping = true;
-      } else {
-        this.isSleeping = false;
-      }
-    }, 1000 / 60);
   }
 
   showUnstoppable() {
