@@ -29,7 +29,11 @@ class DrawableObject {
 
   drawFrames(ctx) {
     // wird von world übergeben
-    if (this instanceof Character || this instanceof Chicken) {
+    if (
+      this instanceof Character ||
+      this instanceof Chicken ||
+      this instanceof Endboss
+    ) {
       // wird nur ausgeführt wenn Character oder Chicken
       ctx.beginPath();
       ctx.lineWidth = "3";

@@ -2,7 +2,7 @@ class Endboss extends MoveableObject {
   offset = {
     top: 70,
     bottom: 10,
-    left: 60,
+    left: 55,
     right: 30,
   };
   x = 3500;
@@ -11,6 +11,7 @@ class Endboss extends MoveableObject {
   width = 270;
   height = 360;
   isAlarmed = false;
+  powerOfPushing = 30;
   imagesWalking = [
     "img/4_enemie_boss_chicken/2_alert/G5.png",
     "img/4_enemie_boss_chicken/2_alert/G6.png",

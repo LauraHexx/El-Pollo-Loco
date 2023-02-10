@@ -32,6 +32,7 @@ class World {
     setInterval(() => {
       this.checkCollisionsEnemies();
       this.checkCollisionsEndboss();
+      this.checkEndbossPushingCharacter();
       this.checkCollisionsBottles();
       this.checkCollisionsCoins();
       this.checkThrowObjects();
@@ -49,6 +50,14 @@ class World {
     ) {
       this.character.hit();
       this.statusBarHealth.setPercentage(this.character.energy);
+    }
+  }
+
+  checkEndbossPushingCharacter() {
+    if (this.character.isColliding(this.endboss) && !this.character.left) {
+      this.character.getsPushed = true;
+    } else {
+      this.character.getsPushed = false;
     }
   }
 
@@ -229,7 +238,7 @@ class World {
     }
 
     obj.drawImages(this.ctx); //zum Auslagern der DrawImage Funktion in Drawable Object
-    //obj.drawFrames(this.ctx);
+    // obj.drawFrames(this.ctx);
 
     if (obj.lookToLeft) {
       this.flipImageBack(obj);

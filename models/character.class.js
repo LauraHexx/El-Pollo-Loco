@@ -63,6 +63,7 @@ class Character extends MoveableObject {
   timeSinceLastAction = 5;
   isSleeping = true;
   isStillStanding = false;
+  getsPushed = false;
 
   constructor() {
     super().loadImage("img/2_character_pepe/1_idle/idle/I-1.png"); //Todo - brauch ich nicht mehr
@@ -83,16 +84,18 @@ class Character extends MoveableObject {
       this.walkingSound.pause();
       if (
         this.world.keyboard.right &&
-        this.x < this.world.endboss.x &&
+        this.x <= this.world.endboss.x &&
         !this.world.gameIsOver
       ) {
         this.lookToLeft = false;
+        this.offset.right = 20;
         this.moveRight();
         this.walkingSound.play();
       }
       //walk left
       if (this.world.keyboard.left && this.x > 0 && !this.world.gameIsOver) {
         this.lookToLeft = true;
+        this.offset.right = 60;
         this.moveLeft();
         this.walkingSound.play();
       }
@@ -112,6 +115,10 @@ class Character extends MoveableObject {
           this.isUnstoppable = false;
           this.hideUnstoppable();
         }, 2500);
+      }
+
+      if (this.getsPushed) {
+        this.x -= this.world.endboss.powerOfPushing;
       }
 
       this.world.cameraX = -this.x + 80;
@@ -149,10 +156,8 @@ class Character extends MoveableObject {
 
       if (this.timeSinceLastAction >= 5) {
         this.isSleeping = true;
-        console.log("sleeping");
       } else {
         this.isSleeping = false;
-        console.log("awake");
       }
     }, 1000 / 60);
   }
