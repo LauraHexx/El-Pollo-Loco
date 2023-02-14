@@ -3,7 +3,7 @@ class Character extends MoveableObject {
     top: 120,
     left: 20,
     right: 20,
-    bottom: 30,
+    bottom: 20,
   };
   y = 170;
   width = 130;

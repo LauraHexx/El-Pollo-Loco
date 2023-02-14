@@ -5,6 +5,7 @@ class World {
   currentLevel = level1;
   cameraX = 0;
   cameraY = 0;
+  background_Audio = new Audio("audio/backgroundNoEndboss.mp3");
   character = new Character();
   endboss = new Endboss();
   statusBarHealth = new StatusBarHealth();
@@ -40,7 +41,8 @@ class World {
       this.checkHitEndboss();
       this.checkIfWonOrLost();
       this.checkIfHowToPlayIsOpen();
-    }, 200);
+      this.background_Audio.play();
+    }, 60);
   }
 
   checkCollisionsEndboss() {
@@ -64,13 +66,13 @@ class World {
   checkCollisionsEnemies() {
     this.currentLevel.enemies.forEach((enemy) => {
       if (
-        this.character.isColliding(enemy) &&
         !this.character.isHurting() &&
-        this.character.isAboveGround()
+        this.character.isColliding(enemy) &&
+        this.character.isAboveGround() &&
+        this.character.speedY < 0
       ) {
         let indexEnemy = this.currentLevel.enemies.indexOf(enemy);
         let hittedChicken = (this.currentLevel.enemies[indexEnemy].energy = 0);
-
         this.character.jump();
       } else {
         if (
