@@ -5,7 +5,6 @@ class World {
   currentLevel = level1;
   cameraX = 0;
   cameraY = 0;
-  background_Audio = new Audio("audio/backgroundNoEndboss.mp3");
   character = new Character();
   endboss = new Endboss();
   statusBarHealth = new StatusBarHealth();
@@ -23,6 +22,7 @@ class World {
     this.setWorld();
     this.draw();
     this.alwaysChecking(); // Intervalle, die ständig geprüft werden
+    playBackgroundSound();
   }
 
   setWorld() {
@@ -41,7 +41,7 @@ class World {
       this.checkHitEndboss();
       this.checkIfWonOrLost();
       this.checkIfHowToPlayIsOpen();
-    }, 1000 / 60);
+    }, 100);
   }
 
   checkCollisionsEndboss() {
@@ -51,6 +51,7 @@ class World {
     ) {
       this.character.hit();
       this.statusBarHealth.setPercentage(this.character.energy);
+      AUDIO_characterHurt.play();
     }
   }
 
@@ -73,6 +74,7 @@ class World {
         let indexEnemy = this.currentLevel.enemies.indexOf(enemy);
         let hittedChicken = (this.currentLevel.enemies[indexEnemy].energy = 0);
         this.character.jump();
+        AUDIO_chickenDead.play();
       }
       if (
         this.character.isColliding(enemy) &&
@@ -82,6 +84,7 @@ class World {
       ) {
         this.character.hit();
         this.statusBarHealth.setPercentage(this.character.energy);
+        AUDIO_characterHurt.play();
       }
     });
   }

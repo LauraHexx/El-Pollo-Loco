@@ -57,7 +57,6 @@ class Character extends MoveableObject {
   ];
   speed = 8;
   world;
-  walkingSound = new Audio("audio/walking.mp3");
   collectedBottles = 0;
   collectedCoins = 0;
   isStillStanding = false;
@@ -78,7 +77,7 @@ class Character extends MoveableObject {
   animate() {
     setInterval(() => {
       //walk right
-      this.walkingSound.pause();
+      AUDIO_characterWalk.pause();
       if (
         this.world.keyboard.right &&
         this.x <= this.world.endboss.x &&
@@ -89,7 +88,7 @@ class Character extends MoveableObject {
         this.lookToLeft = false;
         this.offset.right = 20;
         this.moveRight();
-        this.walkingSound.play();
+        AUDIO_characterWalk.play();
       }
       //walk left
       if (
@@ -102,12 +101,13 @@ class Character extends MoveableObject {
         this.lookToLeft = true;
         this.offset.right = 60;
         this.moveLeft();
-        this.walkingSound.play();
+        AUDIO_characterWalk.play();
       }
       //jump
       if (this.world.keyboard.space && !this.isAboveGround()) {
         this.lastAction = new Date().getTime();
         this.jump();
+        AUDIO_characterJump.play();
       }
 
       if (this.collectedCoins == 5) {

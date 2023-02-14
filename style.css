@@ -74,7 +74,7 @@ canvas {
   right: 15px;
   display: flex;
   align-items: center;
-  gap: 13px;
+  gap: 15px;
 }
 
 .imagesSetting img {
@@ -85,14 +85,14 @@ canvas {
   scale: 1.2;
 }
 
-.sound {
-  width: 37px;
-  height: 37px;
+#sound {
+  width: 33px;
+  height: 33px;
 }
 
-.mute {
-  width: 30px;
-  height: 30px;
+#mute {
+  width: 28px;
+  height: 28px;
 }
 
 #fullscreen {

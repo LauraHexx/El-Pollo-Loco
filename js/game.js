@@ -11,6 +11,7 @@ function getId(id) {
 function init() {
   changeStlye();
   startGame();
+  playBackgroundSound();
 }
 
 function changeStlye() {
