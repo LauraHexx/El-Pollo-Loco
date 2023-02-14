@@ -109,7 +109,7 @@ class Character extends MoveableObject {
         this.lastAction = new Date().getTime();
         this.jump();
       }
-      //sleeping
+
       if (this.collectedCoins == 5) {
         //speed for collected bottles
         this.isUnstoppable = true;

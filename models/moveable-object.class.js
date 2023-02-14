@@ -57,6 +57,7 @@ class MoveableObject extends DrawableObject {
   }
 
   isHurting() {
+    this.lastAction = new Date().getTime();
     let timePassed = new Date().getTime() - this.lastHit; // Differenz aktuelle Zeit und letzter Zeitpunkt hit
     timePassed = timePassed / 1000;
     return timePassed < 3; //gibt true zurück
