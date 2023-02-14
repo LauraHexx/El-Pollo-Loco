@@ -76,7 +76,7 @@ class MoveableObject extends DrawableObject {
 
   jump() {
     if (this.isAboveGround()) {
-      this.speedY = 5; //wenn ein Enemy gekilled wurde
+      this.speedY = 2; //wenn ein Enemy gekilled wurde
     } else {
       this.speedY = 25;
     }

@@ -41,8 +41,7 @@ class World {
       this.checkHitEndboss();
       this.checkIfWonOrLost();
       this.checkIfHowToPlayIsOpen();
-      this.background_Audio.play();
-    }, 60);
+    }, 1000 / 60);
   }
 
   checkCollisionsEndboss() {
@@ -74,15 +73,15 @@ class World {
         let indexEnemy = this.currentLevel.enemies.indexOf(enemy);
         let hittedChicken = (this.currentLevel.enemies[indexEnemy].energy = 0);
         this.character.jump();
-      } else {
-        if (
-          this.character.isColliding(enemy) &&
-          !this.character.isHurting() &&
-          !this.character.isUnstoppable
-        ) {
-          this.character.hit();
-          this.statusBarHealth.setPercentage(this.character.energy);
-        }
+      }
+      if (
+        this.character.isColliding(enemy) &&
+        !this.character.isHurting() &&
+        !this.character.isAboveGround() &&
+        !this.character.isUnstoppable
+      ) {
+        this.character.hit();
+        this.statusBarHealth.setPercentage(this.character.energy);
       }
     });
   }
