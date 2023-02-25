@@ -99,6 +99,7 @@ class World {
           this.currentLevel.bottles.indexOf(bottle),
           1
         );
+        AUDIO_bottle.play();
       }
     });
   }

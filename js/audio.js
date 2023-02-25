@@ -1,6 +1,6 @@
 let AUDIO_background = new Audio("./audio/background.mp3");
 
-let AUDIO_bottle = new Audio("./audio/background.mp3");
+let AUDIO_bottle = new Audio("./audio/bottle.mp3");
 
 let AUDIO_characterJump = new Audio("audio/characterJump.mp3");
 let AUDIO_characterJumpSmall = new Audio("audio/characterJumpSmall.mp3");
