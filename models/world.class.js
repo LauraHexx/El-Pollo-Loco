@@ -75,7 +75,6 @@ class World {
         let hittedChicken = (this.currentLevel.enemies[indexEnemy].energy = 0);
         this.character.jump();
         AUDIO_chickenDead.play();
-        AUDIO_characterJumpSmall.play();
       }
       if (
         this.character.isColliding(enemy) &&
@@ -99,7 +98,7 @@ class World {
           this.currentLevel.bottles.indexOf(bottle),
           1
         );
-        AUDIO_bottle.play();
+        AUDIO_bottleCollected.play();
       }
     });
   }
@@ -107,13 +106,13 @@ class World {
   checkCollisionsCoins() {
     this.currentLevel.coins.forEach((coin) => {
       if (this.character.isColliding(coin) && !this.character.isHurting()) {
-        AUDIO_coin.play();
         this.character.collectedCoins++;
         this.statusBarCoin.setPercentage(this.character.collectedCoins);
         this.currentLevel.coins.splice(
           this.currentLevel.coins.indexOf(coin),
           1
         );
+        AUDIO_coinCollected.play();
       }
     });
   }
