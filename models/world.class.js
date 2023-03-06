@@ -22,7 +22,6 @@ class World {
     this.setWorld();
     this.draw();
     this.alwaysChecking(); // Intervalle, die ständig geprüft werden
-    playBackgroundSound();
   }
 
   setWorld() {
@@ -142,6 +141,8 @@ class World {
       this.statusBarEndbossHeart.width = 70;
       this.statusBarEndbossHeart.height = 75;
       this.endboss.isAlarmed = true;
+      playEndbossSound();
+      AUDIO_background.pause();
     } else {
       this.statusBarEndboss.width = 0;
       this.statusBarEndboss.height = 0;
@@ -156,6 +157,7 @@ class World {
         this.endboss.isAlarmed = false;
         this.endboss.hit();
         this.statusBarEndboss.setPercentage(this.endboss.energy);
+        AUDIO_chickenDead.play();
       }
     });
   }
@@ -165,11 +167,17 @@ class World {
       let lost = getId("lost");
       lost.classList.remove("d-none");
       this.gameIsOver = true;
+      playGameLostSound();
+      AUDIO_endboss.pause();
+      this.pauseGame();
     }
     if (this.endboss.energy == 0) {
       let won = getId("won");
       won.classList.remove("d-none");
       this.gameIsOver = true;
+      playGameWonSound();
+      AUDIO_endboss.pause();
+      this.pauseGame();
     }
   }
 

@@ -13,10 +13,33 @@ let AUDIO_coinCollected = new Audio("audio/coinCollected.mp3");
 
 let AUDIO_chickenDead = new Audio("audio/chickenDead.mp3");
 
+let AUDIO_endboss = new Audio("audio/endboss.mp3");
+
+let AUDIO_gameLost = new Audio("audio/gameLost.mp3");
+let AUDIO_gameWon = new Audio("audio/gameWon.mp3");
+
 function playBackgroundSound() {
   AUDIO_background.loop = true;
   AUDIO_background.volume = 0.4;
   AUDIO_background.play();
+}
+
+function playEndbossSound() {
+  AUDIO_endboss.loop = true;
+  AUDIO_endboss.volume = 0.4;
+  AUDIO_endboss.play();
+}
+
+function playGameLostSound() {
+  AUDIO_gameLost.loop = false;
+  AUDIO_gameLost.volume = 0.4;
+  AUDIO_gameLost.play();
+}
+
+function playGameWonSound() {
+  AUDIO_gameWon.loop = false;
+  AUDIO_gameWon.volume = 0.4;
+  AUDIO_gameWon.play();
 }
 
 function muteSounds() {
