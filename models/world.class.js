@@ -13,7 +13,6 @@ class World {
   statusBarEndboss = new StatusBarEndboss();
   statusBarEndbossHeart = new StatusBarEndbossHeart();
   throwableObjects = [];
-  gameIsOver = false;
 
   constructor(canvas, keyboard) {
     this.canvas = canvas;
@@ -50,7 +49,7 @@ class World {
     ) {
       this.character.hit();
       this.statusBarHealth.setPercentage(this.character.energy);
-      AUDIO_characterHurt.play();
+      playCharacterHurtAudio();
     }
   }
 
@@ -73,7 +72,7 @@ class World {
         let indexEnemy = this.currentLevel.enemies.indexOf(enemy);
         let hittedChicken = (this.currentLevel.enemies[indexEnemy].energy = 0);
         this.character.jump();
-        AUDIO_chickenDead.play();
+        playChickenHitAudio();
       }
       if (
         this.character.isColliding(enemy) &&
@@ -83,7 +82,7 @@ class World {
       ) {
         this.character.hit();
         this.statusBarHealth.setPercentage(this.character.energy);
-        AUDIO_characterHurt.play();
+        playCharacterHurtAudio();
       }
     });
   }
@@ -97,7 +96,7 @@ class World {
           this.currentLevel.bottles.indexOf(bottle),
           1
         );
-        AUDIO_bottleCollected.play();
+        playBottleCollectedAudio();
       }
     });
   }
@@ -111,7 +110,7 @@ class World {
           this.currentLevel.coins.indexOf(coin),
           1
         );
-        AUDIO_coinCollected.play();
+        playCoinCollectedAudio();
       }
     });
   }
@@ -141,7 +140,7 @@ class World {
       this.statusBarEndbossHeart.width = 70;
       this.statusBarEndbossHeart.height = 75;
       this.endboss.isAlarmed = true;
-      playEndbossSound();
+      playEndbossAudio();
       AUDIO_background.pause();
     } else {
       this.statusBarEndboss.width = 0;
@@ -157,8 +156,15 @@ class World {
         this.endboss.isAlarmed = false;
         this.endboss.hit();
         this.statusBarEndboss.setPercentage(this.endboss.energy);
-        AUDIO_chickenDead.play();
+        playChickenHitAudio();
+        playBottleSmashedAudio();
       }
+    });
+  }
+
+  checkCollisionsGroundAndBottle() {
+    this.throwableObjects.forEach((bottle) => {
+      console.log("test");
     });
   }
 
@@ -166,18 +172,10 @@ class World {
     if (this.character.energy == 0) {
       let lost = getId("lost");
       lost.classList.remove("d-none");
-      this.gameIsOver = true;
-      playGameLostSound();
-      AUDIO_endboss.pause();
-      this.pauseGame();
     }
     if (this.endboss.energy == 0) {
       let won = getId("won");
       won.classList.remove("d-none");
-      this.gameIsOver = true;
-      playGameWonSound();
-      AUDIO_endboss.pause();
-      this.pauseGame();
     }
   }
 

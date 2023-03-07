@@ -62,6 +62,8 @@ class Character extends MoveableObject {
   isStillStanding = false;
   getsPushed = false;
 
+  energy = 100; //löschen
+
   constructor() {
     super().loadImage("img/2_character_pepe/1_idle/idle/I-1.png"); //Todo - brauch ich nicht mehr
     this.loadImages(this.imageStanding);
@@ -88,7 +90,7 @@ class Character extends MoveableObject {
         this.lookToLeft = false;
         this.offset.right = 20;
         this.moveRight();
-        AUDIO_characterWalk.play();
+        playCharacterWalkAudio();
       }
       //walk left
       if (
@@ -101,13 +103,13 @@ class Character extends MoveableObject {
         this.lookToLeft = true;
         this.offset.right = 60;
         this.moveLeft();
-        AUDIO_characterWalk.play();
+        playCharacterWalkAudio();
       }
       //jump
       if (this.world.keyboard.space && !this.isAboveGround()) {
         this.lastAction = new Date().getTime();
         this.jump();
-        AUDIO_characterJump.play();
+        playCharacterJumpAudio();
       }
 
       if (this.collectedCoins == 5) {
@@ -116,6 +118,7 @@ class Character extends MoveableObject {
         this.speedX = 15;
         this.collectedCoins = 0;
         this.showUnstoppable();
+        playUnstoppableAudio();
         setTimeout(() => {
           this.speedX = 10;
           this.isUnstoppable = false;

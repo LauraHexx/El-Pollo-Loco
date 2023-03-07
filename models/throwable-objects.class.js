@@ -33,7 +33,6 @@ class ThrowableObject extends MoveableObject {
     setInterval(() => {
       if (this.isSmashed()) {
         this.playAnimation(this.imagesSplashing);
-        this.playSound();
       } else {
         this.playAnimation(this.imagesThrowing);
       }
@@ -49,9 +48,5 @@ class ThrowableObject extends MoveableObject {
 
   isSmashed() {
     return this.y > 250;
-  }
-
-  playSound() {
-    AUDIO_bottleSplashed.play();
   }
 }
