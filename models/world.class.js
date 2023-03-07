@@ -39,7 +39,7 @@ class World {
       this.checkHitEndboss();
       this.checkIfWonOrLost();
       this.checkIfHowToPlayIsOpen();
-      this.checkBottleOnGround();
+      this.ckeckThrownBotlleOnGround();
     }, 100);
   }
 
@@ -165,7 +165,7 @@ class World {
     });
   }
 
-  checkBottleOnGround() {
+  ckeckThrownBotlleOnGround() {
     this.throwableObjects.forEach((bottle) => {
       if (bottle.isSmashed()) {
         this.throwableObjects.splice(this.throwableObjects.indexOf(bottle), 1);
