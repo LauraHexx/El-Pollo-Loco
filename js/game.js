@@ -3,6 +3,7 @@ let ctx;
 let world;
 let howToPlayIsOpen = false;
 let keyboard = new Keyboard();
+let gameIsOver = false;
 
 function getId(id) {
   return document.getElementById(id);
@@ -50,21 +51,23 @@ function backToMenu() {
 }
 
 window.addEventListener("keydown", (event) => {
-  if (event.keyCode == 37) {
-    //left
-    keyboard.left = true;
-  }
-  if (event.keyCode == 39) {
-    //right
-    keyboard.right = true;
-  }
-  if (event.keyCode == 32) {
-    //space
-    keyboard.space = true;
-  }
-  if (event.keyCode == 68) {
-    //d
-    keyboard.d = true;
+  if (!gameIsOver) {
+    if (event.keyCode == 37) {
+      //left
+      keyboard.left = true;
+    }
+    if (event.keyCode == 39) {
+      //right
+      keyboard.right = true;
+    }
+    if (event.keyCode == 32) {
+      //space
+      keyboard.space = true;
+    }
+    if (event.keyCode == 68) {
+      //d
+      keyboard.d = true;
+    }
   }
 });
 

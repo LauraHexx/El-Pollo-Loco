@@ -29,17 +29,19 @@ class World {
 
   alwaysChecking() {
     setInterval(() => {
-      this.checkCollisionsEnemies();
-      this.checkCollisionsEndboss();
-      this.checkEndbossPushingCharacter();
-      this.checkCollisionsBottles();
-      this.checkCollisionsCoins();
-      this.checkThrowObjects();
-      this.checkAppearanceEndboss();
-      this.checkHitEndboss();
-      this.checkIfWonOrLost();
-      this.checkIfHowToPlayIsOpen();
-      this.ckeckThrownBotlleOnGround();
+      if (!gameIsOver) {
+        this.checkCollisionsEnemies();
+        this.checkCollisionsEndboss();
+        this.checkEndbossPushingCharacter();
+        this.checkCollisionsBottles();
+        this.checkCollisionsCoins();
+        this.checkThrowObjects();
+        this.checkAppearanceEndboss();
+        this.checkHitEndboss();
+        this.checkIfWonOrLost();
+        this.checkIfHowToPlayIsOpen();
+        this.ckeckThrownBotlleOnGround();
+      }
     }, 100);
   }
 
@@ -170,31 +172,40 @@ class World {
       if (bottle.isSmashed()) {
         this.throwableObjects.splice(this.throwableObjects.indexOf(bottle), 1);
         playBottleSmashedAudio();
-        console.log(this.throwableObjects);
       }
     });
   }
 
   checkIfWonOrLost() {
-    if (this.character.energy == 0) {
+    if (this.character.energy == 0 && !this.gameIsOver) {
+      this.stopGame();
+      gameIsOver = true;
       let lost = getId("lost");
       lost.classList.remove("d-none");
+      AUDIO_endboss.pause();
+      AUDIO_background.pause();
+      playGameLostAudio();
     }
-    if (this.endboss.energy == 0) {
+    if (this.endboss.energy == 0 && !this.gameIsOver) {
+      this.stopGame();
+      gameIsOver = true;
       let won = getId("won");
       won.classList.remove("d-none");
+      AUDIO_endboss.pause();
+      AUDIO_background.pause();
+      playGameWonAudio();
     }
   }
 
   checkIfHowToPlayIsOpen() {
     if (howToPlayIsOpen) {
-      this.pauseGame();
+      this.stopGame();
     } else {
       this.continueGame();
     }
   }
 
-  pauseGame() {
+  stopGame() {
     this.currentLevel.enemies.forEach((enemy) => {
       enemy.speedX = 0;
     });

@@ -6,6 +6,7 @@ class Endboss extends MoveableObject {
     right: 30,
   };
   x = 3500;
+  energy = 20;
   y = 80;
   speedX = 9;
   width = 270;
