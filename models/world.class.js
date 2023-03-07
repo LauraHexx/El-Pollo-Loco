@@ -39,6 +39,7 @@ class World {
       this.checkHitEndboss();
       this.checkIfWonOrLost();
       this.checkIfHowToPlayIsOpen();
+      this.checkBottleOnGround();
     }, 100);
   }
 
@@ -156,15 +157,21 @@ class World {
         this.endboss.isAlarmed = false;
         this.endboss.hit();
         this.statusBarEndboss.setPercentage(this.endboss.energy);
+        this.throwableObjects.splice(this.throwableObjects.indexOf(bottle), 1);
         playChickenHitAudio();
         playBottleSmashedAudio();
+        console.log(this.throwableObjects);
       }
     });
   }
 
-  checkCollisionsGroundAndBottle() {
+  checkBottleOnGround() {
     this.throwableObjects.forEach((bottle) => {
-      console.log("test");
+      if (bottle.isSmashed()) {
+        this.throwableObjects.splice(this.throwableObjects.indexOf(bottle), 1);
+        playBottleSmashedAudio();
+        console.log(this.throwableObjects);
+      }
     });
   }
 
