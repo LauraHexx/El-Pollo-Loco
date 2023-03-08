@@ -20,8 +20,8 @@ function changeStlye() {
   startscreen.classList.add("d-none");
   let divPlayBtn = getId("divPlayBtn");
   divPlayBtn.classList.add("d-none");
-  let fullscreen = getId("fullscreen");
-  fullscreen.classList.remove("d-none");
+  let fullscreenIcon = getId("fullscreenIcon");
+  fullscreenIcon.classList.remove("d-none");
 }
 
 function startGame() {
@@ -43,7 +43,7 @@ function closeHowToPlay() {
 }
 
 function makeFullscreen() {
-  canvas.requestFullscreen();
+  //
 }
 
 function backToStart() {
