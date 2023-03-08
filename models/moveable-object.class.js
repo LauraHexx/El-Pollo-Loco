@@ -7,8 +7,8 @@ class MoveableObject extends DrawableObject {
   };
   y = 170;
   speedX = 0.25; //if you change it you also need to change it in continueGame()
-  lookToLeft = false;
   speedY = 0;
+  lookToLeft = false;
   acceleration = 2;
   energy = 100;
   lastHit = 0;
@@ -19,14 +19,6 @@ class MoveableObject extends DrawableObject {
     let path = images[i];
     this.img = this.imageCache[path];
     this.curentImage++;
-  }
-
-  isOnTop(obj) {
-    return (
-      this.y + this.height &&
-      this.x + this.width >= obj.y + obj.height &&
-      obj.x + obj.width
-    );
   }
 
   isColliding(obj) {
@@ -57,7 +49,6 @@ class MoveableObject extends DrawableObject {
   }
 
   isHurting() {
-    this.lastAction = new Date().getTime();
     let timePassed = new Date().getTime() - this.lastHit; // Differenz aktuelle Zeit und letzter Zeitpunkt hit
     timePassed = timePassed / 1000;
     return timePassed < 3; //gibt true zurück
@@ -76,7 +67,7 @@ class MoveableObject extends DrawableObject {
 
   jump() {
     if (this.isAboveGround()) {
-      this.speedY = 2; //wenn ein Enemy gekilled wurde
+      this.speedY = 10; //wenn ein Enemy gekilled wurde
     } else {
       this.speedY = 25;
     }
@@ -85,8 +76,7 @@ class MoveableObject extends DrawableObject {
   isAsleep() {
     let timePassed = new Date().getTime() - this.lastAction;
     timePassed = timePassed / 1000;
-    console.log(timePassed);
-    return timePassed > 3;
+    return timePassed > 5;
   }
 
   applyGravity() {

@@ -46,7 +46,7 @@ function makeFullscreen() {
   canvas.requestFullscreen();
 }
 
-function backToMenu() {
+function backToStart() {
   location.reload();
 }
 

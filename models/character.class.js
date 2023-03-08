@@ -62,8 +62,6 @@ class Character extends MoveableObject {
   isStillStanding = false;
   getsPushed = false;
 
-  energy = 20; //löschen
-
   constructor() {
     super().loadImage("img/2_character_pepe/1_idle/idle/I-1.png"); //Todo - brauch ich nicht mehr
     this.loadImages(this.imageStanding);

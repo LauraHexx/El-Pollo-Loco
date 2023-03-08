@@ -40,7 +40,7 @@ class World {
         this.checkHitEndboss();
         this.checkIfWonOrLost();
         this.checkIfHowToPlayIsOpen();
-        this.ckeckThrownBotlleOnGround();
+        this.bottleIsSmashed();
       }
     }, 100);
   }
@@ -159,19 +159,22 @@ class World {
         this.endboss.isAlarmed = false;
         this.endboss.hit();
         this.statusBarEndboss.setPercentage(this.endboss.energy);
-        this.throwableObjects.splice(this.throwableObjects.indexOf(bottle), 1);
         playChickenHitAudio();
-        playBottleSmashedAudio();
-        console.log(this.throwableObjects);
       }
     });
   }
 
-  ckeckThrownBotlleOnGround() {
+  bottleIsSmashed() {
     this.throwableObjects.forEach((bottle) => {
-      if (bottle.isSmashed()) {
-        this.throwableObjects.splice(this.throwableObjects.indexOf(bottle), 1);
+      if (bottle.hitGround() || this.endboss.isColliding(bottle)) {
+        bottle.isSmashed = true;
         playBottleSmashedAudio();
+        setTimeout(() => {
+          this.throwableObjects.splice(
+            this.throwableObjects.indexOf(bottle),
+            1
+          );
+        }, 500);
       }
     });
   }

@@ -2,7 +2,7 @@ class ChickenSmall extends MoveableObject {
   offset = {
     top: 5,
     bottom: 5,
-    left: 25,
+    left: 30,
     right: 25,
   };
   y = 345;
@@ -22,8 +22,7 @@ class ChickenSmall extends MoveableObject {
 
   constructor() {
     super().loadImage("img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
-    this.x = 380 + Math.random() * 500; // Zahl zwischen 200 und 500
-    this.speed = 0.15 + Math.random() * 0.35; // Zahl zwischen 200 und 500
+    this.x = 1000 + Math.random() * 2400; // Zahl zwischen 200 und 500
     this.loadImages(this.imagesWalking);
     this.loadImages(this.imagesDead);
     this.animate();
