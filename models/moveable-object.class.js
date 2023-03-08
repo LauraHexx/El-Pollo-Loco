@@ -12,7 +12,7 @@ class MoveableObject extends DrawableObject {
   acceleration = 2;
   energy = 100;
   lastHit = 0;
-  lastAction = 0;
+  lastAction;
 
   playAnimation(images) {
     let i = this.curentImage % images.length;
@@ -85,6 +85,7 @@ class MoveableObject extends DrawableObject {
   isAsleep() {
     let timePassed = new Date().getTime() - this.lastAction;
     timePassed = timePassed / 1000;
+    console.log(timePassed);
     return timePassed > 3;
   }
 

@@ -83,8 +83,7 @@ class Character extends MoveableObject {
       if (
         this.world.keyboard.right &&
         this.x <= this.world.endboss.x &&
-        !this.getsPushed &&
-        !this.world.gameIsOver
+        !this.getsPushed
       ) {
         this.lastAction = new Date().getTime();
         this.lookToLeft = false;
@@ -93,12 +92,7 @@ class Character extends MoveableObject {
         playCharacterWalkAudio();
       }
       //walk left
-      if (
-        this.world.keyboard.left &&
-        this.x > 0 &&
-        !this.getsPushed &&
-        !this.world.gameIsOver
-      ) {
+      if (this.world.keyboard.left && this.x > 0 && !this.getsPushed) {
         this.lastAction = new Date().getTime();
         this.lookToLeft = true;
         this.offset.right = 60;
