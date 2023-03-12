@@ -23,6 +23,8 @@ function changeStlye() {
   divPlayBtn.classList.add("d-none");
   let fullscreenIcon = getId("fullscreenIcon");
   fullscreenIcon.classList.remove("d-none");
+  let mobileActionButtons = getId("mobileActionButtons");
+  mobileActionButtons.classList.remove("d-none");
 }
 
 function startGame() {
@@ -45,6 +47,7 @@ function closeHowToPlay() {
 
 function makeFullscreen() {
   let content = getId("content");
+
   enterFullscreen(content);
 }
 
@@ -61,6 +64,8 @@ function enterFullscreen(content) {
 function backToStart() {
   location.reload();
 }
+
+//KEYS
 
 window.addEventListener("keydown", (event) => {
   if (!gameIsOver) {
@@ -101,3 +106,57 @@ window.addEventListener("keyup", (event) => {
     keyboard.d = false;
   }
 });
+
+//ACTION BUTTONS
+
+function checkIfButtonTouched() {
+  document
+    .getElementById("buttonLeft")
+    .addEventListener("touchstart", (event) => {
+      //left
+      keyboard.left = true;
+    });
+  document
+    .getElementById("buttonRight")
+    .addEventListener("touchstart", (event) => {
+      //left
+      keyboard.right = true;
+    });
+  document
+    .getElementById("buttonUp")
+    .addEventListener("touchstart", (event) => {
+      //left
+      keyboard.up = true;
+    });
+  document
+    .getElementById("buttonBottle")
+    .addEventListener("touchstart", (event) => {
+      //left
+      keyboard.d = true;
+    });
+}
+
+function checkIfButtonNotTouched() {
+  document
+    .getElementById("buttonLeft")
+    .addEventListener("touchend", (event) => {
+      //left
+      keyboard.left = false;
+    });
+  document
+    .getElementById("buttonRight")
+    .addEventListener("touchend", (event) => {
+      //left
+      keyboard.right = false;
+    });
+  document.getElementById("buttonUp").addEventListener("touchend", (event) => {
+    //left
+    keyboard.up = false;
+  });
+  document
+    .getElementById("buttonBottle")
+    .addEventListener("touchend", (event) => {
+      //left
+      keyboard.d = false;
+    });
+}

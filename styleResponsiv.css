@@ -4,10 +4,35 @@
   }
 }
 
-/*SMARTPHONES----------------------------------------------*/
-
 @media only screen and (max-height: 480px) {
   canvas {
     height: 100vh;
   }
+}
+
+/* ACTION BUTTONS*----------------------------------------------*/
+
+#mobileActionButtons {
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 4;
+}
+
+#mobileActionButtons button {
+  all: unset !important;
+}
+
+.leftSection {
+  display: flex;
+  gap: 30px;
+}
+
+.rightSection {
+  display: flex;
+  gap: 15px;
 }

@@ -18,11 +18,10 @@ class ChickenSmall extends MoveableObject {
     "img/3_enemies_chicken/chicken_small/2_dead/dead.png",
     "img/3_enemies_chicken/chicken_small/2_dead/dead.png",
   ];
-  walkingSound = new Audio("audio/chicken.mp3"); //todo
 
   constructor() {
     super().loadImage("img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
-    this.x = 1000 + Math.random() * 2400; // Zahl zwischen 200 und 500
+    this.x = 1000 + Math.random() * 2400;
     this.loadImages(this.imagesWalking);
     this.loadImages(this.imagesDead);
     this.animate();
