@@ -44,7 +44,18 @@ function closeHowToPlay() {
 }
 
 function makeFullscreen() {
-  //
+  let content = getId("content");
+  enterFullscreen(content);
+}
+
+function enterFullscreen(content) {
+  if (content.requestFullscreen) {
+    content.requestFullscreen();
+  } else if (content.msRequestFullscreen) {
+    content.msRequestFullscreen();
+  } else if (content.webkitRequestFullscreen) {
+    content.webkitRequestFullscreen();
+  }
 }
 
 function backToStart() {

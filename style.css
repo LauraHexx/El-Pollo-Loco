@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "zabars";
+  src: url("fonts/Zabars.ttf") format("embedded-opentype");
+}
+
 /*GENERAL START ----------------------------------------------*/
 
 .borderRadius {
@@ -27,6 +32,8 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-color: rgba(0, 0, 0, 0.5);
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
 }
 
 body::before {
@@ -40,11 +47,12 @@ body::before {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.content {
+#content {
   position: relative;
 }
 
 canvas {
+  display: block;
   box-shadow: 0px 0px 10px 2px rgb(0 0 0 / 80%);
 }
 
@@ -132,7 +140,6 @@ canvas {
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
-  font-weight: bold;
   z-index: 3;
 }
 
