@@ -13,7 +13,7 @@ class MoveableObject extends DrawableObject {
   energy = 100;
   lastHit = 0;
   lastAction;
-  ground = 170;
+  characterOnGroundY = 170;
 
   playAnimation(images) {
     let i = this.curentImage % images.length;
@@ -86,8 +86,11 @@ class MoveableObject extends DrawableObject {
       if (this.isAboveGround() || this.speedY > 0) {
         this.y -= this.speedY;
         this.speedY -= this.acceleration;
-        if (this instanceof Character && this.y - this.speedY > this.ground) {
-          this.speedY = (this.ground - this.y) * -1;
+        if (
+          this instanceof Character &&
+          this.y - this.speedY > this.characterOnGroundY
+        ) {
+          this.speedY = (this.characterOnGroundY - this.y) * -1;
         }
       }
     }, 1000 / 25);
@@ -98,7 +101,7 @@ class MoveableObject extends DrawableObject {
       //throwable objects sollten immer fallen
       return true;
     } else {
-      return this.y < this.ground;
+      return this.y < this.characterOnGroundY;
     }
   }
 }

@@ -4,6 +4,7 @@ let world;
 let howToPlayIsOpen = false;
 let keyboard = new Keyboard();
 let gameIsOver = false;
+let currentLevel = level1;
 
 function getId(id) {
   return document.getElementById(id);
@@ -26,7 +27,7 @@ function changeStlye() {
 
 function startGame() {
   canvas = getId("canvas");
-  world = new World(canvas, keyboard);
+  world = new World(canvas, keyboard, currentLevel);
   console.log("Das ist meine Welt", world);
 }
 

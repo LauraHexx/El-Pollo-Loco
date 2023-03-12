@@ -2,7 +2,7 @@ class World {
   canvas;
   keyboard;
   ctx;
-  currentLevel = level1;
+  currentLevel;
   cameraX = 0;
   cameraY = 0;
   character = new Character();
@@ -14,7 +14,8 @@ class World {
   statusBarEndbossHeart = new StatusBarEndbossHeart();
   throwableObjects = [];
 
-  constructor(canvas, keyboard) {
+  constructor(canvas, keyboard, currentLevel) {
+    this.currentLevel = currentLevel;
     this.canvas = canvas;
     this.keyboard = keyboard;
     this.ctx = canvas.getContext("2d"); //so kann man auf das Canvas malen - bestimmte Funktionen damit aufrufen - ctx: Context (Standard)
