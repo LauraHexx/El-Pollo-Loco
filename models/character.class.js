@@ -5,10 +5,9 @@ class Character extends MoveableObject {
     right: 20,
     bottom: 20,
   };
-  y = 170;
   width = 130;
   height = 260;
-  speedX = 10;
+  speedX = 8;
   imageStanding = ["img/2_character_pepe/1_idle/idle/I-1.png"];
   imagesSleeping = [
     "img/2_character_pepe/1_idle/long_idle/I-11.png",
@@ -107,7 +106,7 @@ class Character extends MoveableObject {
       if (this.collectedCoins == 5) {
         //speed for collected bottles
         this.isUnstoppable = true;
-        this.speedX = 15;
+        this.speedX = this.speedX + 5;
         this.collectedCoins = 0;
         this.showUnstoppable();
         playUnstoppableAudio();
@@ -115,20 +114,25 @@ class Character extends MoveableObject {
           this.speedX = 10;
           this.isUnstoppable = false;
           this.hideUnstoppable();
-        }, 2500);
+        }, 2200);
       }
 
       if (this.getsPushed && this.x < this.world.endboss.powerOfPushing) {
         this.x -= this.x;
       } else if (this.getsPushed) {
         this.x -= this.world.endboss.powerOfPushing;
+        setTimeout(() => {
+          this.getsPushed = false;
+        }, 100);
       }
 
       this.world.cameraX = -this.x + 80;
     }, 1000 / 60);
 
     setInterval(() => {
-      if (this.isDead()) {
+      if (gameIsOver && this.energy > 0) {
+        this.playAnimation(this.imageStanding);
+      } else if (this.isDead()) {
         this.playAnimation(this.imagesDead);
       } else if (this.isHurting()) {
         this.playAnimation(this.imagesHurting);

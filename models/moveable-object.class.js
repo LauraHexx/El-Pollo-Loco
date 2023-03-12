@@ -13,6 +13,7 @@ class MoveableObject extends DrawableObject {
   energy = 100;
   lastHit = 0;
   lastAction;
+  ground = 170;
 
   playAnimation(images) {
     let i = this.curentImage % images.length;
@@ -37,6 +38,7 @@ class MoveableObject extends DrawableObject {
       this.isDead();
     } else {
       this.lastHit = new Date().getTime(); //speichern des Zeitpunktes, wann Character verletzt wurde
+      this.lastAction = new Date().getTime();
     }
   }
 
@@ -67,9 +69,11 @@ class MoveableObject extends DrawableObject {
 
   jump() {
     if (this.isAboveGround()) {
-      this.speedY = 10; //wenn ein Enemy gekilled wurde
+      this.speedY = 15; //wenn ein Enemy gekilled wurde
+      this.acceleration = 2;
     } else {
-      this.speedY = 25;
+      this.speedY = 20;
+      this.acceleration = 2;
     }
   }
 
@@ -93,7 +97,7 @@ class MoveableObject extends DrawableObject {
       //throwable objects sollten immer fallen
       return true;
     } else {
-      return this.y < 170;
+      return this.y < this.ground;
     }
   }
 }

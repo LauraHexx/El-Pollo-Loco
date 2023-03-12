@@ -181,7 +181,6 @@ class World {
 
   checkIfWonOrLost() {
     if (this.character.energy == 0 && !this.gameIsOver) {
-      this.stopGame();
       gameIsOver = true;
       let lost = getId("lost");
       lost.classList.remove("d-none");
@@ -190,7 +189,6 @@ class World {
       playGameLostAudio();
     }
     if (this.endboss.energy == 0 && !this.gameIsOver) {
-      this.stopGame();
       gameIsOver = true;
       let won = getId("won");
       won.classList.remove("d-none");

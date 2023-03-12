@@ -48,7 +48,6 @@ const level1 = new Level(
     new BackgroundObject("img/5_background/layers/1_first_layer/2.png", 3595),
   ],
   [
-    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 700, 140),
     new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 900, 140),
     new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 1100, 140),
     new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 1300, 140),
