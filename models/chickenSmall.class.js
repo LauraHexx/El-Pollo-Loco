@@ -26,7 +26,6 @@ class ChickenSmall extends MoveableObject {
     this.loadImages(this.imagesWalking);
     this.loadImages(this.imagesDead);
     this.animate();
-    this.playSound();
   }
 
   animate() {
@@ -47,9 +46,5 @@ class ChickenSmall extends MoveableObject {
         this.playAnimation(this.imagesWalking);
       }
     }, 100);
-  }
-
-  playSound() {
-    //this.walkingSound.play(); // todo - bricht ab nach einmal spielen
   }
 }

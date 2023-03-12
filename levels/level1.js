@@ -8,9 +8,8 @@ const level1 = new Level(
     new ChickenSmall(),
     new ChickenSmall(),
     new ChickenSmall(),
-    new ChickenSmall(),
   ],
-  [new Cloud()],
+  [new Cloud(300), new Cloud(1300), new Cloud(2300), new Cloud(3300)],
   [
     new BackgroundObject("img/5_background/layers/air.png", -719),
     new BackgroundObject("img/5_background/layers/3_third_layer/2.png", -719),
@@ -59,10 +58,10 @@ const level1 = new Level(
     ),
   ],
   [
-    new CollectableCoin(50, 140),
-    new CollectableCoin(200, 140),
-    new CollectableCoin(350, 140),
-    new CollectableCoin(500, 140),
-    new CollectableCoin(650, 300),
+    new CollectableCoin(550, 160),
+    new CollectableCoin(700, 160),
+    new CollectableCoin(850, 160),
+    new CollectableCoin(1000, 160),
+    new CollectableCoin(1150, 160),
   ]
 );

@@ -86,7 +86,7 @@ class MoveableObject extends DrawableObject {
       if (this.isAboveGround() || this.speedY > 0) {
         this.y -= this.speedY;
         this.speedY -= this.acceleration;
-        if (this.y - this.speedY > this.ground) {
+        if (this instanceof Character && this.y - this.speedY > this.ground) {
           this.speedY = (this.ground - this.y) * -1;
         }
       }
