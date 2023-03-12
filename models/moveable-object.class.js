@@ -70,10 +70,8 @@ class MoveableObject extends DrawableObject {
   jump() {
     if (this.isAboveGround()) {
       this.speedY = 15; //wenn ein Enemy gekilled wurde
-      this.acceleration = 2;
     } else {
       this.speedY = 20;
-      this.acceleration = 2;
     }
   }
 
@@ -88,6 +86,9 @@ class MoveableObject extends DrawableObject {
       if (this.isAboveGround() || this.speedY > 0) {
         this.y -= this.speedY;
         this.speedY -= this.acceleration;
+        if (this.y - this.speedY > this.ground) {
+          this.speedY = (this.ground - this.y) * -1;
+        }
       }
     }, 1000 / 25);
   }
