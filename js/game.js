@@ -1,6 +1,7 @@
 let canvas;
 let ctx;
 let world;
+let keyboard = new Keyboard();
 let howToPlayIsOpen = false;
 let gameIsOver = false;
 let currentLevel = level1;
@@ -28,7 +29,7 @@ function changeStlye() {
 
 function startGame() {
   canvas = getId("canvas");
-  world = new World(canvas, currentLevel);
+  world = new World(canvas, keyboard, currentLevel);
   console.log("Das ist meine Welt", world);
 }
 
@@ -62,4 +63,97 @@ function enterFullscreen(content) {
 
 function backToStart() {
   location.reload();
+}
+
+window.addEventListener("keydown", (event) => {
+  if (!gameIsOver) {
+    if (event.keyCode == 37) {
+      // LEFT
+      keyboard.LEFT = true;
+    }
+    if (event.keyCode == 39) {
+      // RIGHT
+      keyboard.RIGHT = true;
+    }
+    if (event.keyCode == 32) {
+      // SPACE
+      keyboard.SPACE = true;
+    }
+    if (event.keyCode == 68) {
+      // d
+      keyboard.D = true;
+    }
+  }
+});
+
+window.addEventListener("keyup", (event) => {
+  if (event.keyCode == 37) {
+    // LEFT
+    keyboard.LEFT = false;
+  }
+  if (event.keyCode == 39) {
+    // RIGHT
+    keyboard.RIGHT = false;
+  }
+  if (event.keyCode == 32) {
+    // SPACE
+    keyboard.SPACE = false;
+  }
+  if (event.keyCode == 68) {
+    // d
+    keyboard.D = false;
+  }
+});
+
+// ACTION BUTTONS
+function checkIfButtonTouched() {
+  document
+    .getElementById("buttonLeft")
+    .addEventListener("touchstart", (event) => {
+      // LEFT
+      keyboard.LEFT = true;
+    });
+  document
+    .getElementById("buttonRight")
+    .addEventListener("touchstart", (event) => {
+      // RIGHT
+      keyboard.RIGHT = true;
+    });
+  document
+    .getElementById("buttonUp")
+    .addEventListener("touchstart", (event) => {
+      // SPACE
+      keyboard.SPACE = true;
+    });
+  document
+    .getElementById("buttonBottle")
+    .addEventListener("touchstart", (event) => {
+      // d
+      keyboard.D = true;
+    });
+}
+
+function checkIfButtonNotTouched() {
+  document
+    .getElementById("buttonLeft")
+    .addEventListener("touchend", (event) => {
+      // LEFT
+      keyboard.LEFT = false;
+    });
+  document
+    .getElementById("buttonRight")
+    .addEventListener("touchend", (event) => {
+      // RIGHT
+      keyboard.RIGHT = false;
+    });
+  document.getElementById("buttonUp").addEventListener("touchend", (event) => {
+    // SPACE
+    keyboard.SPACE = false;
+  });
+  document
+    .getElementById("buttonBottle")
+    .addEventListener("touchend", (event) => {
+      // d
+      keyboard.D = false;
+    });
 }

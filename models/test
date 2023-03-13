@@ -1,0 +1,56 @@
+
+
+// ACTION BUTTONS
+checkIfButtonTouched() {
+  document
+    .getElementById("buttonLeft")
+    .addEventListener("touchstart", (event) => {
+      // LEFT
+      this.LEFT = true;
+    });
+  document
+    .getElementById("buttonRight")
+    .addEventListener("touchstart", (event) => {
+      // RIGHT
+      this.RIGHT = true;
+    });
+  document
+    .getElementById("buttonUp")
+    .addEventListener("touchstart", (event) => {
+      // SPACE
+      this.SPACE = true;
+    });
+  document
+    .getElementById("buttonBottle")
+    .addEventListener("touchstart", (event) => {
+      // d
+      this.D = true;
+    });
+  }
+
+  
+
+checkIfButtonNotTouched() {
+  document
+    .getElementById("buttonLeft")
+    .addEventListener("touchend", (event) => {
+      // LEFT
+      this.LEFT = false;
+    });
+  document
+    .getElementById("buttonRight")
+    .addEventListener("touchend", (event) => {
+      // RIGHT
+      this.RIGHT = false;
+    });
+  document.getElementById("buttonUp").addEventListener("touchend", (event) => {
+    // SPACE
+    this.SPACE = false;
+  });
+  document
+    .getElementById("buttonBottle")
+    .addEventListener("touchend", (event) => {
+      // d
+      this.D = false;
+    });
+}
