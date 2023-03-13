@@ -94,11 +94,6 @@ canvas {
   height: 30px;
 }
 
-.explanation {
-  width: 30px;
-  height: 30px;
-}
-
 #divPlayBtn {
   position: absolute;
   left: 50%;
@@ -176,12 +171,7 @@ canvas {
   width: 40%;
 }
 
-.walkLeftImg {
-  width: 30px;
-  height: 30px;
-}
-
-.walkRightImg {
+.icon {
   width: 30px;
   height: 30px;
 }
