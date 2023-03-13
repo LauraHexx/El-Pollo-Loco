@@ -21,6 +21,7 @@ class World {
     this.setWorld();
     this.draw();
     this.alwaysChecking(); // Intervalle, die ständig geprüft werden
+    playBackgroundAudio();
   }
 
   setWorld() {

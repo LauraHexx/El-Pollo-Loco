@@ -235,7 +235,7 @@ canvas {
   left: 50%;
   bottom: 15px;
   transform: translateX(-50%);
-  z-index: 2;
+  z-index: 100;
 }
 
 #divPlayAgain button {

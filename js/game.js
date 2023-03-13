@@ -13,7 +13,7 @@ function getId(id) {
 function init() {
   changeStlye();
   startGame();
-  playBackgroundAudio();
+  mobileButtons();
 }
 
 function changeStlye() {
@@ -106,54 +106,55 @@ window.addEventListener("keyup", (event) => {
 });
 
 // ACTION BUTTONS
-function checkIfButtonTouched() {
-  document
-    .getElementById("buttonLeft")
-    .addEventListener("touchstart", (event) => {
-      // LEFT
-      keyboard.LEFT = true;
-    });
-  document
-    .getElementById("buttonRight")
-    .addEventListener("touchstart", (event) => {
-      // RIGHT
-      keyboard.RIGHT = true;
-    });
-  document
-    .getElementById("buttonUp")
-    .addEventListener("touchstart", (event) => {
-      // SPACE
-      keyboard.SPACE = true;
-    });
-  document
-    .getElementById("buttonBottle")
-    .addEventListener("touchstart", (event) => {
-      // d
-      keyboard.D = true;
-    });
-}
 
-function checkIfButtonNotTouched() {
-  document
-    .getElementById("buttonLeft")
-    .addEventListener("touchend", (event) => {
-      // LEFT
-      keyboard.LEFT = false;
-    });
-  document
-    .getElementById("buttonRight")
-    .addEventListener("touchend", (event) => {
-      // RIGHT
-      keyboard.RIGHT = false;
-    });
-  document.getElementById("buttonUp").addEventListener("touchend", (event) => {
-    // SPACE
-    keyboard.SPACE = false;
+function mobileButtons() {
+  document.getElementById("buttonLeft").addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    keyboard.LEFT = true;
+    document.getElementById("buttonLeft").classList.add("filter-invert");
   });
+
+  document.getElementById("buttonLeft").addEventListener("touchend", (e) => {
+    e.preventDefault();
+    keyboard.LEFT = false;
+    document.getElementById("buttonLeft").classList.remove("filter-invert");
+  });
+
+  document.getElementById("buttonRight").addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    keyboard.RIGHT = true;
+    document.getElementById("buttonRight").classList.add("filter-invert");
+  });
+
+  document.getElementById("buttonRight").addEventListener("touchend", (e) => {
+    e.preventDefault();
+    keyboard.RIGHT = false;
+    document.getElementById("buttonRight").classList.remove("filter-invert");
+  });
+
+  document.getElementById("buttonUp").addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    keyboard.SPACE = true;
+    document.getElementById("buttonUp").classList.add("filter-invert");
+  });
+
+  document.getElementById("buttonUp").addEventListener("touchend", (e) => {
+    e.preventDefault();
+    keyboard.SPACE = false;
+    document.getElementById("buttonUp").classList.remove("filter-invert");
+  });
+
   document
     .getElementById("buttonBottle")
-    .addEventListener("touchend", (event) => {
-      // d
-      keyboard.D = false;
+    .addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      keyboard.D = true;
+      document.getElementById("buttonBottle").classList.add("filter-invert");
     });
+
+  document.getElementById("buttonBottle").addEventListener("touchend", (e) => {
+    e.preventDefault();
+    keyboard.D = false;
+    document.getElementById("buttonBottle").classList.remove("filter-invert");
+  });
 }
