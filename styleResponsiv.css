@@ -3,12 +3,34 @@
   #startcreen {
     width: 100%;
   }
+
+  #mobileActionButtons {
+    display: flex !important;
+  }
 }
 
 @media only screen and (max-height: 480px) {
   canvas,
   #startcreen {
     height: 100vh;
+  }
+
+  #mobileActionButtons {
+    display: flex !important;
+  }
+}
+
+@media (min-height: 610px) and (max-height: 915px) and (min-width: 200px) and (max-width: 750px) {
+  #gifRotatePhone {
+    position: absolute;
+    top: 0;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    z-index: 200;
+    backdrop-filter: blur(10px);
   }
 }
 
@@ -19,7 +41,7 @@
   left: 15px;
   right: 15px;
   bottom: 10px;
-  display: flex;
+  display: none;
   justify-content: space-between;
   align-items: center;
   z-index: 3;
@@ -37,4 +59,13 @@
 .rightSection {
   display: flex;
   gap: 15px;
+}
+
+#gifRotatePhone {
+  display: none;
+}
+
+#gifRotatePhone img {
+  width: 80%;
+  height: 80%;
 }

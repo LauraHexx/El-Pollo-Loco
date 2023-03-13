@@ -23,8 +23,6 @@ function changeStlye() {
   divPlayBtn.classList.add("d-none");
   let fullscreenIcon = getId("fullscreenIcon");
   fullscreenIcon.classList.remove("d-none");
-  let mobileActionButtons = getId("mobileActionButtons");
-  mobileActionButtons.classList.remove("d-none");
 }
 
 function startGame() {
