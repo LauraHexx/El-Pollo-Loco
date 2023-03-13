@@ -78,7 +78,7 @@ class Character extends MoveableObject {
       //walk right
       AUDIO_characterWalk.pause();
       if (
-        this.world.keyboard.right &&
+        this.world.keyboard.RIGHT &&
         this.x <= this.world.endboss.x &&
         !this.getsPushed
       ) {
@@ -89,7 +89,7 @@ class Character extends MoveableObject {
         playCharacterWalkAudio();
       }
       //walk left
-      if (this.world.keyboard.left && this.x > 0 && !this.getsPushed) {
+      if (this.world.keyboard.LEFT && this.x > 0 && !this.getsPushed) {
         this.lastAction = new Date().getTime();
         this.lookToLeft = true;
         this.offset.right = 60;
@@ -97,7 +97,7 @@ class Character extends MoveableObject {
         playCharacterWalkAudio();
       }
       //jump
-      if (this.world.keyboard.space && !this.isAboveGround()) {
+      if (this.world.keyboard.SPACE && !this.isAboveGround()) {
         this.lastAction = new Date().getTime();
         this.jump();
         playCharacterJumpAudio();
@@ -138,7 +138,7 @@ class Character extends MoveableObject {
         this.playAnimation(this.imagesHurting);
       } else if (this.isAboveGround()) {
         this.playAnimation(this.imagesJumping);
-      } else if (this.world.keyboard.right || this.world.keyboard.left) {
+      } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
         this.playAnimation(this.imagesWalking);
       } else if (this.isAsleep()) {
         this.playAnimation(this.imagesSleeping);

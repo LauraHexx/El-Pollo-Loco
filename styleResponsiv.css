@@ -1,11 +1,13 @@
 @media only screen and (max-width: 720px) {
-  canvas {
+  canvas,
+  #startcreen {
     width: 100%;
   }
 }
 
 @media only screen and (max-height: 480px) {
-  canvas {
+  canvas,
+  #startcreen {
     height: 100vh;
   }
 }
