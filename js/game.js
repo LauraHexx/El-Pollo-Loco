@@ -30,7 +30,7 @@ function changeStlye() {
 function startGame() {
   canvas = getId("canvas");
   world = new World(canvas, keyboard, currentLevel);
-  console.log("Das ist meine Welt", world);
+  console.log("Das ist meine Welt", world.currentLevel.enemies);
 }
 
 function openHowToPlay() {
