@@ -13,7 +13,7 @@ function getId(id) {
 function init() {
   changeStlye();
   startGame();
-  mobileButtons();
+  checkUseMobileButtons();
 }
 
 function changeStlye() {
@@ -23,6 +23,8 @@ function changeStlye() {
   divPlayBtn.classList.add("d-none");
   let fullscreenIcon = getId("fullscreenIcon");
   fullscreenIcon.classList.remove("d-none");
+  let mobileActionButtons = getId("mobileActionButtons");
+  mobileActionButtons.classList.replace("d-none", "showMobileActionBtns");
 }
 
 function startGame() {
@@ -105,7 +107,7 @@ window.addEventListener("keyup", (event) => {
 
 // ACTION BUTTONS
 
-function mobileButtons() {
+function checkUseMobileButtons() {
   document.getElementById("buttonLeft").addEventListener("touchstart", (e) => {
     e.preventDefault();
     keyboard.LEFT = true;
