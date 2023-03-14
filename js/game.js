@@ -42,42 +42,42 @@ function startGame() {
 
 function checkUseMobileButtons() {
   document.getElementById("btnLeft").addEventListener("touchstart", (e) => {
-    e.preventDefault();
+    //e.preventDefault();
     keyboard.LEFT = true;
     document.getElementById("btnLeft").classList.add("filter-invert");
   });
   document.getElementById("btnLeft").addEventListener("touchend", (e) => {
-    e.preventDefault();
+    //e.preventDefault();
     keyboard.LEFT = false;
     document.getElementById("btnLeft").classList.remove("filter-invert");
   });
   document.getElementById("btnRight").addEventListener("touchstart", (e) => {
-    e.preventDefault();
+    //e.preventDefault();
     keyboard.RIGHT = true;
     document.getElementById("btnRight").classList.add("filter-invert");
   });
   document.getElementById("btnRight").addEventListener("touchend", (e) => {
-    e.preventDefault();
+    //e.preventDefault();
     keyboard.RIGHT = false;
     document.getElementById("btnRight").classList.remove("filter-invert");
   });
   document.getElementById("btnnUp").addEventListener("touchstart", (e) => {
-    e.preventDefault();
+    //e.preventDefault();
     keyboard.UP = true;
     document.getElementById("btnnUp").classList.add("filter-invert");
   });
   document.getElementById("btnnUp").addEventListener("touchend", (e) => {
-    e.preventDefault();
+    //e.preventDefault();
     keyboard.UP = false;
     document.getElementById("btnnUp").classList.remove("filter-invert");
   });
   document.getElementById("btnBottle").addEventListener("touchstart", (e) => {
-    e.preventDefault();
+    //e.preventDefault();
     keyboard.SPACE = true;
     document.getElementById("btnBottle").classList.add("filter-invert");
   });
   document.getElementById("btnBottle").addEventListener("touchend", (e) => {
-    e.preventDefault();
+    //e.preventDefault();
     keyboard.SPACE = false;
     document.getElementById("btnBottle").classList.remove("filter-invert");
   });

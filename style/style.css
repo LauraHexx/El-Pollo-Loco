@@ -16,6 +16,11 @@
   display: none !important;
 }
 
+.icon {
+  width: 30px;
+  height: 30px;
+}
+
 /*GENERAL END----------------------------------------------*/
 
 body {
@@ -166,11 +171,6 @@ canvas {
   justify-content: space-between;
   align-items: center;
   width: 40%;
-}
-
-.icon {
-  width: 30px;
-  height: 30px;
 }
 
 .description {
