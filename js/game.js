@@ -4,6 +4,7 @@ let world;
 let keyboard = new Keyboard();
 let howToPlayIsOpen = false;
 let gameIsOver = false;
+let isFullscreen = false;
 let currentLevel = level1;
 
 function getId(id) {
@@ -21,8 +22,6 @@ function changeStlye() {
   startscreen.classList.add("d-none");
   let divPlayBtn = getId("divPlayBtn");
   divPlayBtn.classList.add("d-none");
-  let fullscreenIcon = getId("fullscreenIcon");
-  fullscreenIcon.classList.remove("d-none");
   let mobileActionButtons = getId("mobileActionButtons");
   mobileActionButtons.classList.replace("d-none", "showMobileActionBtns");
 }
@@ -45,20 +44,40 @@ function closeHowToPlay() {
   howToPlayIsOpen = false;
 }
 
-function makeFullscreen() {
-  let content = getId("content");
-
-  enterFullscreen(content);
+function toggleFullscreen() {
+  if (isFullscreen) {
+    closeFullscreen();
+  } else {
+    makeFullscreen();
+  }
+  isFullscreen = !isFullscreen;
 }
 
-function enterFullscreen(content) {
-  if (content.requestFullscreen) {
-    content.requestFullscreen();
-  } else if (content.msRequestFullscreen) {
-    content.msRequestFullscreen();
-  } else if (content.webkitRequestFullscreen) {
-    content.webkitRequestFullscreen();
+function makeFullscreen() {
+  let canvas = getId("canvas");
+  canvas.classList.add("fullscreen");
+  let elements = document.querySelectorAll(".borderRadius");
+  for (let i = 0; i < elements.length; i++) {
+    elements[i].style.borderRadius = 0;
   }
+}
+
+function makeFullscreen() {
+  let canvas = getId("canvas");
+  canvas.classList.add("fullscreen");
+  const borderRadiusElements = document.querySelectorAll(".borderRadius");
+  borderRadiusElements.forEach((element) => {
+    element.classList.replace("borderRadius", "noBorderRadius");
+  });
+}
+
+function closeFullscreen() {
+  let canvas = getId("canvas");
+  canvas.classList.remove("fullscreen");
+  const borderRadiusElements = document.querySelectorAll(".borderRadius");
+  borderRadiusElements.forEach((element) => {
+    element.classList.add("borderRadius", "noBorderRadius");
+  });
 }
 
 function backToStart() {
