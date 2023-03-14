@@ -4,7 +4,7 @@
   border-radius: 15px;
 }
 
-.noborderRadius {
+.noBorderRadius {
   border-radius: 0px;
 }
 
@@ -26,7 +26,7 @@ body {
   align-items: center;
   margin: 0;
   height: 100vh;
-  background-image: url("img/background_out of game/backgroundBody.jpg");
+  background-image: url("../img/background_out of game/backgroundBody.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -219,6 +219,38 @@ canvas {
   display: block;
   width: 100%;
   height: 100%;
+}
+
+/* ACTION BUTTONS*----------------------------------------------*/
+
+.showMobileActionBtns {
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  bottom: 10px;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 0;
+}
+
+.showMobileActionBtns button {
+  all: unset !important;
+}
+
+#mobileWalk,
+#mobileActions {
+  display: flex;
+  gap: 35px;
+}
+
+#gifRotatePhone {
+  display: none;
+}
+
+#gifRotatePhone img {
+  width: 80%;
+  height: 80%;
 }
 
 /*FULLSCREEN*----------------------------------------------*/
