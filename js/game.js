@@ -56,15 +56,6 @@ function toggleFullscreen() {
 function makeFullscreen() {
   let canvas = getId("canvas");
   canvas.classList.add("fullscreen");
-  let elements = document.querySelectorAll(".borderRadius");
-  for (let i = 0; i < elements.length; i++) {
-    elements[i].style.borderRadius = 0;
-  }
-}
-
-function makeFullscreen() {
-  let canvas = getId("canvas");
-  canvas.classList.add("fullscreen");
   const borderRadiusElements = document.querySelectorAll(".borderRadius");
   borderRadiusElements.forEach((element) => {
     element.classList.replace("borderRadius", "noBorderRadius");
@@ -74,9 +65,9 @@ function makeFullscreen() {
 function closeFullscreen() {
   let canvas = getId("canvas");
   canvas.classList.remove("fullscreen");
-  const borderRadiusElements = document.querySelectorAll(".borderRadius");
+  const borderRadiusElements = document.querySelectorAll(".noBorderRadius");
   borderRadiusElements.forEach((element) => {
-    element.classList.add("borderRadius", "noBorderRadius");
+    element.classList.add("noBorderRadius", "borderRadius");
   });
 }
 
