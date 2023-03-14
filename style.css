@@ -48,7 +48,7 @@ body::before {
 
 canvas {
   display: block;
-  /*box-shadow: 0px 0px 10px 2px rgb(0 0 0 / 80%);*/
+  box-shadow: 5px 5px 5px 5px rgb(0 0 0 / 80%);
 }
 
 /*STARTSCREEN----------------------------------------------*/
@@ -85,16 +85,6 @@ canvas {
   scale: 1.2;
 }
 
-.soundAndMute {
-  width: 30px;
-  height: 30px;
-}
-
-#fullscreenIcon {
-  width: 30px;
-  height: 30px;
-}
-
 #divPlayBtn {
   position: absolute;
   left: 50%;
@@ -105,7 +95,7 @@ canvas {
 
 #divPlayBtn button {
   padding: 5px 20px;
-  /*box-shadow: 0px 0px 1px 1px black;*/
+  box-shadow: 0px 0px 1px 1px black;
   border-radius: 10px;
   background-color: rgb(255, 196, 2);
   font-size: 20px;
@@ -132,6 +122,7 @@ canvas {
   background-size: cover;
   color: white;
   z-index: 0;
+  font-size: 25px;
 }
 
 #howtoPlay::after {
@@ -154,16 +145,13 @@ canvas {
 
 .closeImg {
   padding: 15px 15px 0px 0px;
-  width: 30px;
-  height: 30px;
 }
 
 .keys {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  font-size: 25px;
+  gap: 15px;
 }
 
 .oneKeyDiscription {
@@ -178,19 +166,9 @@ canvas {
   height: 30px;
 }
 
-.jumpImg {
-  width: 30px;
-  height: 30px;
-}
-
-.keyDSpan {
-  font-size: 30px;
-}
-
 .description {
   padding: 0px 10px 0px 10px;
   text-align: center;
-  font-size: 25px;
 }
 
 /*UNSTOPPABLE*----------------------------------------------*/
@@ -232,7 +210,7 @@ canvas {
 
 #afterGameBtn button {
   padding: 5px 20px;
-  /*box-shadow: 0px 0px 1px 1px black;*/
+  box-shadow: 0px 0px 1px 1px black;
   border-radius: 10px;
   background-color: rgb(255, 196, 2);
   font-size: 20px;

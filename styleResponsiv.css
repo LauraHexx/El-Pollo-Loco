@@ -7,6 +7,15 @@
   #mobileActionButtons {
     display: flex !important;
   }
+
+  #howtoPlay {
+    font-size: 17px;
+  }
+
+  .icon {
+    width: 23px;
+    height: 23px;
+  }
 }
 
 @media only screen and (max-height: 480px) {
@@ -17,6 +26,15 @@
 
   #mobileActionButtons {
     display: flex !important;
+  }
+
+  #howtoPlay {
+    font-size: 17px;
+  }
+
+  .icon {
+    width: 23px;
+    height: 23px;
   }
 }
 
