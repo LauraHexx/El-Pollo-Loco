@@ -97,7 +97,7 @@ class Character extends MoveableObject {
         playCharacterWalkAudio();
       }
       //jump
-      if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+      if (this.world.keyboard.UP && !this.isAboveGround()) {
         this.lastAction = new Date().getTime();
         this.jump();
         playCharacterJumpAudio();

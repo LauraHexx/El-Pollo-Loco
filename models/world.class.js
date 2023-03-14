@@ -121,7 +121,7 @@ class World {
 
   checkThrowObjects() {
     if (
-      this.keyboard.D &&
+      this.keyboard.SPACE &&
       !this.character.lookToLeft &&
       !this.character.isHurting() &&
       this.character.collectedBottles > 0

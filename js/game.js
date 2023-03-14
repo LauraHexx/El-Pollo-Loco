@@ -77,9 +77,9 @@ window.addEventListener("keydown", (event) => {
       // SPACE
       keyboard.SPACE = true;
     }
-    if (event.keyCode == 68) {
+    if (event.keyCode == 38) {
       // d
-      keyboard.D = true;
+      keyboard.UP = true;
     }
   }
 });
@@ -97,9 +97,9 @@ window.addEventListener("keyup", (event) => {
     // SPACE
     keyboard.SPACE = false;
   }
-  if (event.keyCode == 68) {
+  if (event.keyCode == 38) {
     // d
-    keyboard.D = false;
+    keyboard.UP = false;
   }
 });
 
@@ -132,13 +132,13 @@ function mobileButtons() {
 
   document.getElementById("buttonUp").addEventListener("touchstart", (e) => {
     e.preventDefault();
-    keyboard.SPACE = true;
+    keyboard.UP = true;
     document.getElementById("buttonUp").classList.add("filter-invert");
   });
 
   document.getElementById("buttonUp").addEventListener("touchend", (e) => {
     e.preventDefault();
-    keyboard.SPACE = false;
+    keyboard.UP = false;
     document.getElementById("buttonUp").classList.remove("filter-invert");
   });
 
@@ -146,13 +146,13 @@ function mobileButtons() {
     .getElementById("buttonBottle")
     .addEventListener("touchstart", (e) => {
       e.preventDefault();
-      keyboard.D = true;
+      keyboard.SPACE = true;
       document.getElementById("buttonBottle").classList.add("filter-invert");
     });
 
   document.getElementById("buttonBottle").addEventListener("touchend", (e) => {
     e.preventDefault();
-    keyboard.D = false;
+    keyboard.SPACE = false;
     document.getElementById("buttonBottle").classList.remove("filter-invert");
   });
 }
