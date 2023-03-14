@@ -38,7 +38,7 @@
   }
 }
 
-@media screen and (max-width: 480px) and (orientation: portrait) {
+@media screen and (max-width: 600px) and (orientation: portrait) {
   #gifRotatePhone {
     position: absolute;
     top: 0;
@@ -50,6 +50,13 @@
     width: 100vw;
     z-index: 100;
     backdrop-filter: blur(10px);
+  }
+}
+
+@media screen and (max-width: 600px) and (max-height: 400px) {
+  .btnDiv button {
+    padding: 3px 18px;
+    font-size: 18px;
   }
 }
 
