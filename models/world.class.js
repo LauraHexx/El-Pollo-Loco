@@ -185,6 +185,10 @@ class World {
       gameIsOver = true;
       let lost = getId("lost");
       lost.classList.remove("d-none");
+      let mobileWalk = getId("mobileWalk");
+      mobileWalk.classList.add("d-none");
+      let mobileActions = getId("mobileActions");
+      mobileActions.classList.add("d-none");
       AUDIO_endboss.pause();
       AUDIO_background.pause();
       playGameLostAudio();
@@ -193,6 +197,10 @@ class World {
       gameIsOver = true;
       let won = getId("won");
       won.classList.remove("d-none");
+      let mobileWalk = getId("mobileWalk");
+      mobileWalk.classList.add("d-none");
+      let mobileActions = getId("mobileActions");
+      mobileActions.classList.add("d-none");
       AUDIO_endboss.pause();
       AUDIO_background.pause();
       playGameWonAudio();
