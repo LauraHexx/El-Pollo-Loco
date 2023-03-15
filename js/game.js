@@ -154,7 +154,7 @@ function closeFullscreen() {
   canvas.classList.remove("fullscreen");
   const borderRadiusElements = document.querySelectorAll(".noBorderRadius");
   borderRadiusElements.forEach((element) => {
-    element.classList.add("noBorderRadius", "borderRadius");
+    element.classList.replace("noBorderRadius", "borderRadius");
   });
 }
 
