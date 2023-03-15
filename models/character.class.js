@@ -202,6 +202,8 @@ class Character extends MoveableObject {
     }
   }
 
+  //ANIMATION
+
   playCharacter() {
     if (gameIsOver && this.energy > 0) {
       this.playAnimation(this.imageStanding);
