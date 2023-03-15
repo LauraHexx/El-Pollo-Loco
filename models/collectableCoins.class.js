@@ -5,7 +5,6 @@ class CollectableCoin extends MoveableObject {
     left: 35,
     right: 35,
   };
-
   x = 100;
   y = 105;
   width = 120;
@@ -21,8 +20,6 @@ class CollectableCoin extends MoveableObject {
   }
 
   animate() {
-    setInterval(() => {
-      this.playAnimation(this.imagesCoin);
-    }, 100);
+    setInterval(() => this.playAnimation(this.imagesCoin), 100);
   }
 }
