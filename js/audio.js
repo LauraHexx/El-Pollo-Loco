@@ -1,21 +1,15 @@
 let AUDIO_background = new Audio("/audio/background.mp3");
-
 let AUDIO_bottleCollected = new Audio("/audio/bottleCollected.mp3");
 let AUDIO_bottleSmashed = new Audio("/audio/bottleSmashed.mp3");
-
 let AUDIO_characterJump = new Audio("audio/characterJump.mp3");
 let AUDIO_characterHurt = new Audio("audio/characterHurt.mp3");
 let AUDIO_characterSnore = new Audio("audio/characterSnore.mp3");
 let AUDIO_characterThrow = new Audio("audio/characterThrow.mp3");
 let AUDIO_characterWalk = new Audio("audio/characterWalk.mp3");
-
 let AUDIO_coinCollected = new Audio("audio/coinCollected.mp3");
 let AUDIO_unstoppable = new Audio("audio/unstoppable.mp3");
-
 let AUDIO_chickenHit = new Audio("audio/chickenHit.mp3");
-
 let AUDIO_endboss = new Audio("audio/endboss.mp3");
-
 let AUDIO_gameLost = new Audio("audio/gameLost.mp3");
 let AUDIO_gameWon = new Audio("audio/gameWon.mp3");
 
@@ -79,8 +73,6 @@ function playUnstoppableAudio() {
   AUDIO_unstoppable.play();
 }
 
-AUDIO_unstoppable;
-
 function playChickenHitAudio() {
   AUDIO_chickenHit.loop = false;
   AUDIO_chickenHit.volume = 0.4;
@@ -115,6 +107,7 @@ function muteSounds() {
   AUDIO_characterThrow.muted = true;
   AUDIO_characterWalk.muted = true;
   AUDIO_coinCollected.muted = true;
+  AUDIO_unstoppable.muted = true;
   AUDIO_chickenHit.muted = true;
   AUDIO_endboss.muted = true;
   AUDIO_gameLost.muted = true;
@@ -137,6 +130,7 @@ function playSounds() {
   AUDIO_characterThrow.muted = false;
   AUDIO_characterWalk.muted = false;
   AUDIO_coinCollected.muted = false;
+  AUDIO_unstoppable.false = true;
   AUDIO_chickenHit.muted = false;
   AUDIO_endboss.muted = false;
   AUDIO_gameLost.muted = false;
