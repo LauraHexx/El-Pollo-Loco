@@ -10,8 +10,6 @@ class Endboss extends MoveableObject {
   speedX = 9;
   width = 270;
   height = 360;
-  isAlarmed = false;
-  powerOfPushing = 50;
   imagesWalking = [
     "img/4_enemie_boss_chicken/2_alert/G5.png",
     "img/4_enemie_boss_chicken/2_alert/G6.png",
@@ -53,9 +51,11 @@ class Endboss extends MoveableObject {
     "img/4_enemie_boss_chicken/3_attack/G19.png",
     "img/4_enemie_boss_chicken/3_attack/G20.png",
   ];
+  isAlarmed = false;
+  powerOfPushing = 50;
 
   constructor() {
-    super().loadImage("img/4_enemie_boss_chicken/2_alert/G5.png"); //Todo - brauch ich nicht mehr
+    super().loadImage("img/4_enemie_boss_chicken/2_alert/G5.png");
     this.loadImages(this.imagesWalking);
     this.loadImages(this.imagesAlert);
     this.loadImages(this.imagesHurting);

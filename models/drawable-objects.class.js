@@ -8,7 +8,6 @@ class DrawableObject {
   curentImage = 0;
 
   loadImage(path) {
-    //erstellt ein img html tag
     this.img = new Image();
     this.img.src = path;
   }
@@ -34,7 +33,6 @@ class DrawableObject {
       this instanceof Chicken ||
       this instanceof Endboss
     ) {
-      // wird nur ausgeführt wenn Character oder Chicken
       ctx.beginPath();
       ctx.lineWidth = "3";
       ctx.strokeStyle = "blue";
