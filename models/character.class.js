@@ -7,7 +7,6 @@ class Character extends MoveableObject {
   };
   width = 130;
   height = 260;
-  speedX = 8;
   imageStanding = ["img/2_character_pepe/1_idle/idle/I-1.png"];
   imagesSleeping = [
     "img/2_character_pepe/1_idle/long_idle/I-11.png",
@@ -54,15 +53,17 @@ class Character extends MoveableObject {
     "img/2_character_pepe/5_dead/D-56.png",
     "img/2_character_pepe/5_dead/D-57.png",
   ];
-  speed = 8;
-  world;
   collectedBottles = 0;
   collectedCoins = 0;
+  speedX = 5;
+  unstoppableSpeedX = 13;
+  cacheSpeedXBeforeUnstoppable = [];
   isStillStanding = false;
   getsPushed = false;
+  world;
 
   constructor() {
-    super().loadImage("img/2_character_pepe/1_idle/idle/I-1.png"); //Todo - brauch ich nicht mehr
+    super().loadImage("img/2_character_pepe/1_idle/idle/I-1.png");
     this.loadImages(this.imageStanding);
     this.loadImages(this.imagesSleeping);
     this.loadImages(this.imagesWalking);
@@ -75,77 +76,92 @@ class Character extends MoveableObject {
 
   animate() {
     setInterval(() => {
-      //walk right
-      AUDIO_characterWalk.pause();
-      if (
-        this.world.keyboard.RIGHT &&
-        this.x <= this.world.endboss.x &&
-        !this.getsPushed
-      ) {
-        this.lastAction = new Date().getTime();
-        this.lookToLeft = false;
-        this.offset.right = 20;
-        this.moveRight();
-        playCharacterWalkAudio();
-      }
-      //walk left
-      if (this.world.keyboard.LEFT && this.x > 0 && !this.getsPushed) {
-        this.lastAction = new Date().getTime();
-        this.lookToLeft = true;
-        this.offset.right = 60;
-        this.moveLeft();
-        playCharacterWalkAudio();
-      }
-      //jump
-      if (this.world.keyboard.UP && !this.isAboveGround()) {
-        this.lastAction = new Date().getTime();
-        this.jump();
-        playCharacterJumpAudio();
-      }
-
-      if (this.collectedCoins == 5) {
-        //speed for collected bottles
-        this.isUnstoppable = true;
-        this.speedX = this.speedX + 5;
-        this.collectedCoins = 0;
-        this.showUnstoppable();
-        playUnstoppableAudio();
-        setTimeout(() => {
-          this.speedX = 10;
-          this.isUnstoppable = false;
-          this.hideUnstoppable();
-        }, 2200);
-      }
-
-      if (this.getsPushed && this.x < this.world.endboss.powerOfPushing) {
-        this.x -= this.x;
-      } else if (this.getsPushed) {
-        this.x -= this.world.endboss.powerOfPushing;
-        setTimeout(() => {
-          this.getsPushed = false;
-        }, 100);
-      }
-
+      this.moveCharacter();
+      this.checkIfUnstoppableMode();
+      this.checkIfGetsPushedByEndboss();
       this.world.cameraX = -this.x + 80;
     }, 1000 / 60);
 
-    setInterval(() => {
-      if (gameIsOver && this.energy > 0) {
-        this.playAnimation(this.imageStanding);
-      } else if (this.isDead()) {
-        this.playAnimation(this.imagesDead);
-      } else if (this.isHurting()) {
-        this.playAnimation(this.imagesHurting);
-      } else if (this.isAboveGround()) {
-        this.playAnimation(this.imagesJumping);
-      } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-        this.playAnimation(this.imagesWalking);
-      } else if (this.isAsleep()) {
-        this.playAnimation(this.imagesSleeping);
-      } else {
-        this.playAnimation(this.imageStanding);
-      }
-    }, 100);
+    setInterval(() => this.playCharacter(), 100);
+  }
+
+  //MOVE THE CHARACTER
+
+  moveCharacter() {
+    AUDIO_characterWalk.pause();
+    if (this.canMoveRight()) {
+      this.moveRight();
+    }
+    if (this.canMoveLeft()) {
+      this.moveLeft();
+    }
+    if (this.canJump()) {
+      this.jump();
+    }
+  }
+
+  canMoveRight() {
+    return (
+      this.world.keyboard.RIGHT &&
+      this.x <= this.world.endboss.x &&
+      !this.getsPushed
+    );
+  }
+
+  moveRight() {
+    super.moveRight();
+    this.lastAction = new Date().getTime();
+    this.lookToLeft = false;
+    this.offset.right = 20;
+    playCharacterWalkAudio();
+  }
+
+  canMoveLeft() {
+    return this.world.keyboard.LEFT && this.x > 0 && !this.getsPushed;
+  }
+
+  moveLeft() {
+    super.moveLeft();
+    this.lastAction = new Date().getTime();
+    this.lookToLeft = true;
+    this.offset.right = 60;
+    playCharacterWalkAudio();
+  }
+
+  canJump() {
+    return this.world.keyboard.UP && !this.isAboveGround();
+  }
+
+  jump() {
+    super.jump();
+    this.lastAction = new Date().getTime();
+    playCharacterJumpAudio();
+  }
+
+  //UNSTOPPABLE MODE
+
+  checkIfUnstoppableMode() {
+    if (this.collectedAllCoins()) {
+      playUnstoppableAudio();
+      this.enableUnstoppableMode();
+      setTimeout(() => this.disableUnstoppableMode(), 2200);
+    }
+  }
+
+  collectedAllCoins() {
+    return this.collectedCoins == 5;
+  }
+
+  enableUnstoppableMode() {
+    this.isUnstoppable = true;
+    this.saveInitialSpeedX();
+    this.speedX = this.unstoppableSpeedX;
+    this.showUnstoppable();
+  }
+
+  saveInitialSpeedX() {
+    this.speedXBeforeUnstoppable = this.speedX;
+    this.cacheSpeedXBeforeUnstoppable.push(this.speedXBeforeUnstoppable);
   }
 
   showUnstoppable() {
@@ -153,8 +169,54 @@ class Character extends MoveableObject {
     unstoppable.classList.remove("d-none");
   }
 
+  disableUnstoppableMode() {
+    this.isUnstoppable = false;
+    this.getInitialSpeedX();
+    this.collectedCoins = 0;
+    this.hideUnstoppable();
+  }
+
+  getInitialSpeedX() {
+    this.speedX = this.cacheSpeedXBeforeUnstoppable[0];
+    this.cacheSpeedXBeforeUnstoppable.splice(
+      1,
+      this.cacheSpeedXBeforeUnstoppable.length - 1
+    );
+  }
+
   hideUnstoppable() {
     let unstoppable = getId("unstoppable");
     unstoppable.classList.add("d-none");
+  }
+
+  //PUSHING ENDBOSS
+
+  checkIfGetsPushedByEndboss() {
+    if (this.getsPushed && this.x < this.world.endboss.powerOfPushing) {
+      this.x -= this.x;
+    } else if (this.getsPushed) {
+      this.x -= this.world.endboss.powerOfPushing;
+      setTimeout(() => {
+        this.getsPushed = false;
+      }, 100);
+    }
+  }
+
+  playCharacter() {
+    if (gameIsOver && this.energy > 0) {
+      this.playAnimation(this.imageStanding);
+    } else if (this.isDead()) {
+      this.playAnimation(this.imagesDead);
+    } else if (this.isHurting()) {
+      this.playAnimation(this.imagesHurting);
+    } else if (this.isAboveGround()) {
+      this.playAnimation(this.imagesJumping);
+    } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+      this.playAnimation(this.imagesWalking);
+    } else if (this.isAsleep()) {
+      this.playAnimation(this.imagesSleeping);
+    } else {
+      this.playAnimation(this.imageStanding);
+    }
   }
 }
