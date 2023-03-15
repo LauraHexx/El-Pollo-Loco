@@ -75,6 +75,10 @@ class World {
       ) {
         let indexEnemy = this.currentLevel.enemies.indexOf(enemy);
         let hittedChicken = (this.currentLevel.enemies[indexEnemy].energy = 0);
+        setTimeout(() => {
+          this.currentLevel.enemies.splice(indexEnemy, 1);
+        }, 100);
+        console.log(world.currentLevel.enemies);
         this.character.jump();
         playChickenHitAudio();
       }
