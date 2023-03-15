@@ -50,11 +50,11 @@
     position: absolute;
     top: 0;
     bottom: 0;
+    right: 0;
+    left: 0;
     display: flex !important;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    width: 100vw;
     z-index: 100;
     backdrop-filter: blur(10px);
   }
