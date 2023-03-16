@@ -55,7 +55,7 @@ class Character extends MoveableObject {
   ];
   collectedBottles = 0;
   collectedCoins = 0;
-  speedX = 4;
+  speedX = 6;
   unstoppableSpeedX = 10;
   cacheSpeedXBeforeUnstoppable = [];
   isStillStanding = false;

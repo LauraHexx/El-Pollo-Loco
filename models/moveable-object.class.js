@@ -6,8 +6,7 @@ class MoveableObject extends DrawableObject {
     bottom: 0,
   };
   y = 170;
-  speedX = 0.25; //if you change it you also need to change it in continueGame()
-  speedY = 0;
+  speedX = 0.25;
   lookToLeft = false;
   acceleration = 2;
   energy = 100;

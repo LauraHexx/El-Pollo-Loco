@@ -1,5 +1,17 @@
-const level2 = new Level(
-  [
+let level2 = initLevel();
+
+function initLevel() {
+  return new Level(
+    createEnemies(),
+    createClouds(),
+    createBackgroundObjects(),
+    createBottles(),
+    createCoins()
+  );
+}
+
+function createEnemies() {
+  return [
     new Chicken(),
     new Chicken(),
     new Chicken(),
@@ -12,9 +24,15 @@ const level2 = new Level(
     new ChickenSmall(),
     new ChickenSmall(),
     new ChickenSmall(),
-  ],
-  [new Cloud(300), new Cloud(1500), new Cloud(2700)],
-  [
+  ];
+}
+
+function createClouds() {
+  return [new Cloud(300), new Cloud(1500), new Cloud(2700)];
+}
+
+function createBackgroundObjects() {
+  return [
     new BackgroundObject("img/5_background/layers/air.png", -719),
     new BackgroundObject("img/5_background/layers/3_third_layer/2.png", -719),
     new BackgroundObject("img/5_background/layers/2_second_layer/2.png", -719),
@@ -49,16 +67,19 @@ const level2 = new Level(
     new BackgroundObject("img/5_background/layers/3_third_layer/2.png", 3595),
     new BackgroundObject("img/5_background/layers/2_second_layer/2.png", 3595),
     new BackgroundObject("img/5_background/layers/1_first_layer/2.png", 3595),
-  ],
-  [
+  ];
+}
+
+function createBottles() {
+  return [
     new CollectableBottle(
       "img/6_salsa_bottle/2_salsa_bottle_on_ground.png",
-      900,
+      1300,
       345
     ),
     new CollectableBottle(
       "img/6_salsa_bottle/2_salsa_bottle_on_ground.png",
-      1400,
+      1600,
       345
     ),
     new CollectableBottle(
@@ -68,21 +89,24 @@ const level2 = new Level(
     ),
     new CollectableBottle(
       "img/6_salsa_bottle/2_salsa_bottle_on_ground.png",
-      2400,
+      2300,
       345
     ),
 
     new CollectableBottle(
       "img/6_salsa_bottle/2_salsa_bottle_on_ground.png",
-      2900,
+      2500,
       345
     ),
-  ],
-  [
-    new CollectableCoin(500, 320),
-    new CollectableCoin(800, 155),
-    new CollectableCoin(1100, 320),
-    new CollectableCoin(1300, 155),
-    new CollectableCoin(1600, 320),
-  ]
-);
+  ];
+}
+
+function createCoins() {
+  return [
+    new CollectableCoin(550, 155),
+    new CollectableCoin(700, 155),
+    new CollectableCoin(850, 155),
+    new CollectableCoin(1000, 155),
+    new CollectableCoin(1150, 155),
+  ];
+}

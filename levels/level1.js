@@ -1,5 +1,17 @@
-const level1 = new Level(
-  [
+let level1 = initLevel();
+
+function initLevel() {
+  return new Level(
+    createEnemies(),
+    createClouds(),
+    createBackgroundObjects(),
+    createBottles(),
+    createCoins()
+  );
+}
+
+function createEnemies() {
+  return [
     new Chicken(),
     new Chicken(),
     new Chicken(),
@@ -8,9 +20,15 @@ const level1 = new Level(
     new ChickenSmall(),
     new ChickenSmall(),
     new ChickenSmall(),
-  ],
-  [new Cloud(300), new Cloud(1500), new Cloud(2700)],
-  [
+  ];
+}
+
+function createClouds() {
+  return [new Cloud(300), new Cloud(1500), new Cloud(2700)];
+}
+
+function createBackgroundObjects() {
+  return [
     new BackgroundObject("img/5_background/layers/air.png", -719),
     new BackgroundObject("img/5_background/layers/3_third_layer/2.png", -719),
     new BackgroundObject("img/5_background/layers/2_second_layer/2.png", -719),
@@ -45,27 +63,25 @@ const level1 = new Level(
     new BackgroundObject("img/5_background/layers/3_third_layer/2.png", 3595),
     new BackgroundObject("img/5_background/layers/2_second_layer/2.png", 3595),
     new BackgroundObject("img/5_background/layers/1_first_layer/2.png", 3595),
-  ],
-  [
-    new CollectableBottle(
-      "img/6_salsa_bottle/2_salsa_bottle_on_ground.png",
-      1700,
-      345
-    ),
-    new CollectableBottle(
-      "img/6_salsa_bottle/2_salsa_bottle_on_ground.png",
-      1900,
-      345
-    ),
-    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 2500, 155),
-    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 2700, 155),
-    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 2900, 155),
-  ],
-  [
+  ];
+}
+
+function createBottles() {
+  return [
+    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 1500, 155),
+    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 1700, 155),
+    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 1900, 155),
+    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 2100, 155),
+    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 2300, 155),
+  ];
+}
+
+function createCoins() {
+  return [
     new CollectableCoin(550, 155),
     new CollectableCoin(700, 155),
     new CollectableCoin(850, 155),
     new CollectableCoin(1000, 155),
     new CollectableCoin(1150, 155),
-  ]
-);
+  ];
+}
