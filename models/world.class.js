@@ -13,14 +13,14 @@ class World {
   statusBarEndbossHeart = new StatusBarEndbossHeart();
   throwableObjects = [];
 
-  constructor(canvas, keyboard, currentLevell) {
+  constructor(canvas, keyboard, currentLevel) {
     this.canvas = canvas;
     this.keyboard = keyboard;
     this.currentLevel = currentLevel;
     this.ctx = canvas.getContext("2d"); //so kann man auf das Canvas malen - bestimmte Funktionen damit aufrufen - ctx: Context (Standard)
     this.setWorld();
     this.draw();
-    this.alwaysChecking(); // Intervalle, die ständig geprüft werden
+    this.runIntervals(); // Intervalle, die ständig geprüft werden
     playBackgroundAudio();
   }
 
@@ -28,22 +28,21 @@ class World {
     this.character.world = this; // world übergeben, damit Zugriff auf Keyboard - ist in Java Script nicht schön gelöst
   }
 
-  alwaysChecking() {
-    setInterval(() => {
-      if (!gameIsOver) {
-        this.checkCollisionsEnemies();
-        this.checkCollisionsEndboss();
-        this.checkEndbossPushingCharacter();
-        this.checkCollisionsBottles();
-        this.checkCollisionsCoins();
-        this.checkThrowObjects();
-        this.checkAppearanceEndboss();
-        this.checkHitEndboss();
-        this.checkIfWonOrLost();
-        this.checkIfHowToPlayIsOpen();
-        this.bottleIsSmashed();
-      }
+  runIntervals() {
+    let intervale = setInterval(() => {
+      this.checkCollisionsEnemies();
+      this.checkCollisionsEndboss();
+      this.checkEndbossPushingCharacter();
+      this.checkCollisionsBottles();
+      this.checkCollisionsCoins();
+      this.checkThrowObjects();
+      this.checkAppearanceEndboss();
+      this.checkHitEndboss();
+      this.checkIfWonOrLost();
+      //this.checkIfHowToPlayIsOpen();
+      this.bottleIsSmashed();
     }, 100);
+    intervalIds.push(intervale);
   }
 
   checkCollisionsEndboss() {
@@ -78,7 +77,6 @@ class World {
         setTimeout(() => {
           this.currentLevel.enemies.splice(indexEnemy, 1);
         }, 100);
-        console.log(world.currentLevel.enemies);
         this.character.jump();
         playChickenHitAudio();
       }
@@ -196,6 +194,7 @@ class World {
       AUDIO_endboss.pause();
       AUDIO_background.pause();
       playGameLostAudio();
+      stopIntervale();
     }
     if (this.endboss.energy == 0 && !this.gameIsOver) {
       gameIsOver = true;
@@ -208,17 +207,19 @@ class World {
       AUDIO_endboss.pause();
       AUDIO_background.pause();
       playGameWonAudio();
+      stopIntervale();
     }
   }
+  /*
 
   checkIfHowToPlayIsOpen() {
     if (howToPlayIsOpen) {
-      this.stopGame();
+      stopIntervale();
     } else {
-      this.continueGame();
+      startIntervale();
     }
   }
-
+  /*
   stopGame() {
     this.currentLevel.enemies.forEach((enemy) => {
       enemy.speedX = 0;
@@ -238,10 +239,12 @@ class World {
     });
     this.endboss.speedX = 9;
   }
+  */
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // canvas muss immer wieder gelöscht werden - vordefinierte Funktion von JavaScript
     this.ctx.translate(this.cameraX, 0);
+
     this.arrayToMap(this.currentLevel.backgroundObjects);
 
     this.ctx.translate(-this.cameraX, 0);

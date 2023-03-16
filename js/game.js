@@ -8,6 +8,7 @@ let howToPlayIsOpen = false;
 let gameIsOver = false;
 let isFullscreen = false;
 let currentLevel = level1;
+let intervalIds = [];
 
 // GENERAL FUNCTIONS
 
@@ -35,7 +36,23 @@ function changeStlye() {
 function startGame() {
   canvas = getId("canvas");
   world = new World(canvas, keyboard, currentLevel);
+  startIntervale();
   console.log("Das ist meine Welt", world.currentLevel.enemies);
+}
+
+function startIntervale() {
+  intervalIds.forEach((id) => {
+    setInterval(id);
+  });
+}
+
+function stopIntervale() {
+  setTimeout(() => {
+    for (let i = 0; i < intervalIds.length; i++) {
+      const id = intervalIds[i];
+      clearInterval(id);
+    }
+  }, 500);
 }
 
 // MOBILE ACTION BUTTONS
