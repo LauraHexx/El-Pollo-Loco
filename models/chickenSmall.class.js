@@ -5,9 +5,9 @@ class ChickenSmall extends MoveableObject {
     left: 30,
     right: 25,
   };
+  y = 360;
   width = 70;
   height = 60;
-  y = 360;
   imagesDead = [
     "img/3_enemies_chicken/chicken_small/2_dead/dead.png",
     "img/3_enemies_chicken/chicken_small/2_dead/dead.png",
