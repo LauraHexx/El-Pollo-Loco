@@ -5,7 +5,7 @@ class Endboss extends MoveableObject {
     left: 55,
     right: 30,
   };
-  x = 200;
+  x = 3500;
   y = 80;
   speedX = 9;
   width = 270;
@@ -72,7 +72,6 @@ class Endboss extends MoveableObject {
         this.playAnimation(this.imagesHurting);
       } else if (this.wasHit()) {
         this.playAnimation(this.imagesAttack);
-        this.moveLeft();
       } else if (this.isAlarmed) {
         this.playAnimation(this.imagesAlert);
       }

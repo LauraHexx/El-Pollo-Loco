@@ -21,6 +21,10 @@ class MoveableObject extends DrawableObject {
     this.curentImage++;
   }
 
+  stopAnimating() {
+    clearInterval();
+  }
+
   isColliding(obj) {
     return (
       this.x + this.width - this.offset.right > obj.x + obj.offset.left &&
@@ -60,6 +64,11 @@ class MoveableObject extends DrawableObject {
   }
 
   moveRight() {
+    this.x += this.speedX;
+  }
+
+  isNotMoving() {
+    this.x -= this.speedX;
     this.x += this.speedX;
   }
 

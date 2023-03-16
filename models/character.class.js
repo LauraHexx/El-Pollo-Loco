@@ -58,7 +58,6 @@ class Character extends MoveableObject {
   speedX = 6;
   unstoppableSpeedX = 10;
   cacheSpeedXBeforeUnstoppable = [];
-  isStillStanding = false;
   getsPushed = false;
   world;
 

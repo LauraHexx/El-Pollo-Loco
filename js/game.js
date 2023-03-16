@@ -37,7 +37,10 @@ function startGame() {
   canvas = getId("canvas");
   world = new World(canvas, keyboard, currentLevel);
   startIntervale();
-  console.log("Das ist meine Welt", world.currentLevel.enemies);
+
+  const myObj = world.currentLevel;
+  const myJSON = JSON.stringify(myObj, null, 2);
+  console.log(myJSON);
 }
 
 function startIntervale() {

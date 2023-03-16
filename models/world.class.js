@@ -39,7 +39,7 @@ class World {
       this.checkAppearanceEndboss();
       this.checkHitEndboss();
       this.checkIfWonOrLost();
-      //this.checkIfHowToPlayIsOpen();
+      this.checkIfHowToPlayIsOpen();
       this.bottleIsSmashed();
     }, 100);
     intervalIds.push(intervale);
@@ -161,6 +161,7 @@ class World {
       if (this.endboss.isColliding(bottle) && !this.endboss.isHurting()) {
         this.endboss.isAlarmed = false;
         this.endboss.hit();
+        this.endboss.moveLeft();
         this.statusBarEndboss.setPercentage(this.endboss.energy);
         playChickenHitAudio();
       }
@@ -210,36 +211,32 @@ class World {
       stopIntervale();
     }
   }
-  /*
 
   checkIfHowToPlayIsOpen() {
     if (howToPlayIsOpen) {
-      stopIntervale();
+      this.pauseGame();
     } else {
-      startIntervale();
+      this.continueGame();
     }
   }
-  /*
-  stopGame() {
-    this.currentLevel.enemies.forEach((enemy) => {
-      enemy.speedX = 0;
+
+  pauseGame() {
+    this.currentLevel.enemies.forEach(function (enemy) {
+      clearInterval(enemy.animate());
     });
-    this.currentLevel.clouds.forEach((cloud) => {
-      cloud.speedX = 0;
-    });
-    this.endboss.speedX = 0;
   }
 
   continueGame() {
     this.currentLevel.enemies.forEach((enemy) => {
-      enemy.speedX = 0.25;
+      enemy.moveLeft();
     });
     this.currentLevel.clouds.forEach((cloud) => {
-      cloud.speedX = 0.25;
+      cloud.moveLeft();
     });
-    this.endboss.speedX = 9;
+    if (this.endboss.energy < 100) {
+      this.endboss.moveLeft();
+    }
   }
-  */
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // canvas muss immer wieder gelöscht werden - vordefinierte Funktion von JavaScript
