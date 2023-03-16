@@ -4,7 +4,6 @@ let canvas;
 let ctx;
 let world;
 let keyboard = new Keyboard();
-let howToPlayIsOpen = false;
 let gameIsOver = false;
 let isFullscreen = false;
 let currentLevel = level1;
@@ -29,6 +28,8 @@ function changeStlye() {
   startscreen.classList.add("d-none");
   let divPlayBtn = getId("divPlayBtn");
   divPlayBtn.classList.add("d-none");
+  let howtoPlayIcon = getId("howtoPlayIcon");
+  howtoPlayIcon.classList.add("d-none");
   let mobileActionButtons = getId("mobileActionButtons");
   mobileActionButtons.classList.replace("d-none", "showMobileActionBtns");
 }
@@ -37,10 +38,6 @@ function startGame() {
   canvas = getId("canvas");
   world = new World(canvas, keyboard, currentLevel);
   startIntervale();
-
-  const myObj = world.currentLevel;
-  const myJSON = JSON.stringify(myObj, null, 2);
-  console.log(myJSON);
 }
 
 function startIntervale() {
@@ -142,13 +139,11 @@ window.addEventListener("keyup", (event) => {
 function openHowToPlay() {
   let howtoPlay = getId("howtoPlay");
   howtoPlay.classList.remove("d-none");
-  howToPlayIsOpen = true;
 }
 
 function closeHowToPlay() {
   let howtoPlay = getId("howtoPlay");
   howtoPlay.classList.add("d-none");
-  howToPlayIsOpen = false;
 }
 
 function toggleFullscreen() {

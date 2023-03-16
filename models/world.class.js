@@ -39,7 +39,6 @@ class World {
       this.checkAppearanceEndboss();
       this.checkHitEndboss();
       this.checkIfWonOrLost();
-      this.checkIfHowToPlayIsOpen();
       this.bottleIsSmashed();
     }, 100);
     intervalIds.push(intervale);
@@ -209,32 +208,6 @@ class World {
       AUDIO_background.pause();
       playGameWonAudio();
       stopIntervale();
-    }
-  }
-
-  checkIfHowToPlayIsOpen() {
-    if (howToPlayIsOpen) {
-      this.pauseGame();
-    } else {
-      this.continueGame();
-    }
-  }
-
-  pauseGame() {
-    this.currentLevel.enemies.forEach(function (enemy) {
-      clearInterval(enemy.animate());
-    });
-  }
-
-  continueGame() {
-    this.currentLevel.enemies.forEach((enemy) => {
-      enemy.moveLeft();
-    });
-    this.currentLevel.clouds.forEach((cloud) => {
-      cloud.moveLeft();
-    });
-    if (this.endboss.energy < 100) {
-      this.endboss.moveLeft();
     }
   }
 

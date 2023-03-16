@@ -21,10 +21,6 @@ class MoveableObject extends DrawableObject {
     this.curentImage++;
   }
 
-  stopAnimating() {
-    clearInterval();
-  }
-
   isColliding(obj) {
     return (
       this.x + this.width - this.offset.right > obj.x + obj.offset.left &&
