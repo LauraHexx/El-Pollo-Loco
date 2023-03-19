@@ -17,10 +17,10 @@ class World {
     this.canvas = canvas;
     this.keyboard = keyboard;
     this.currentLevel = currentLevel;
-    this.ctx = canvas.getContext("2d"); //so kann man auf das Canvas malen - bestimmte Funktionen damit aufrufen - ctx: Context (Standard)
+    this.ctx = canvas.getContext("2d");
     this.setWorld();
     this.draw();
-    this.runIntervals(); // Intervalle, die ständig geprüft werden
+    this.runIntervals();
     playBackgroundAudio();
   }
 
@@ -184,9 +184,11 @@ class World {
   checkIfWonOrLost() {
     if (this.gameIsLost()) {
       this.showGameLost();
+      this.stopAudioAndIntervale();
     }
     if (this.gameIsWon()) {
       this.showGameWon();
+      this.stopAudioAndIntervale();
     }
   }
 
@@ -204,7 +206,6 @@ class World {
     mobileWalk.classList.add("d-none");
     let mobileActions = getId("mobileActions");
     mobileActions.classList.add("d-none");
-    this.stopAudioAndIntervale();
     playGameLostAudio();
   }
 
@@ -222,7 +223,6 @@ class World {
     mobileWalk.classList.add("d-none");
     let mobileActions = getId("mobileActions");
     mobileActions.classList.add("d-none");
-    this.stopAudioAndIntervale();
     playGameWonAudio();
   }
 
