@@ -29,7 +29,6 @@
     <script src="models/world.class.js"></script>
     <script src="models/level.class.js"></script>
     <script src="levels/level1.js"></script>
-    <script src="levels/level2.js"></script>
     <script src="js/game.js"></script>
     <script src="js/audio.js"></script>
     <link rel="stylesheet" href="style/style.css" />
@@ -126,8 +125,9 @@
       <!--UNSTOPPABLE---------------------------------------------->
       <div id="unstoppable" class="d-none">UNSTOPPABLE!</div>
       <!--YOU LOST---------------------------------------------->
-      <div id="lost" class="d-none gameOver">
+      <div id="gameOver" class="d-none gameOver">
         <img
+          id="gameOverImg"
           src="img/9_intro_outro_screens/game_over/oh no you lost!.png"
           alt="screen when the game is lost" />
         <div id="afterGameBtn" class="btnDiv">
@@ -136,17 +136,7 @@
           </button>
         </div>
       </div>
-      <!--YOU WON---------------------------------------------->
-      <div id="won" class="d-none gameOver">
-        <img
-          src="img/9_intro_outro_screens/game_over/game over!.png"
-          alt="screen when the game is won" />
-        <div id="afterGameBtn" class="btnDiv">
-          <button onclick="backToStart()" class="cursorPointer">
-            To Start
-          </button>
-        </div>
-      </div>
+
       <!--MOBILE ACTION BUTTONS---------------------------------------------->
       <div id="mobileActionButtons" class="d-none">
         <div id="mobileWalk">

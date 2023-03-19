@@ -6,7 +6,7 @@ let world;
 let keyboard = new Keyboard();
 let gameIsOver = false;
 let isFullscreen = false;
-let currentLevel = level2;
+let currentLevel = level1;
 let intervalIds = [];
 
 // GENERAL FUNCTIONS

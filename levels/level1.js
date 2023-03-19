@@ -12,14 +12,18 @@ function initLevel() {
 
 function createEnemies() {
   return [
-    new Chicken(0.25),
-    new Chicken(0.35),
-    new Chicken(0.45),
-    new Chicken(0.55),
-    new ChickenSmall(0.65),
-    new ChickenSmall(0.75),
-    new ChickenSmall(0.85),
-    new ChickenSmall(0.95),
+    new Chicken(1),
+    new Chicken(1.1),
+    new Chicken(1.2),
+    new Chicken(1.2),
+    new Chicken(1.3),
+    new Chicken(1.3),
+    new ChickenSmall(1.4),
+    new ChickenSmall(1.4),
+    new ChickenSmall(1.5),
+    new ChickenSmall(1.5),
+    new ChickenSmall(1.6),
+    new ChickenSmall(1.7),
   ];
 }
 
@@ -68,11 +72,32 @@ function createBackgroundObjects() {
 
 function createBottles() {
   return [
-    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 1500, 155),
-    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 1700, 155),
-    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 1900, 155),
-    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 2100, 155),
-    new CollectableBottle("img/6_salsa_bottle/salsa_bottle.png", 2300, 155),
+    new CollectableBottle(
+      "img/6_salsa_bottle/2_salsa_bottle_on_ground.png",
+      1300,
+      345
+    ),
+    new CollectableBottle(
+      "img/6_salsa_bottle/2_salsa_bottle_on_ground.png",
+      1600,
+      345
+    ),
+    new CollectableBottle(
+      "img/6_salsa_bottle/2_salsa_bottle_on_ground.png",
+      1900,
+      345
+    ),
+    new CollectableBottle(
+      "img/6_salsa_bottle/2_salsa_bottle_on_ground.png",
+      2300,
+      345
+    ),
+
+    new CollectableBottle(
+      "img/6_salsa_bottle/2_salsa_bottle_on_ground.png",
+      2500,
+      345
+    ),
   ];
 }
 

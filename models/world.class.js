@@ -182,32 +182,54 @@ class World {
   }
 
   checkIfWonOrLost() {
-    if (this.character.energy == 0 && !this.gameIsOver) {
-      gameIsOver = true;
-      let lost = getId("lost");
-      lost.classList.remove("d-none");
-      let mobileWalk = getId("mobileWalk");
-      mobileWalk.classList.add("d-none");
-      let mobileActions = getId("mobileActions");
-      mobileActions.classList.add("d-none");
-      AUDIO_endboss.pause();
-      AUDIO_background.pause();
-      playGameLostAudio();
-      stopIntervale();
+    if (this.gameIsLost()) {
+      this.showGameLost();
     }
-    if (this.endboss.energy == 0 && !this.gameIsOver) {
-      gameIsOver = true;
-      let won = getId("won");
-      won.classList.remove("d-none");
-      let mobileWalk = getId("mobileWalk");
-      mobileWalk.classList.add("d-none");
-      let mobileActions = getId("mobileActions");
-      mobileActions.classList.add("d-none");
-      AUDIO_endboss.pause();
-      AUDIO_background.pause();
-      playGameWonAudio();
-      stopIntervale();
+    if (this.gameIsWon()) {
+      this.showGameWon();
     }
+  }
+
+  gameIsLost() {
+    return this.character.energy == 0 && !this.gameIsOver;
+  }
+
+  showGameLost() {
+    gameIsOver = true;
+    let gameOver = getId("gameOver");
+    gameOver.classList.remove("d-none");
+    let gameOverImg = getId("gameOverImg");
+    gameOverImg.src = "img/9_intro_outro_screens/game_over/oh no you lost!.png";
+    let mobileWalk = getId("mobileWalk");
+    mobileWalk.classList.add("d-none");
+    let mobileActions = getId("mobileActions");
+    mobileActions.classList.add("d-none");
+    this.stopAudioAndIntervale();
+    playGameLostAudio();
+  }
+
+  gameIsWon() {
+    return this.endboss.energy == 0 && !this.gameIsOver;
+  }
+
+  showGameWon() {
+    gameIsOver = true;
+    let gameOver = getId("gameOver");
+    gameOver.classList.remove("d-none");
+    let gameOverImg = getId("gameOverImg");
+    gameOverImg.src = "img/9_intro_outro_screens/game_over/game over!.png";
+    let mobileWalk = getId("mobileWalk");
+    mobileWalk.classList.add("d-none");
+    let mobileActions = getId("mobileActions");
+    mobileActions.classList.add("d-none");
+    this.stopAudioAndIntervale();
+    playGameWonAudio();
+  }
+
+  stopAudioAndIntervale() {
+    AUDIO_endboss.pause();
+    AUDIO_background.pause();
+    stopIntervale();
   }
 
   draw() {
