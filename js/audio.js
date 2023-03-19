@@ -44,7 +44,7 @@ function playCharacterHurtAudio() {
 }
 
 function playCharacterSnoreAudio() {
-  AUDIO_characterSnore.loop = false;
+  AUDIO_characterSnore.loop = true;
   AUDIO_characterSnore.volume = 0.4;
   AUDIO_characterSnore.play();
 }
@@ -81,7 +81,7 @@ function playChickenHitAudio() {
 
 function playEndbossAudio() {
   AUDIO_endboss.loop = true;
-  AUDIO_endboss.volume = 0.4;
+  AUDIO_endboss.volume = 0.25;
   AUDIO_endboss.play();
 }
 

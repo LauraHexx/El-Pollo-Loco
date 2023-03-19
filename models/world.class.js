@@ -160,7 +160,6 @@ class World {
       if (this.endboss.isColliding(bottle) && !this.endboss.isHurting()) {
         this.endboss.isAlarmed = false;
         this.endboss.hit();
-        this.endboss.moveLeft();
         this.statusBarEndboss.setPercentage(this.endboss.energy);
         playChickenHitAudio();
       }

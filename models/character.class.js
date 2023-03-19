@@ -220,6 +220,4 @@ class Character extends MoveableObject {
       this.playAnimation(this.imageStanding);
     }
   }
-
-  //SLEEPING - TODO
 }
