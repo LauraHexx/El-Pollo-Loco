@@ -12,18 +12,18 @@ function initLevel() {
 
 function createEnemies() {
   return [
-    new Chicken(),
-    new Chicken(),
-    new Chicken(),
-    new Chicken(),
-    new Chicken(),
-    new Chicken(),
-    new ChickenSmall(),
-    new ChickenSmall(),
-    new ChickenSmall(),
-    new ChickenSmall(),
-    new ChickenSmall(),
-    new ChickenSmall(),
+    new Chicken(1),
+    new Chicken(1.1),
+    new Chicken(1.2),
+    new Chicken(1.2),
+    new Chicken(1.3),
+    new Chicken(1.3),
+    new ChickenSmall(1.4),
+    new ChickenSmall(1.4),
+    new ChickenSmall(1.5),
+    new ChickenSmall(1.5),
+    new ChickenSmall(1.6),
+    new ChickenSmall(1.7),
   ];
 }
 

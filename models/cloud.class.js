@@ -4,8 +4,8 @@ class Cloud extends MoveableObject {
   height = 250;
   constructor(x) {
     super().loadImage("img/5_background/layers/4_clouds/1.png");
-    this.x = x;
     this.animate();
+    this.x = x;
   }
 
   animate() {
