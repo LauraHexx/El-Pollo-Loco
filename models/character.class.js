@@ -188,7 +188,7 @@ class Character extends MoveableObject {
     unstoppable.classList.add("d-none");
   }
 
-  //PUSHING ENDBOSS
+  //PUSHING OF ENDBOSS
 
   checkIfGetsPushedByEndboss() {
     if (this.getsPushed && this.x < this.world.endboss.powerOfPushing) {
@@ -204,6 +204,7 @@ class Character extends MoveableObject {
   //ANIMATION
 
   playCharacter() {
+    AUDIO_characterSnore.pause();
     if (gameIsOver && this.energy > 0) {
       this.playAnimation(this.imageStanding);
     } else if (this.isDead()) {
@@ -216,6 +217,7 @@ class Character extends MoveableObject {
       this.playAnimation(this.imagesWalking);
     } else if (this.isAsleep()) {
       this.playAnimation(this.imagesSleeping);
+      playCharacterSnoreAudio();
     } else {
       this.playAnimation(this.imageStanding);
     }
