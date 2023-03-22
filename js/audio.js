@@ -68,6 +68,7 @@ function generateAudios() {
     audioElement.volume = audio.volume;
     audioCache[audio.name] = audioElement;
   });
+  console.log(audioCache);
 }
 
 function playAudio(key) {
@@ -83,6 +84,7 @@ function pauseAudio(key) {
 function muteSounds() {
   audioCache.forEach((audio) => {
     audio.muted = true;
+    console.log(audio);
   });
   document.getElementById("mute").classList.add("d-none");
   document.getElementById("sound").classList.remove("d-none");
