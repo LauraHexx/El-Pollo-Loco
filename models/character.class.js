@@ -87,7 +87,7 @@ class Character extends MoveableObject {
   //MOVE THE CHARACTER
 
   moveCharacter() {
-    AUDIO_characterWalk.pause();
+    pauseAudio("characterWalk");
     if (this.canMoveRight()) {
       this.moveRight();
     }
@@ -112,7 +112,7 @@ class Character extends MoveableObject {
     this.lastAction = new Date().getTime();
     this.lookToLeft = false;
     this.offset.right = 20;
-    playCharacterWalkAudio();
+    playAudio("characterWalk");
   }
 
   canMoveLeft() {
@@ -124,7 +124,7 @@ class Character extends MoveableObject {
     this.lastAction = new Date().getTime();
     this.lookToLeft = true;
     this.offset.right = 60;
-    playCharacterWalkAudio();
+    playAudio("characterWalk");
   }
 
   canJump() {
@@ -134,14 +134,14 @@ class Character extends MoveableObject {
   jump() {
     super.jump();
     this.lastAction = new Date().getTime();
-    playCharacterJumpAudio();
+    playAudio("characterJump");
   }
 
   //UNSTOPPABLE MODE
 
   checkIfUnstoppableMode() {
     if (this.collectedAllCoins()) {
-      playUnstoppableAudio();
+      playAudio("unstoppable");
       this.enableUnstoppableMode();
       setTimeout(() => this.disableUnstoppableMode(), 2200);
     }
@@ -204,7 +204,7 @@ class Character extends MoveableObject {
   //ANIMATION
 
   playCharacter() {
-    AUDIO_characterSnore.pause();
+    pauseAudio("characterSnore");
     if (gameIsOver && this.energy > 0) {
       this.playAnimation(this.imageStanding);
     } else if (this.isDead()) {
@@ -217,7 +217,7 @@ class Character extends MoveableObject {
       this.playAnimation(this.imagesWalking);
     } else if (this.isAsleep()) {
       this.playAnimation(this.imagesSleeping);
-      playCharacterSnoreAudio();
+      playAudio("characterSnore");
     } else {
       this.playAnimation(this.imageStanding);
     }

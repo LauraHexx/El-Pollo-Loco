@@ -46,7 +46,7 @@
       </div>
       <div class="imagesSetting">
         <img
-          onclick="playSounds()"
+          onclick="unmuteSounds()"
           id="sound"
           class="icon cursorPointer d-none"
           src="img/icons/sound.mp3"
@@ -58,7 +58,7 @@
           src="img/icons/mute.png"
           alt="turn sound off" />
         <img
-          onclick="openHowToPlay()"
+          onclick="toggleHowToPlay()"
           id="howtoPlayIcon"
           class="icon cursorPointer"
           src="img/icons/question-mark.png"
@@ -73,7 +73,6 @@
       <div id="divPlayBtn" class="btnDiv">
         <button onclick="init()" class="cursorPointer">Play</button>
       </div>
-
       <!--HOW TO PLAY---------------------------------------------->
       <div id="howtoPlay" class="borderRadius d-none">
         <div class="close">
@@ -124,7 +123,7 @@
       </div>
       <!--UNSTOPPABLE---------------------------------------------->
       <div id="unstoppable" class="d-none">UNSTOPPABLE!</div>
-      <!--YOU LOST---------------------------------------------->
+      <!--GAMEOVER---------------------------------------------->
       <div id="gameOver" class="d-none gameOver">
         <img
           id="gameOverImg"
@@ -136,7 +135,6 @@
           </button>
         </div>
       </div>
-
       <!--MOBILE ACTION BUTTONS---------------------------------------------->
       <div id="mobileActionButtons" class="d-none">
         <div id="mobileWalk">
@@ -155,9 +153,8 @@
               arrow-right-button for walking right" />
           </button>
         </div>
-
         <div id="mobileActions">
-          <button id="btnnUp">
+          <button id="btnUp">
             <img
               class="icon"
               src="img/icons/arrow-up-black.png"
@@ -173,7 +170,7 @@
           </button>
         </div>
       </div>
-      <!--Turn Phone---------------------------------------------->
+      <!--Rotate Phone---------------------------------------------->
     </div>
     <div id="gifRotatePhone">
       <img

@@ -18,10 +18,10 @@ class World {
     this.keyboard = keyboard;
     this.currentLevel = currentLevel;
     this.ctx = canvas.getContext("2d");
-    this.setWorld();
     this.draw();
     this.runIntervals();
-    playBackgroundAudio();
+    this.setWorld();
+    playAudio("background");
   }
 
   setWorld() {
@@ -51,7 +51,7 @@ class World {
     ) {
       this.character.hit();
       this.statusBarHealth.setPercentage(this.character.energy);
-      playCharacterHurtAudio();
+      playAudio("characterHurt");
     }
   }
 
@@ -77,7 +77,7 @@ class World {
           this.currentLevel.enemies.splice(indexEnemy, 1);
         }, 100);
         this.character.jump();
-        playChickenHitAudio();
+        playAudio("chickenHit");
       }
       if (
         this.character.isColliding(enemy) &&
@@ -87,7 +87,7 @@ class World {
       ) {
         this.character.hit();
         this.statusBarHealth.setPercentage(this.character.energy);
-        playCharacterHurtAudio();
+        playAudio("characterHurt");
       }
     });
   }
@@ -101,7 +101,7 @@ class World {
           this.currentLevel.bottles.indexOf(bottle),
           1
         );
-        playBottleCollectedAudio();
+        playAudio("bottleCollected");
       }
     });
   }
@@ -115,7 +115,7 @@ class World {
           this.currentLevel.coins.indexOf(coin),
           1
         );
-        playCoinCollectedAudio();
+        playAudio("coinCollected");
       }
     });
   }
@@ -145,8 +145,8 @@ class World {
       this.statusBarEndbossHeart.width = 70;
       this.statusBarEndbossHeart.height = 75;
       this.endboss.isAlarmed = true;
-      playEndbossAudio();
-      AUDIO_background.pause();
+      playAudio("endboss");
+      pauseAudio("background");
     } else {
       this.statusBarEndboss.width = 0;
       this.statusBarEndboss.height = 0;
@@ -161,7 +161,7 @@ class World {
         this.endboss.isAlarmed = false;
         this.endboss.hit();
         this.statusBarEndboss.setPercentage(this.endboss.energy);
-        playChickenHitAudio();
+        playAudio("chickenHit");
       }
     });
   }
@@ -170,7 +170,7 @@ class World {
     this.throwableObjects.forEach((bottle) => {
       if (bottle.hitGround() || this.endboss.isColliding(bottle)) {
         bottle.isSmashed = true;
-        playBottleSmashedAudio();
+        playAudio("bottleSmashed");
         setTimeout(() => {
           this.throwableObjects.splice(
             this.throwableObjects.indexOf(bottle),
@@ -184,11 +184,11 @@ class World {
   checkIfWonOrLost() {
     if (this.gameIsLost()) {
       this.showGameLost();
-      this.stopAudioAndIntervale();
+      this.stopAudiosAndIntervale();
     }
     if (this.gameIsWon()) {
       this.showGameWon();
-      this.stopAudioAndIntervale();
+      this.stopAudiosAndIntervale();
     }
   }
 
@@ -206,7 +206,7 @@ class World {
     mobileWalk.classList.add("d-none");
     let mobileActions = getId("mobileActions");
     mobileActions.classList.add("d-none");
-    playGameLostAudio();
+    playAudio("gameLost");
   }
 
   gameIsWon() {
@@ -223,12 +223,12 @@ class World {
     mobileWalk.classList.add("d-none");
     let mobileActions = getId("mobileActions");
     mobileActions.classList.add("d-none");
-    playGameWonAudio();
+    playAudio("gameWon");
   }
 
-  stopAudioAndIntervale() {
-    AUDIO_endboss.pause();
-    AUDIO_background.pause();
+  stopAudiosAndIntervale() {
+    pauseAudio("endboss");
+    pauseAudio("background");
     stopIntervale();
   }
 
