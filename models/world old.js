@@ -31,7 +31,7 @@ class World {
   runIntervals() {
     let intervale = setInterval(() => {
       this.checkCollisionsEnemies();
-      this.checkCollisionsCharacterEndboss();
+      this.checkCollisionsEndboss();
       this.checkEndbossPushingCharacter();
       this.checkCollisionsBottles();
       this.checkCollisionsCoins();
@@ -44,20 +44,19 @@ class World {
     intervalIds.push(intervale);
   }
 
-  checkCollisionsCharacterEndboss() {
+  checkCollisionsEndboss() {
     if (
       !this.character.isHurting() &&
       this.character.isColliding(this.endboss)
     ) {
       this.character.hit();
-      this.character.getsPushed = true;
       this.statusBarHealth.setPercentage(this.character.energy);
       playAudio("characterHurt");
     }
   }
 
   checkEndbossPushingCharacter() {
-    if (this.character.isColliding(this.endboss)) {
+    if (this.character.isColliding(this.endboss) && !this.character.left) {
       this.character.getsPushed = true;
     } else {
       this.character.getsPushed = false;

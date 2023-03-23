@@ -61,47 +61,40 @@ class Keyboard {
           event.preventDefault();
           this.LEFT = true;
         });
-
       document
         .getElementById("btnLeft")
         .addEventListener("touchend", (event) => {
           event.preventDefault();
           this.LEFT = false;
         });
-
       document
         .getElementById("btnRight")
         .addEventListener("touchstart", (event) => {
           event.preventDefault();
           this.RIGHT = true;
         });
-
       document
         .getElementById("btnRight")
         .addEventListener("touchend", (event) => {
           event.preventDefault();
           this.RIGHT = false;
         });
-
       document
         .getElementById("btnUp")
         .addEventListener("touchstart", (event) => {
           event.preventDefault();
           this.UP = true;
         });
-
       document.getElementById("btnUp").addEventListener("touchend", (event) => {
         event.preventDefault();
         this.UP = false;
       });
-
       document
         .getElementById("btnBottle")
         .addEventListener("touchstart", (event) => {
           event.preventDefault();
           this.SPACE = true;
         });
-
       document
         .getElementById("btnBottle")
         .addEventListener("touchend", (event) => {

@@ -56,15 +56,14 @@ class MoveableObject extends DrawableObject {
   }
 
   moveLeft() {
-    this.x -= this.speedX;
+    if (this instanceof Endboss && this.x <= 0) {
+      this.speedX = 0;
+    } else {
+      this.x -= this.speedX;
+    }
   }
 
   moveRight() {
-    this.x += this.speedX;
-  }
-
-  isNotMoving() {
-    this.x -= this.speedX;
     this.x += this.speedX;
   }
 
