@@ -331,13 +331,13 @@ class World {
   checkIfWonOrLost() {
     if (this.gameIsLost()) {
       this.showGameLost();
-      this.stopAudiosAndIntervale();
       this.changeStyleForEndscreen();
+      this.stopAudiosAndIntervale();
     }
     if (this.gameIsWon()) {
       this.showGameWon();
-      this.stopAudiosAndIntervale();
       this.changeStyleForEndscreen();
+      this.stopAudiosAndIntervale();
     }
   }
 
