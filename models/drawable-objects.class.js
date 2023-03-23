@@ -21,13 +21,15 @@ class DrawableObject {
   }
 
   drawImages(ctx) {
-    // wird von world übergeben
-    //von JS vordefinierte Funktion
-    ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+    try {
+      ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+    } catch (error) {
+      console.warn("Image could not loaded", error);
+      console.log(this.img.src);
+    }
   }
 
   drawFrames(ctx) {
-    // wird von world übergeben
     if (
       this instanceof Character ||
       this instanceof Chicken ||

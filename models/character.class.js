@@ -151,6 +151,10 @@ class Character extends MoveableObject {
     return this.collectedCoins == 5;
   }
 
+  /**
+   * This Function makes Character faster and not vulnerable
+   *
+   */
   enableUnstoppableMode() {
     this.isUnstoppable = true;
     this.saveInitialSpeedX();
@@ -158,23 +162,33 @@ class Character extends MoveableObject {
     this.showUnstoppable();
   }
 
+  /**
+   * This Function saves the speedX to use again after increasement of unstoppable
+   *
+   */
   saveInitialSpeedX() {
     this.speedXBeforeUnstoppable = this.speedX;
     this.cacheSpeedXBeforeUnstoppable.push(this.speedXBeforeUnstoppable);
   }
 
   showUnstoppable() {
-    let unstoppable = getId("unstoppable");
-    unstoppable.classList.remove("d-none");
+    document.getElementById("unstoppable").remove("d-none");
   }
 
+  /**
+   * This Function makes Character slower and  vulnerable
+   *
+   */
   disableUnstoppableMode() {
     this.isUnstoppable = false;
     this.getInitialSpeedX();
     this.collectedCoins = 0;
     this.hideUnstoppable();
   }
-
+  /**
+   * This Function resets speedX to saved speedX
+   *
+   */
   getInitialSpeedX() {
     this.speedX = this.cacheSpeedXBeforeUnstoppable[0];
     this.cacheSpeedXBeforeUnstoppable.splice(
@@ -184,8 +198,7 @@ class Character extends MoveableObject {
   }
 
   hideUnstoppable() {
-    let unstoppable = getId("unstoppable");
-    unstoppable.classList.add("d-none");
+    document.getElementById("unstoppable").add("d-none");
   }
 
   //PUSHING OF ENDBOSS

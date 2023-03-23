@@ -167,14 +167,14 @@ class World {
   //ENDBOSS APPEARANCE
 
   checkAppearanceEndboss() {
-    if (this.characterIsNearEndboss()) {
+    if (this.characterReachesEndboss()) {
       this.activatingEndboss();
     } else {
       this.hideStatusBarOfEndboss();
     }
   }
 
-  characterIsNearEndboss() {
+  characterReachesEndboss() {
     return this.endboss.x - this.character.x < 450;
   }
 
@@ -210,14 +210,14 @@ class World {
   }
 
   checkEndbossPushingCharacter() {
-    if (this.endbossCanPushCharacter()) {
+    if (this.endbossCollidesCharacter()) {
       this.characterGetsPushed();
     } else {
       this.characterGetsNotPushed();
     }
   }
 
-  endbossCanPushCharacter() {
+  endbossCollidesCharacter() {
     return this.character.isColliding(this.endboss);
   }
 
@@ -228,6 +228,8 @@ class World {
   characterGetsNotPushed() {
     this.character.getsPushed = false;
   }
+
+  checkIfGetsPushedByEndboss() {}
 
   //COINS - COLLECTING
 
