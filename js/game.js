@@ -8,6 +8,7 @@ let isFullscreen = false;
 let currentLevel = level1;
 let intervalIds = [];
 let howToPlayIsOpen = false;
+let isMuted = false;
 let gameIsOver = false;
 
 // GENERAL FUNCTIONS

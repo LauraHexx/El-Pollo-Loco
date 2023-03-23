@@ -72,28 +72,34 @@ function generateAudios() {
 }
 
 function playAudio(key) {
-  let playAudio = audioCache[key];
-  playAudio.play();
+  const selectedAudio = audioCache[key];
+  selectedAudio.play();
 }
 
 function pauseAudio(key) {
-  let playAudio = audioCache[key];
-  playAudio.pause();
+  const selectedAudio = audioCache[key];
+  selectedAudio.pause();
 }
 
-function muteSounds() {
-  audioCache.forEach((audio) => {
-    audio.muted = true;
-    console.log(audio);
-  });
-  document.getElementById("mute").classList.add("d-none");
-  document.getElementById("sound").classList.remove("d-none");
+function toggleMute() {
+  if (isMuted) {
+    unmuteAudios();
+  } else {
+    muteAudios();
+  }
+  isMuted = !isMuted;
 }
 
-function unmuteSounds() {
-  audioCache.forEach((audio) => {
-    audio.muted = false;
-  });
-  document.getElementById("mute").classList.remove("d-none");
-  document.getElementById("sound").classList.add("d-none");
+function muteAudios() {
+  for (const key in audioCache) {
+    audioCache[key].muted = true;
+  }
+  document.getElementById("muteOrAudio").src = "img/icons/sound.png";
+}
+
+function unmuteAudios() {
+  for (const key in audioCache) {
+    audioCache[key].muted = false;
+  }
+  document.getElementById("muteOrAudio").src = "img/icons/mute.png";
 }
