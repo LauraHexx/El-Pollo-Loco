@@ -14,17 +14,19 @@ class Keyboard {
      * check whether the button is pressed
      */
     window.addEventListener("keydown", (event) => {
-      if (event.keyCode == 37) {
-        this.LEFT = true;
-      }
-      if (event.keyCode == 39) {
-        this.RIGHT = true;
-      }
-      if (event.keyCode == 32) {
-        this.SPACE = true;
-      }
-      if (event.keyCode == 38) {
-        this.UP = true;
+      if (!gameIsOver) {
+        if (event.keyCode == 37) {
+          this.LEFT = true;
+        }
+        if (event.keyCode == 39) {
+          this.RIGHT = true;
+        }
+        if (event.keyCode == 32) {
+          this.SPACE = true;
+        }
+        if (event.keyCode == 38) {
+          this.UP = true;
+        }
       }
     });
 

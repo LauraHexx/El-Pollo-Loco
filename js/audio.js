@@ -1,4 +1,4 @@
-const audioCache = [];
+const audiosCache = [];
 const audios = [
   { name: "background", src: "audio/background.mp3", loop: true, volume: 0.4 },
   {
@@ -66,18 +66,17 @@ function generateAudios() {
     const audioElement = new Audio(audio.src);
     audioElement.loop = audio.loop;
     audioElement.volume = audio.volume;
-    audioCache[audio.name] = audioElement;
+    audiosCache[audio.name] = audioElement;
   });
-  console.log(audioCache);
 }
 
 function playAudio(key) {
-  const selectedAudio = audioCache[key];
+  const selectedAudio = audiosCache[key];
   selectedAudio.play();
 }
 
 function pauseAudio(key) {
-  const selectedAudio = audioCache[key];
+  const selectedAudio = audiosCache[key];
   selectedAudio.pause();
 }
 
