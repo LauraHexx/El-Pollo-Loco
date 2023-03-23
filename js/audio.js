@@ -90,15 +90,15 @@ function toggleMute() {
 }
 
 function muteAudios() {
-  for (const key in audioCache) {
-    audioCache[key].muted = true;
+  for (const key in audiosCache) {
+    audiosCache[key].muted = true;
   }
   document.getElementById("muteOrAudio").src = "img/icons/sound.png";
 }
 
 function unmuteAudios() {
-  for (const key in audioCache) {
-    audioCache[key].muted = false;
+  for (const key in audiosCache) {
+    audiosCache[key].muted = false;
   }
   document.getElementById("muteOrAudio").src = "img/icons/mute.png";
 }

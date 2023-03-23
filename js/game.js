@@ -32,6 +32,7 @@ function changeStyle() {
   document
     .getElementById("mobileActionButtons")
     .classList.replace("d-none", "showMobileActionBtns");
+  document.getElementById("muteOrAudio").classList.remove("d-none");
 }
 
 function startGame() {
