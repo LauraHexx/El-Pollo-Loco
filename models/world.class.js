@@ -18,22 +18,31 @@ class World {
     this.keyboard = keyboard;
     this.currentLevel = currentLevel;
     this.ctx = canvas.getContext("2d");
-    playAudio("background");
     this.setKeyboardForCharacter();
     this.draw();
     this.runIntervals();
+    playAudio("background");
   }
 
+  /**
+   * This Function makes it possible to access the keyboard in Character Class
+   *
+   */
   setKeyboardForCharacter() {
     this.character.world = this;
   }
 
+  //CANVAS
+
+  /**
+   * This Function draws all Elements in the Canvas.
+   *
+   */
   draw() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.clearCanvas();
     this.ctx.translate(this.cameraX, 0);
     this.arrayToMap(this.currentLevel.backgroundObjects);
     this.ctx.translate(-this.cameraX, 0);
-    //Space for fixed Objects
     this.oneObjectToMap(this.statusBarEndboss);
     this.oneObjectToMap(this.statusBarEndbossHeart);
     this.oneObjectToMap(this.statusBarHealth);
@@ -54,6 +63,10 @@ class World {
     });
   }
 
+  clearCanvas() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
+
   arrayToMap(array) {
     array.forEach((elementOfArray) => {
       this.oneObjectToMap(elementOfArray);
@@ -61,13 +74,17 @@ class World {
   }
 
   oneObjectToMap(obj) {
-    if (obj.lookToLeft) {
+    if (this.objectNeedsToBeFlipped(obj)) {
       this.flipImage(obj);
     }
     obj.drawImages(this.ctx);
-    if (obj.lookToLeft) {
+    if (this.objectNeedsToBeFlipped(obj)) {
       this.flipImageBack(obj);
     }
+  }
+
+  objectNeedsToBeFlipped(obj) {
+    return obj.lookToLeft;
   }
 
   flipImage(obj) {
@@ -82,9 +99,11 @@ class World {
     this.ctx.restore();
   }
 
+  //INTERVALLS
+
   runIntervals() {
     let intervale = setInterval(() => {
-      this.checkCollisionsEnemies();
+      this.checkCharacterCollidesEnemy();
       this.checkAppearanceEndboss();
       this.checkEndbossHurtingCharacter();
       this.checkEndbossPushingCharacter();
@@ -100,18 +119,18 @@ class World {
 
   //ENEMIES
 
-  checkCollisionsEnemies() {
+  checkCharacterCollidesEnemy() {
     this.currentLevel.enemies.forEach((enemy) => {
-      if (this.characterCanHurtEnemie(enemy)) {
-        this.enemieGetsHurt(enemy);
+      if (this.characterJumpsOnTop(enemy)) {
+        this.enemieGetsKilled(enemy);
       }
-      if (this.enemieCanHurtCharacter(enemy)) {
+      if (this.enemieTouchesCharacter(enemy)) {
         this.characterGetsHurt();
       }
     });
   }
 
-  characterCanHurtEnemie(enemy) {
+  characterJumpsOnTop(enemy) {
     return (
       !this.character.isHurting() &&
       this.character.isColliding(enemy) &&
@@ -120,9 +139,9 @@ class World {
     );
   }
 
-  enemieGetsHurt(enemy) {
+  enemieGetsKilled(enemy) {
     let indexEnemy = this.currentLevel.enemies.indexOf(enemy);
-    let hittedChicken = (this.currentLevel.enemies[indexEnemy].energy = 0);
+    let hittedEnemy = (this.currentLevel.enemies[indexEnemy].energy = 0);
     setTimeout(() => {
       this.currentLevel.enemies.splice(indexEnemy, 1);
     }, 100);
@@ -130,7 +149,7 @@ class World {
     playAudio("chickenHit");
   }
 
-  enemieCanHurtCharacter(enemy) {
+  enemieTouchesCharacter(enemy) {
     return (
       this.character.isColliding(enemy) &&
       !this.character.isHurting() &&
@@ -139,13 +158,19 @@ class World {
     );
   }
 
+  characterGetsHurt() {
+    this.character.hit();
+    this.statusBarHealth.setPercentage(this.character.energy);
+    playAudio("characterHurt");
+  }
+
   //ENDBOSS APPEARANCE
 
   checkAppearanceEndboss() {
     if (this.characterIsNearEndboss()) {
       this.activatingEndboss();
     } else {
-      this.notActivatingEndboss();
+      this.hideStatusBarOfEndboss();
     }
   }
 
@@ -163,7 +188,7 @@ class World {
     pauseAudio("background");
   }
 
-  notActivatingEndboss() {
+  hideStatusBarOfEndboss() {
     this.statusBarEndboss.width = 0;
     this.statusBarEndboss.height = 0;
     this.statusBarEndbossHeart.width = 0;
@@ -173,21 +198,15 @@ class World {
   //ENDBOSS HURTING CHARACTER
 
   checkEndbossHurtingCharacter() {
-    if (this.endbossCanHurtCharacter()) {
+    if (this.endbossTouchesCharacter()) {
       this.characterGetsHurt();
     }
   }
 
-  endbossCanHurtCharacter() {
+  endbossTouchesCharacter() {
     return (
       !this.character.isHurting() && this.character.isColliding(this.endboss)
     );
-  }
-
-  characterGetsHurt() {
-    this.character.hit();
-    this.statusBarHealth.setPercentage(this.character.energy);
-    playAudio("characterHurt");
   }
 
   checkEndbossPushingCharacter() {
@@ -210,17 +229,17 @@ class World {
     this.character.getsPushed = false;
   }
 
-  //COLLECTING COINS
+  //COINS - COLLECTING
 
   checkCharacterCollectsCoins() {
     this.currentLevel.coins.forEach((coin) => {
-      if (this.characterCanCollectCoin(coin)) {
+      if (this.characterCollidesCoin(coin)) {
         this.coinGetsCollected(coin);
       }
     });
   }
 
-  characterCanCollectCoin(coin) {
+  characterCollidesCoin(coin) {
     return this.character.isColliding(coin) && !this.character.isHurting();
   }
 
@@ -231,17 +250,17 @@ class World {
     playAudio("coinCollected");
   }
 
-  //COLLECTING BOTTLES
+  //BOTTLES - COLLECTING
 
   checkCharacterCollectsBottle() {
     this.currentLevel.bottles.forEach((bottle) => {
-      if (this.characterCanCollectBottle(bottle)) {
+      if (this.characterCollidesBottle(bottle)) {
         this.bottleGetsCollected(bottle);
       }
     });
   }
 
-  characterCanCollectBottle(bottle) {
+  characterCollidesBottle(bottle) {
     return this.character.isColliding(bottle) && !this.character.isHurting();
   }
 
@@ -255,7 +274,7 @@ class World {
     playAudio("bottleCollected");
   }
 
-  //THROWING BOTTLES
+  //BOTTLES - THROWING
 
   checkCharacterThrowsBottles() {
     if (this.characterCanThrowBottles()) {
@@ -283,17 +302,17 @@ class World {
     this.throwableBottles.push(bottle);
   }
 
-  // ENDBOSS HURTING BY BOTTLES
+  //BOTTLES - HURTING ENDBOSS
 
   checkBottleHurtingEndboss() {
     this.throwableBottles.forEach((bottle) => {
-      if (this.bottleCanHurtEndboss(bottle)) {
+      if (this.bottleCollidesEndboss(bottle)) {
         this.endbossGetsHurt();
       }
     });
   }
 
-  bottleCanHurtEndboss(bottle) {
+  bottleCollidesEndboss(bottle) {
     return this.endboss.isColliding(bottle) && !this.endboss.isHurting();
   }
 
@@ -304,21 +323,21 @@ class World {
     playAudio("chickenHit");
   }
 
-  //SMASHED BOTTLES
+  //BOTTLES - SMASHED
 
   checkBottleIsSmashed() {
     this.throwableBottles.forEach((bottle) => {
-      if (this.bottleGetsSmashed(bottle)) {
-        this.removeBottle(bottle);
+      if (this.bottleCollidesBottomOrEndboss(bottle)) {
+        this.clearBottle(bottle);
       }
     });
   }
 
-  bottleGetsSmashed(bottle) {
+  bottleCollidesBottomOrEndboss(bottle) {
     return bottle.hitGround() || this.endboss.isColliding(bottle);
   }
 
-  removeBottle(bottle) {
+  clearBottle(bottle) {
     bottle.isSmashed = true;
     playAudio("bottleSmashed");
     setTimeout(() => {
@@ -329,19 +348,19 @@ class World {
   //GAME IS OVER
 
   checkIfWonOrLost() {
-    if (this.gameIsLost()) {
+    if (this.characterDied()) {
       this.showGameLost();
       this.changeStyleForEndscreen();
       this.stopAudiosAndIntervale();
     }
-    if (this.gameIsWon()) {
+    if (this.endbossDied()) {
       this.showGameWon();
       this.changeStyleForEndscreen();
       this.stopAudiosAndIntervale();
     }
   }
 
-  gameIsLost() {
+  characterDied() {
     return this.character.energy == 0 && !this.gameIsOver;
   }
 
@@ -352,7 +371,7 @@ class World {
     playAudio("gameLost");
   }
 
-  gameIsWon() {
+  endbossDied() {
     return this.endboss.energy == 0 && !this.gameIsOver;
   }
 
