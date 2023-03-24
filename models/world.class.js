@@ -124,7 +124,7 @@ class World {
       if (this.characterJumpsOnTop(enemy)) {
         this.enemieGetsKilled(enemy);
       }
-      if (this.enemieTouchesCharacter(enemy)) {
+      if (this.enemieCanHurtCharacter(enemy)) {
         this.characterGetsHurt();
       }
     });
@@ -149,7 +149,7 @@ class World {
     playAudio("chickenHit");
   }
 
-  enemieTouchesCharacter(enemy) {
+  enemieCanHurtCharacter(enemy) {
     return (
       this.character.isColliding(enemy) &&
       !this.character.isHurting() &&
@@ -198,12 +198,12 @@ class World {
   //ENDBOSS HURTING CHARACTER
 
   checkEndbossHurtingCharacter() {
-    if (this.endbossTouchesCharacter()) {
+    if (this.endbossCanHurtCharacter()) {
       this.characterGetsHurt();
     }
   }
 
-  endbossTouchesCharacter() {
+  endbossCanHurtCharacter() {
     return (
       !this.character.isHurting() && this.character.isColliding(this.endboss)
     );
@@ -212,8 +212,6 @@ class World {
   checkEndbossPushingCharacter() {
     if (this.endbossCollidesCharacter()) {
       this.characterGetsPushed();
-    } else {
-      this.characterGetsNotPushed();
     }
   }
 
@@ -223,13 +221,29 @@ class World {
 
   characterGetsPushed() {
     this.character.getsPushed = true;
+    if (this.characterIsNearStart()) {
+      this.characterGetsPushedToStart();
+    } else {
+      this.characterGetsPushedWithEndbossPower();
+      setTimeout(() => {
+        this.character.getsPushed = false;
+      }, 100);
+    }
   }
 
-  characterGetsNotPushed() {
-    this.character.getsPushed = false;
+  characterIsNearStart() {
+    return;
+    this.character.x < this.endboss.powerOfPushing;
   }
 
-  checkIfGetsPushedByEndboss() {}
+  characterGetsPushedToStart() {
+    this.character.x -= this.character.x;
+  }
+
+  characterGetsPushedWithEndbossPower() {
+    this.character.x -= this.endboss.powerOfPushing;
+  }
+  s;
 
   //COINS - COLLECTING
 

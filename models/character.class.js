@@ -71,16 +71,15 @@ class Character extends MoveableObject {
     this.loadImages(this.imagesDead);
     this.animate();
     this.applyGravity();
+    this.drawFrames();
   }
 
   animate() {
     setInterval(() => {
       this.moveCharacter();
       this.checkIfUnstoppableMode();
-      this.checkIfGetsPushedByEndboss();
       this.world.cameraX = -this.x + 80;
     }, 1000 / 60);
-
     setInterval(() => this.playCharacter(), 100);
   }
 
@@ -163,7 +162,7 @@ class Character extends MoveableObject {
   }
 
   /**
-   * This Function saves the speedX to use again after increasement of unstoppable
+   * This Function saves initial speedX
    *
    */
   saveInitialSpeedX() {
@@ -172,7 +171,7 @@ class Character extends MoveableObject {
   }
 
   showUnstoppable() {
-    document.getElementById("unstoppable").remove("d-none");
+    document.getElementById("unstoppable").classList.remove("d-none");
   }
 
   /**
@@ -185,8 +184,9 @@ class Character extends MoveableObject {
     this.collectedCoins = 0;
     this.hideUnstoppable();
   }
+
   /**
-   * This Function resets speedX to saved speedX
+   * This Function resets speedX to saved inital value
    *
    */
   getInitialSpeedX() {
@@ -198,20 +198,7 @@ class Character extends MoveableObject {
   }
 
   hideUnstoppable() {
-    document.getElementById("unstoppable").add("d-none");
-  }
-
-  //PUSHING OF ENDBOSS
-
-  checkIfGetsPushedByEndboss() {
-    if (this.getsPushed && this.x < this.world.endboss.powerOfPushing) {
-      this.x -= this.x;
-    } else if (this.getsPushed) {
-      this.x -= this.world.endboss.powerOfPushing;
-      setTimeout(() => {
-        this.getsPushed = false;
-      }, 100);
-    }
+    document.getElementById("unstoppable").classList.add("d-none");
   }
 
   //ANIMATION

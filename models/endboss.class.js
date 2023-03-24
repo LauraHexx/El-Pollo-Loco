@@ -5,7 +5,8 @@ class Endboss extends MoveableObject {
     left: 55,
     right: 30,
   };
-  x = 3500;
+  x = 800;
+  energy = 80;
   y = 80;
   speedX = 9;
   width = 270;
@@ -52,7 +53,7 @@ class Endboss extends MoveableObject {
     "img/4_enemie_boss_chicken/3_attack/G20.png",
   ];
   isAlarmed = false;
-  powerOfPushing = 100;
+  powerOfPushing = 50;
 
   constructor() {
     super().loadImage("img/4_enemie_boss_chicken/2_alert/G5.png");
