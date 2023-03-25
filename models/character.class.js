@@ -71,13 +71,13 @@ class Character extends MoveableObject {
     this.loadImages(this.imagesDead);
     this.animate();
     this.applyGravity();
-    this.drawFrames();
   }
 
   animate() {
     setInterval(() => {
       this.moveCharacter();
       this.checkIfUnstoppableMode();
+      this.checkIfGetsPushed();
       this.world.cameraX = -this.x + 80;
     }, 1000 / 60);
     setInterval(() => this.playCharacter(), 100);
@@ -199,6 +199,35 @@ class Character extends MoveableObject {
 
   hideUnstoppable() {
     document.getElementById("unstoppable").classList.add("d-none");
+  }
+
+  //PUSHING OF ENDBOSS
+
+  checkIfGetsPushed() {
+    if (this.getsPushedNearStart()) {
+      this.pushToStart();
+    } else if (this.getsPushedFarFromStart()) {
+      this.pushWithFullPower();
+    }
+  }
+
+  getsPushedNearStart() {
+    return this.getsPushed && this.x < this.world.endboss.powerOfPushing;
+  }
+
+  pushToStart() {
+    return (this.x -= this.x);
+  }
+
+  getsPushedFarFromStart() {
+    return this.getsPushed;
+  }
+
+  pushWithFullPower() {
+    this.x -= this.world.endboss.powerOfPushing;
+    setTimeout(() => {
+      this.getsPushed = false;
+    }, 100);
   }
 
   //ANIMATION

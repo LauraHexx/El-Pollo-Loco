@@ -8,7 +8,7 @@ class ThrowableBottle extends MoveableObject {
     "img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png",
     "img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png",
   ];
-  imagesSplashing = [
+  imagesSmashing = [
     "img/6_salsa_bottle/bottle_rotation/bottle_splash/1_bottle_splash.png",
     "img/6_salsa_bottle/bottle_rotation/bottle_splash/2_bottle_splash.png",
     "img/6_salsa_bottle/bottle_rotation/bottle_splash/3_bottle_splash.png",
@@ -24,7 +24,7 @@ class ThrowableBottle extends MoveableObject {
   constructor(x, y) {
     super().loadImage("img/6_salsa_bottle/salsa_bottle.png");
     this.loadImages(this.imagesThrowing);
-    this.loadImages(this.imagesSplashing);
+    this.loadImages(this.imagesSmashing);
     this.x = x;
     this.y = y;
     this.animate();
@@ -34,7 +34,7 @@ class ThrowableBottle extends MoveableObject {
   animate() {
     setInterval(() => {
       if (this.isSmashed) {
-        this.playAnimation(this.imagesSplashing);
+        this.playAnimation(this.imagesSmashing);
       } else {
         this.playAnimation(this.imagesThrowing);
       }

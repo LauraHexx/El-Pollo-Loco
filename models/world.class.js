@@ -209,9 +209,13 @@ class World {
     );
   }
 
+  //ENDBOSS PUSHING CHARACTER
+
   checkEndbossPushingCharacter() {
     if (this.endbossCollidesCharacter()) {
       this.characterGetsPushed();
+    } else {
+      this.characterGetsNotPushed();
     }
   }
 
@@ -221,29 +225,11 @@ class World {
 
   characterGetsPushed() {
     this.character.getsPushed = true;
-    if (this.characterIsNearStart()) {
-      this.characterGetsPushedToStart();
-    } else {
-      this.characterGetsPushedWithEndbossPower();
-      setTimeout(() => {
-        this.character.getsPushed = false;
-      }, 100);
-    }
   }
 
-  characterIsNearStart() {
-    return;
-    this.character.x < this.endboss.powerOfPushing;
+  characterGetsNotPushed() {
+    this.character.getsPushed = false;
   }
-
-  characterGetsPushedToStart() {
-    this.character.x -= this.character.x;
-  }
-
-  characterGetsPushedWithEndbossPower() {
-    this.character.x -= this.endboss.powerOfPushing;
-  }
-  s;
 
   //COINS - COLLECTING
 

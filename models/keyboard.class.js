@@ -33,7 +33,6 @@ class Keyboard {
     /**
      * check whether the button has been released
      */
-
     window.addEventListener("keyup", (event) => {
       if (event.keyCode == 37) {
         this.LEFT = false;

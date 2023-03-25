@@ -31,7 +31,7 @@ class DrawableObject {
 
   drawFrames(ctx) {
     if (this.isCorrectObject()) {
-      this.frameGetsDrawed();
+      this.frameGetsDrawed(ctx);
     }
   }
 
@@ -43,7 +43,7 @@ class DrawableObject {
     );
   }
 
-  frameGetsDrawed() {
+  frameGetsDrawed(ctx) {
     ctx.beginPath();
     ctx.lineWidth = "3";
     ctx.strokeStyle = "blue";
