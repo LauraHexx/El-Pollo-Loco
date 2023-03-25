@@ -131,9 +131,17 @@ class Character extends MoveableObject {
   }
 
   jump() {
-    super.jump();
+    if (this.isAboveGround()) {
+      this.smallJump();
+    } else {
+      super.jump();
+    }
     this.lastAction = new Date().getTime();
     playAudio("characterJump");
+  }
+
+  smallJump() {
+    this.speedY = 15;
   }
 
   //UNSTOPPABLE MODE

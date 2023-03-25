@@ -14,12 +14,80 @@ class MoveableObject extends DrawableObject {
   lastAction;
   characterOnGroundY = 170;
 
+  //ANIMATION
+
   playAnimation(images) {
     let i = this.curentImage % images.length;
     let path = images[i];
     this.img = this.imageCache[path];
     this.curentImage++;
   }
+
+  //ENERGY + MOVEMENT
+
+  hit() {
+    this.subtractEnergy();
+    if (!this.isDead()) {
+      this.lastHit = new Date().getTime();
+      this.lastAction = new Date().getTime();
+    }
+  }
+
+  subtractEnergy() {
+    this.energy -= 20;
+  }
+
+  isDead() {
+    return this.energy <= 0;
+  }
+
+  wasHit() {
+    return this.energy < 100;
+  }
+
+  isHurting() {
+    let timePassed = new Date().getTime() - this.lastHit;
+    timePassed = timePassed / 1000;
+    return timePassed < 3;
+  }
+
+  //MOVEMENT
+
+  cannotMove() {
+    return (this.speedX = 0);
+  }
+
+  moveLeft() {
+    this.x -= this.speedX;
+  }
+
+  moveRight() {
+    this.x += this.speedX;
+  }
+
+  jump() {
+    this.speedY = 20;
+  }
+
+  isAboveGround() {
+    if (this instanceof ThrowableBottle) {
+      return true;
+    } else {
+      return this.y < this.characterOnGroundY;
+    }
+  }
+
+  isAtStart() {
+    return this.x <= 0;
+  }
+
+  isAsleep() {
+    let timePassed = new Date().getTime() - this.lastAction;
+    timePassed = timePassed / 1000;
+    return timePassed > 5;
+  }
+
+  //COLLIDING
 
   isColliding(obj) {
     return (
@@ -30,56 +98,7 @@ class MoveableObject extends DrawableObject {
     );
   }
 
-  hit() {
-    this.energy -= 20;
-    if (this.energy <= 0) {
-      this.energy = 0;
-      this.isDead();
-    } else {
-      this.lastHit = new Date().getTime(); //speichern des Zeitpunktes, wann Character verletzt wurde
-      this.lastAction = new Date().getTime();
-    }
-  }
-
-  wasHit() {
-    return this.energy < 100;
-  }
-
-  isDead() {
-    return this.energy == 0;
-  }
-
-  isHurting() {
-    let timePassed = new Date().getTime() - this.lastHit; // Differenz aktuelle Zeit und letzter Zeitpunkt hit
-    timePassed = timePassed / 1000;
-    return timePassed < 3; //gibt true zurück
-  }
-
-  moveLeft() {
-    if (this instanceof Endboss && this.x <= 0) {
-      this.speedX = 0;
-    } else {
-      this.x -= this.speedX;
-    }
-  }
-
-  moveRight() {
-    this.x += this.speedX;
-  }
-
-  jump() {
-    if (this.isAboveGround()) {
-      this.speedY = 15; //when killing enemies
-    } else {
-      this.speedY = 20;
-    }
-  }
-
-  isAsleep() {
-    let timePassed = new Date().getTime() - this.lastAction;
-    timePassed = timePassed / 1000;
-    return timePassed > 5;
-  }
+  //GRAVITY
 
   applyGravity() {
     setInterval(() => {
@@ -94,14 +113,5 @@ class MoveableObject extends DrawableObject {
         }
       }
     }, 1000 / 25);
-  }
-
-  isAboveGround() {
-    if (this instanceof ThrowableBottle) {
-      //throwable objects sollten immer fallen
-      return true;
-    } else {
-      return this.y < this.characterOnGroundY;
-    }
   }
 }

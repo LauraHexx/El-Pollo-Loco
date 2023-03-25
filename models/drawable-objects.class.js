@@ -29,6 +29,10 @@ class DrawableObject {
     }
   }
 
+  /**
+   * This function supports colliding development
+   *
+   */
   drawFrames(ctx) {
     if (this.isCorrectObject()) {
       this.frameGetsDrawed(ctx);

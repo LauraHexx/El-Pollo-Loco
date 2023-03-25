@@ -78,4 +78,12 @@ class Endboss extends MoveableObject {
       }
     }, 100);
   }
+
+  moveLeft() {
+    if (this.isAtStart()) {
+      this.cannotMove();
+    } else {
+      super.moveLeft();
+    }
+  }
 }
