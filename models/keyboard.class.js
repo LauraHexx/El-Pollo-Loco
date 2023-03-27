@@ -5,14 +5,20 @@ class Keyboard {
   SPACE = false;
 
   constructor() {
-    this.eventKeyboardBtns();
-    this.eventTouchpadBtns();
+    this.eventKeyboard();
+    this.eventTouchpad();
   }
 
-  eventKeyboardBtns() {
-    /**
-     * check whether the button is pressed
-     */
+  /**
+   * This Function checks whether the keys has been released or pressed
+   *
+   */
+  eventKeyboard() {
+    this.checkKeysArePressed();
+    this.checkKeysAreReleased();
+  }
+
+  checkKeysArePressed() {
     window.addEventListener("keydown", (event) => {
       if (!gameIsOver) {
         if (event.keyCode == 37) {
@@ -29,10 +35,9 @@ class Keyboard {
         }
       }
     });
+  }
 
-    /**
-     * check whether the button has been released
-     */
+  checkKeysAreReleased() {
     window.addEventListener("keyup", (event) => {
       if (event.keyCode == 37) {
         this.LEFT = false;
@@ -51,8 +56,14 @@ class Keyboard {
 
   /**
    * Functions for the touch buttons in the mobile view
+   *
    */
-  eventTouchpadBtns() {
+  eventTouchpad() {
+    this.checkButtonsArePressed();
+    this.checkButtonsAreReleased();
+  }
+
+  checkButtonsArePressed() {
     setTimeout(() => {
       document
         .getElementById("btnLeft")
@@ -61,6 +72,31 @@ class Keyboard {
           this.LEFT = true;
         });
       document
+        .getElementById("btnRight")
+        .addEventListener("touchstart", (event) => {
+          event.preventDefault();
+          this.RIGHT = true;
+        });
+
+      document
+        .getElementById("btnUp")
+        .addEventListener("touchstart", (event) => {
+          event.preventDefault();
+          this.UP = true;
+        });
+
+      document
+        .getElementById("btnBottle")
+        .addEventListener("touchstart", (event) => {
+          event.preventDefault();
+          this.SPACE = true;
+        });
+    }, 500);
+  }
+
+  checkButtonsAreReleased() {
+    setTimeout(() => {
+      document
         .getElementById("btnLeft")
         .addEventListener("touchend", (event) => {
           event.preventDefault();
@@ -68,32 +104,16 @@ class Keyboard {
         });
       document
         .getElementById("btnRight")
-        .addEventListener("touchstart", (event) => {
-          event.preventDefault();
-          this.RIGHT = true;
-        });
-      document
-        .getElementById("btnRight")
         .addEventListener("touchend", (event) => {
           event.preventDefault();
           this.RIGHT = false;
         });
-      document
-        .getElementById("btnUp")
-        .addEventListener("touchstart", (event) => {
-          event.preventDefault();
-          this.UP = true;
-        });
+
       document.getElementById("btnUp").addEventListener("touchend", (event) => {
         event.preventDefault();
         this.UP = false;
       });
-      document
-        .getElementById("btnBottle")
-        .addEventListener("touchstart", (event) => {
-          event.preventDefault();
-          this.SPACE = true;
-        });
+
       document
         .getElementById("btnBottle")
         .addEventListener("touchend", (event) => {

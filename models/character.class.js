@@ -132,7 +132,7 @@ class Character extends MoveableObject {
 
   jump() {
     if (this.isAboveGround()) {
-      this.smallJump();
+      this.smallJump(); //when killing enemy
     } else {
       super.jump();
     }
