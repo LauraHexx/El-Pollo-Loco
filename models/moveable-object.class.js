@@ -12,7 +12,7 @@ class MoveableObject extends DrawableObject {
   energy = 100;
   lastHit = 0;
   lastAction;
-  characterOnGroundY = 170;
+  ground = 170;
 
   //ANIMATION
 
@@ -23,7 +23,7 @@ class MoveableObject extends DrawableObject {
     this.curentImage++;
   }
 
-  //ENERGY + MOVEMENT
+  //ENERGY + HURTING
 
   hit() {
     this.subtractEnergy();
@@ -37,10 +37,6 @@ class MoveableObject extends DrawableObject {
     this.energy -= 20;
   }
 
-  isDead() {
-    return this.energy <= 0;
-  }
-
   wasHit() {
     return this.energy < 100;
   }
@@ -49,6 +45,10 @@ class MoveableObject extends DrawableObject {
     let timePassed = new Date().getTime() - this.lastHit;
     timePassed = timePassed / 1000;
     return timePassed < 3;
+  }
+
+  isDead() {
+    return this.energy <= 0;
   }
 
   //MOVEMENT
@@ -73,7 +73,7 @@ class MoveableObject extends DrawableObject {
     if (this instanceof ThrowableBottle) {
       return true;
     } else {
-      return this.y < this.characterOnGroundY;
+      return this.y < this.ground;
     }
   }
 
@@ -105,11 +105,8 @@ class MoveableObject extends DrawableObject {
       if (this.isAboveGround() || this.speedY > 0) {
         this.y -= this.speedY;
         this.speedY -= this.acceleration;
-        if (
-          this instanceof Character &&
-          this.y - this.speedY > this.characterOnGroundY
-        ) {
-          this.speedY = (this.characterOnGroundY - this.y) * -1;
+        if (this instanceof Character && this.y - this.speedY > this.ground) {
+          this.speedY = (this.ground - this.y) * -1;
         }
       }
     }, 1000 / 25);

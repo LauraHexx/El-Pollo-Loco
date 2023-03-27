@@ -9,10 +9,8 @@ class Keyboard {
     this.eventTouchpad();
   }
 
-  /**
-   * This Function checks whether the keys has been released or pressed
-   *
-   */
+  //KEYBOARD
+
   eventKeyboard() {
     this.checkKeysArePressed();
     this.checkKeysAreReleased();
@@ -54,10 +52,8 @@ class Keyboard {
     });
   }
 
-  /**
-   * Functions for the touch buttons in the mobile view
-   *
-   */
+  //BUTTONS IN MOBILE VIEW
+
   eventTouchpad() {
     this.checkButtonsArePressed();
     this.checkButtonsAreReleased();
