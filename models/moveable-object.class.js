@@ -12,7 +12,6 @@ class MoveableObject extends DrawableObject {
   energy = 100;
   lastHit = 0;
   lastAction;
-  characterOnGroundY = 170;
 
   //ANIMATION
 

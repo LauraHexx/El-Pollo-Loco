@@ -70,13 +70,13 @@ function generateAudios() {
   });
 }
 
-function playAudio(key) {
-  const selectedAudio = audiosCache[key];
+function playAudio(name) {
+  const selectedAudio = audiosCache[name];
   selectedAudio.play();
 }
 
-function pauseAudio(key) {
-  const selectedAudio = audiosCache[key];
+function pauseAudio(name) {
+  const selectedAudio = audiosCache[name];
   selectedAudio.pause();
 }
 
