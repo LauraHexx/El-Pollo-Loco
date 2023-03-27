@@ -183,8 +183,8 @@ canvas {
 
 #unstoppable {
   position: absolute;
-  top: 105px;
-  left: 300px;
+  top: 10%;
+  left: 50%;
   font-size: 23px;
   font-weight: bold;
   color: #ffc402;
