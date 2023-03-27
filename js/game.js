@@ -28,7 +28,6 @@ function init() {
 function changeStyle() {
   document.getElementById("startscreen").classList.add("d-none");
   document.getElementById("divPlayBtn").classList.add("d-none");
-  document.getElementById("howtoPlayIcon").classList.add("d-none");
   document
     .getElementById("mobileActionButtons")
     .classList.replace("d-none", "showMobileActionBtns");
