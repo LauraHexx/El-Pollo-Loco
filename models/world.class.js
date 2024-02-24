@@ -289,11 +289,14 @@ class World {
       this.keyboard.SPACE &&
       !this.character.lookToLeft &&
       !this.character.isHurting() &&
+      !this.character.isThrowing &&
+      !this.endboss.isHurting() &&
       this.character.collectedBottles > 0
     );
   }
 
   bottlesGetThrown() {
+    this.character.isThrowing = true;
     this.character.lastAction = new Date().getTime();
     this.character.collectedBottles--;
     this.statusBarBottle.setPercentage(this.character.collectedBottles);
@@ -330,6 +333,7 @@ class World {
   checkBottleIsSmashed() {
     this.throwableBottles.forEach((bottle) => {
       if (this.bottleCollidesBottomOrEndboss(bottle)) {
+        this.character.isThrowing = false;
         this.clearBottle(bottle);
       }
     });
